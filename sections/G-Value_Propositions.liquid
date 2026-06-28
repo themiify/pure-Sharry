@@ -1,0 +1,35 @@
+{% assign is_rtl = request.is_rtl %}
+{% assign items = section.settings.items | default: empty %}
+
+<section
+  class="gl-section gl-value-propositions"
+  style="{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} {% assign pad = section.settings.section_padding %}{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} "
+>
+  <div class="gl-container">
+    <div class="value-props-grid " >
+      {% for item in items %}
+        {% assign display_title = item.title %}
+        {% if is_rtl and item.title_ar != blank %}
+          {% assign display_title = item.title_ar %}
+        {% endif %}
+
+        {% assign display_img = item.image_en %}
+        {% if is_rtl and item.image_ar != blank %}
+          {% assign display_img = item.image_ar %}
+        {% endif %}
+
+        <div class="value-prop-item" data-sal="slide-up"
+      data-sal-duration="500"
+      data-sal-delay="{{ forloop.index0 | times: 100 }}"
+      data-sal-easing="ease">
+          {% if display_img != blank %}
+            <img src="{{ display_img }}" alt="{{ display_title }}" class="value-prop-icon">
+          {% endif %}
+          {% if display_title != blank %}
+            <p class="value-prop-title">{{ display_title }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

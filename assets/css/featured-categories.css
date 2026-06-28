@@ -1,0 +1,117 @@
+.featured-categories .heading { 
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gl-heading);
+}
+.featured-categories .categories-wrapper {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 16px 8px;
+  padding:30px 0px;
+}
+.featured-categories .cate-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gl-heading);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.featured-categories .cate-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background-color: var(--gl-subheading);
+  height: 60px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.featured-categories .cate-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.featured-categories .cate-item .cate-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.featured-categories .cate-item:hover {
+  transform: scale(1.05) translateY(-2px);
+  z-index: 10;
+}
+
+.featured-categories .cate-item:hover::before {
+  opacity: 1;
+}
+
+.featured-categories .cate-item:hover .cate-image {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.featured-categories .cate-item:hover .cate-name {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.featured-categories .cate-item.no-image:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.featured-categories .cate-item.no-image:hover::before {
+  opacity: 0;
+}
+
+.featured-categories .cate-item.no-image:hover .cate-image {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.featured-categories .cate-item.no-image:hover .cate-name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (max-width: 1024px) {
+    .featured-categories .categories-wrapper {
+        grid-template-columns: repeat(6,1fr);
+        padding: 30px 10px;
+    }
+}
+@media (max-width: 768px) {
+  .featured-categories .categories-wrapper {
+    grid-template-columns: repeat(3,1fr);
+  }
+  .featured-categories .cate-name {
+    font-size: 15px;
+  }
+  .featured-categories .cate-item:hover {
+    transform: scale(1.02) translateY(-1px);
+  }
+  .featured-categories .heading { 
+    font-size: 20px;
+}
+}

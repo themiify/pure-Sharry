@@ -1,0 +1,69 @@
+  .gl-herobanner {
+    height: 500px !important;
+  }
+  .gl-herobanner .gl-hero-heading {
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--gl-heading);
+  }
+  .gl-herobanner .gl-hero-subtitle {
+    font-size: 16px;
+    color: var(--gl-heading);
+    font-weight: 400;
+    opacity: 0.7;
+  }
+  .gl-herobanner .gl-url-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 46px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all var(--gl-transition);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background: var(--gl-primary);
+    color: var(--gl-subheading);
+    border-radius: 8px;
+  }
+
+  .gl-subbanner .swiper-pagination-bullet {
+    background: #e8b3b9;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+  }
+
+  .gl-subbanner .swiper-pagination-bullet-active {
+    background: var(--gl-primary);
+    width: 37px;
+    border-radius: 8px;
+  }
+
+  .gl-subbanner .gl-hero-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  .gl-subbanner .gl-hero-container{
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .gl-herobanner .gl-hero-heading {
+      font-size: 25px;
+    }
+    .gl-herobanner .gl-hero-subtitle {
+      font-size: 14px;
+    }
+    .gl-herobanner .gl-url-button {
+      padding: 12px 32px;
+      font-size: 14px;
+    }
+  }
+.gl-subbanner   .gl-highlight-word {
+  color: var(--gl-primary);
+}

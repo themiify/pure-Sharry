@@ -1,0 +1,90 @@
+{% assign is_rtl = request.is_rtl %}
+{% assign pad = section.settings.section_padding %}
+
+<section
+  class="gl-section gl-image-collage"
+  style="{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} "
+>
+  <div class="gl-container">
+    <div class="collage-grid">
+
+      {% if section.settings.video_url != blank %}
+      <div class="collage-item collage-item--1">
+        <video src="{{ section.settings.video_url }}" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+      </div>
+    {% endif %}
+
+      {% if section.settings.image_2 != blank %}
+        <div class="collage-item collage-item--2">
+          <img src="{{ section.settings.image_2 }}" alt="Image 2">
+        </div>
+      {% endif %}
+
+      {% if section.settings.image_3 != blank %}
+        <div class="collage-item collage-item--3">
+          <img src="{{ section.settings.image_3 }}" alt="Image 3">
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gl-image-collage .collage-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    direction: ltr;
+    padding-top: 100px;
+    overflow: hidden;
+  }
+
+  .collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .collage-item--1 {
+    height: 450px;
+  }
+
+  .collage-item--2 {
+    height: 450px;
+  }
+
+  .collage-item--3 {
+    height: 550px;
+    align-self: flex-start;
+    position: absolute;
+    left: 60%;
+    width: 350px;
+    bottom: 10%;
+    z-index: -1;
+  }
+
+  @media (max-width: 768px) {
+ 
+ .gl-image-collage .collage-grid {
+
+    padding-top: 20px;
+  }
+    .collage-item--3 {
+      width: 120px;
+      bottom: 25%;
+      left: 66%;
+    
+    }
+    .collage-item--1,
+    .collage-item--2,
+    .collage-item--3 {
+      height: 160px;
+    }
+    .gl-image-collage .collage-grid{
+      grid-template-columns: 1.5fr 1.5fr 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,155 @@
+{% comment %}
+  Featured Categories Section — Glamour Theme
+  Uses `category_picker` setting type.
+  Selected categories are server-resolved into `section.resolved.selected_categories`
+  — each item has: category_id, name, slug, url, image, description,
+                    meta_title, meta_description, meta_keywords.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign columns = section.settings.columns | default: 3 %}
+{% assign resolved_cats = section.resolved.selected_categories %}
+
+<section
+  class="gl-section gl-featured-categories-section all-catgories"
+  style="{% if section.settings.section_bg_color != blank %}background-color:{{ section.settings.section_bg_color }};{% endif %}"
+>
+  <div class="gl-container">
+    <div class="gl-section-header">
+      {% include 'G-Header-section',
+        main_title_en: section.settings.main_title_en,
+        main_title_ar: section.settings.main_title_ar,
+        title_bg: section.settings.title_bg,
+        main_title_color: section.settings.main_title_color,
+        heading_font_size: section.settings.heading_font_size
+      %}
+    </div>
+
+    {% if resolved_cats.size > 0 %}
+      <div class="swiper categories-swiper">
+        <div class="swiper-wrapper">
+          {% for cat in resolved_cats %}
+            <div
+              class="swiper-slide"
+              data-sal="slide-up"
+              data-sal-duration="700"
+              data-sal-delay="{{ forloop.index0 | times: 100 }}"
+              data-sal-easing="ease-out-back"
+            >
+              <a
+                href="{{ cat.url }}"
+                class="category-card"
+                data-sal="zoom-in"
+                data-sal-duration="600"
+                data-sal-delay="{{ forloop.index0 | times: 100 | plus: 150 }}"
+              >
+                <div class="categore-image">
+                  {% if cat.image != blank %}
+                    <img
+                      src="{{ cat.image }}"
+                      alt="{{ cat.name }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <img
+                      src="https://azzrk.dev.gosharry.com/themes/shop/default/build/assets/medium-product-placeholder-INODB-G2.webp"
+                      alt="{{ cat.name }}"
+                      style="width:100%;height:100%;object-fit:cover;"
+                    >
+                  {% endif %}
+                </div>
+
+                <h3 class="cate-name">
+                  {{ cat.name }}
+                </h3>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        {%- if section.settings.show_pagination -%}
+          <div class="swiper-pagination"></div>
+        {%- endif -%}
+        {%- if section.settings.show_arrows -%}
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        {%- endif -%}
+      </div>
+
+    {% else %}
+      <div
+        class="gl-featured-cats-grid"
+        style="display:grid;grid-template-columns:repeat({{ columns }},minmax(0,1fr));gap:1.5rem;"
+      >
+        {% for i in (1..columns) %}
+          <div
+            style="
+              aspect-ratio:3/4;border-radius:var(--gl-radius,12px);
+              background:var(--gl-bg-alt,#f3f4f6);
+              display:flex;align-items:flex-end;padding:1.25rem 1rem;
+              box-shadow:0 4px 16px rgba(0,0,0,.08);
+            "
+          >
+            <span style="color:#fff;font-size:1rem;font-weight:700;opacity:.6;">
+              {% if is_rtl %}فئة {{ i }}{% else %}Category {{ i }}{% endif %}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  {%- if section.settings.show_arrows -%}
+  .all-catgories .categories-swiper {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  {%- else -%}
+   .all-catgories .categories-swiper {
+      padding: 20px 0px 0px;
+    }
+  {%- endif -%}
+</style>
+
+<script>
+  (function () {
+    function initCategoriesSection() {
+      var swiperEl = document.querySelector('.categories-swiper');
+      if (!swiperEl) return;
+
+      var swiper = new Swiper(swiperEl, {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: swiperEl.querySelector('.swiper-button-next'),
+          prevEl: swiperEl.querySelector('.swiper-button-prev'),
+        },
+        pagination: {
+          el: swiperEl.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 7,
+            spaceBetween: 30,
+          },
+        },
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCategoriesSection);
+    } else {
+      initCategoriesSection();
+    }
+  })();
+</script>

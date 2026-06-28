@@ -1,0 +1,215 @@
+{% comment %}
+  Featured Products Section — Glamour Theme v2.1
+  Displays a grid of featured products with placeholder cards for preview.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign heading = section.settings.heading | default: 'Featured Products' %}
+{% assign heading_ar = section.settings.heading_ar | default: 'منتجات مميزة' %}
+{% assign subtitle = section.settings.subtitle | default: 'Handpicked for you' %}
+{% assign subtitle_ar = section.settings.subtitle_ar | default: 'مختارة خصيصاً لكِ' %}
+{% assign product_count = section.settings.product_count | default: 8 %}
+{% assign layout = section.settings.layout | default: 'grid' %}
+{% assign products_layout_style = '' %}
+{% assign product_ids = section.settings.featured_ids | default: empty %}
+{% assign product_card_orientation = 'vertical' %}
+{% assign product_card_actions = section.settings.product_card_actions | default: 'view,addToCart,wishlist,compare' %}
+{% assign featured_items = collections.featured.products | default: empty %}
+{% if featured_items.size == 0 %}
+  {% assign featured_items = products | default: empty %}
+{% endif %}
+{% if featured_items.size == 0 and product and product.related_products and product.related_products.size > 0 %}
+  {% assign featured_items = product.related_products %}
+{% endif %}
+{% assign add_to_wishlist_label = translations.product.add_to_wishlist | default: 'Add to Wishlist' %}
+{% assign remove_from_wishlist_label = translations.product.remove_from_wishlist | default: 'Remove from Wishlist' %}
+{% assign add_to_compare_label = translations.product.add_to_compare | default: 'Add to Compare' %}
+{% assign remove_from_compare_label = translations.product.remove_from_compare | default: 'Remove from Compare' %}
+{% assign new_label = translations.product.new | default: 'New' %}
+{% assign sale_label = translations.product.sale | default: 'Sale' %}
+{% assign quick_view_label = translations.product.quick_view | default: 'Quick View' %}
+{% assign add_to_cart_label = translations.product.add_to_cart | default: 'Add to Cart' %}
+{% assign compare_added_label = translations.product.compare_added | default: 'Product added to compare.' %}
+{% assign compare_removed_label = translations.product.compare_removed | default: 'Product removed from compare.' %}
+{% assign compare_duplicate_label = translations.product.already_in_compare
+  | default: 'Product is already in compare.'
+%}
+{% assign featured_product_label = translations.sections.featured_product | default: 'Featured Product' %}
+{% assign view_all_label = translations.general.view_all | default: 'View All' %}
+
+{% if layout == 'slider' %}
+  {% assign products_layout_style = 'display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);overflow-x:auto;gap:1.5rem;padding-bottom:0.5rem;' %}
+{% endif %}
+
+<section
+  data-sal="fade"
+  data-sal-duration="900"
+  id="featured-products-{{ section.id }}"
+  data-featured-products-section="{{ section.id }}"
+  data-loop="{% if section.settings.infinite_loop %}true{% else %}false{% endif %}"
+  data-autoplay="{% if section.settings.auto_play %}true{% else %}false{% endif %}"
+  class="featured-products gl-section"
+  style="{% if section.settings.heading_font_override != blank %}--section-font-heading: '{{ section.settings.heading_font_override }}', sans-serif;{% endif %}{% if section.settings.body_font_override != blank %}--section-font-body: '{{ section.settings.body_font_override }}', sans-serif;{% endif %}{% if section.settings.heading_font_size > 0 %}--section-heading-size: {{ section.settings.heading_font_size }}px;{% endif %}{% if section.settings.body_font_size > 0 %}--section-body-size: {{ section.settings.body_font_size }}px;{% endif %}{% assign pad = section.settings.section_padding %}{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %}{% if pad %}padding: {{ pad.top | default: 60 }}px {{ pad.right | default: 0 }}px {{ pad.bottom | default: 60 }}px {{ pad.left | default: 0 }}px;{% endif %}"
+>
+  <div class="gl-container">
+    {% include 'G-Header-section',
+      main_title_en: section.settings.main_title_en,
+      main_title_ar: section.settings.main_title_ar,
+      title_bg: section.settings.title_bg,
+      main_title_color: section.settings.main_title_color,
+      is_rtl: is_rtl
+    %}
+
+    {% if product_ids.size > 0 %}
+      {% if layout == 'slider' %}
+        <div class="swiper featured-products-swiper">
+          <div class="swiper-wrapper">
+            {% for product_id in product_ids limit: product_count %}
+              <div class="swiper-slide">
+                {% render 'product-card',
+                  product_card_id: product_id,
+                  product_card_api_url: api_routes.product_card_html,
+                  product_card_orientation: product_card_orientation,
+                  product_card_actions: product_card_actions,
+                  theme: theme,
+                  shop: shop
+                %}
+              </div>
+            {% endfor %}
+          </div>
+          {%- if section.settings.show_pagination -%}
+            <div class="swiper-pagination"></div>
+          {%- endif -%}
+          {%- if section.settings.show_arrows -%}
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          {%- endif -%}
+        </div>
+      {% else %}
+        <div
+          class="gl-products-grid gl-products-grid-grid"
+          data-layout="{{ layout }}"
+          style="{{ products_layout_style }}"
+        >
+          {% for product_id in product_ids limit: product_count %}
+            {% render 'product-card',
+              product_card_id: product_id,
+              product_card_api_url: api_routes.product_card_html,
+              product_card_orientation: product_card_orientation,
+              product_card_actions: product_card_actions,
+              theme: theme,
+              shop: shop
+            %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    {% else %}
+      <!-- Preview placeholder -->
+      <div
+        class="gl-products-grid {% if layout == 'slider' %}gl-products-grid-slider{% else %}gl-products-grid-grid{% endif %}"
+        data-layout="{{ layout }}"
+        style="{{ products_layout_style }}"
+      >
+        {% for i in (1..4) %}
+          <div class="gl-product-card">
+            <div class="gl-product-card-image">
+              <div class="gl-product-placeholder"></div>
+              {% if i == 1 %}
+                <div class="gl-product-card-badges">
+                  <span class="gl-badge gl-badge-accent">
+                    {{ new_label }}
+                  </span>
+                </div>
+              {% endif %}
+            </div>
+            <div class="gl-product-card-body">
+              <h3 class="gl-product-card-title">
+                {{ featured_product_label }}
+                {{ i }}
+              </h3>
+              <div class="gl-product-card-price"><span class="current">$59.99</span></div>
+              <div class="gl-product-card-rating">
+                <span class="gl-star filled">★</span><span class="gl-star filled">★</span
+                ><span class="gl-star filled">★</span><span class="gl-star filled">★</span
+                ><span class="gl-star filled">★</span><span class="count">({{ i | plus: 20 }})</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  {%- if section.settings.show_arrows -%}
+    .featured-products .featured-products-swiper{
+      padding: 60px 0px 0px;
+    }
+  {%- else -%}
+    .featured-products .featured-products-swiper{
+      padding: 20px 0px 0px;
+    }
+  {%- endif -%}
+</style>
+
+<script>
+  (function () {
+    function initFeaturedProductsSection(sectionEl) {
+      var swiperEl = sectionEl.querySelector('.featured-products-swiper');
+      if (!swiperEl) return;
+
+      var settings = sectionEl.dataset;
+      var loop = settings.loop === 'true';
+      var autoPlay = settings.autoplay === 'true';
+
+      var swiper = new Swiper(swiperEl, {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        loop: loop,
+        autoplay: autoPlay
+          ? {
+              delay: 5000,
+              disableOnInteraction: false,
+            }
+          : false,
+        pagination: {
+          el: sectionEl.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        navigation: {
+          nextEl: sectionEl.querySelector('.swiper-button-next'),
+          prevEl: sectionEl.querySelector('.swiper-button-prev'),
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2.4,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        },
+      });
+    }
+
+    function initAllFeaturedProducts() {
+      var sections = document.querySelectorAll('[data-featured-products-section]');
+      sections.forEach(function (section) {
+        initFeaturedProductsSection(section);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllFeaturedProducts);
+    } else {
+      initAllFeaturedProducts();
+    }
+  })();
+</script>

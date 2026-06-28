@@ -1,0 +1,130 @@
+  .gl-testimonials .testimonials-swiper {
+    padding: 80px 0px;
+    overflow: hidden;
+  }
+  .gl-testimonials .swiper-wrapper {
+    align-items: stretch;
+  }
+  .gl-testimonials .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+  .gl-testimonials .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+  .gl-testimonials .testimonial-card .testimonial-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .gl-testimonials .testimonial-text {
+    font-size: var(--section-body-size, 16px);
+    color: var(--gl-heading);
+    opacity: 0.8;
+    font-weight: 400;
+    text-align: center;
+    margin: 24px 0 0 0;
+  }
+  .gl-testimonials .card-rating-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .gl-testimonials .testimonial-card .testimonial-author-name {
+    font-weight: 700;
+    font-size: var(--section-body-size, 16px);
+    color: var(--gl-heading);
+  }
+  .gl-testimonials .testimonial-stars {
+    margin-bottom: 0px !important;
+  }
+  .gl-testimonials .testimonial-card .testimonial-author {
+    position: absolute;
+    top: -20%;
+    padding-top: 0px !important;
+  }
+  .gl-testimonials .testimonial-author-job {
+    font-size: var(--section-body-size, 14px);
+    color: var(--gl-heading);
+  }
+
+  .gl-testimonials .testimonial-stars {
+    margin-bottom: 16px;
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .gl-testimonials .star.filled {
+    color: #f59e0b;
+  }
+
+  .gl-testimonials .swiper-pagination {
+    bottom: 0;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .gl-testimonials .swiper-pagination-bullet {
+    background: #E8B3B9;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+  }
+
+  .gl-testimonials .swiper-pagination-bullet-active {
+    background: var(--gl-primary);
+  }
+
+  .gl-testimonials .swiper-button-next,
+  .gl-testimonials .swiper-button-prev {
+    color: var(--gl-primary);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    position: absolute;
+    top: 25px !important;
+  }
+
+  .gl-testimonials .swiper-button-next {
+    left: 3px !important;
+  }
+
+  .gl-testimonials .swiper-button-prev {
+    left: 60px !important;
+    right: auto !important;
+  }
+
+  html[dir="ltr"] .gl-testimonials .swiper-button-next {
+    right: 3px !important;
+    left: auto !important;
+  }
+
+  html[dir="ltr"] .gl-testimonials .swiper-button-prev {
+    right: 60px !important;
+    left: auto !important;
+  }
+
+  .gl-testimonials svg{
+    width: 20% !important;
+  }
+  .gl-testimonials .swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+  }
+

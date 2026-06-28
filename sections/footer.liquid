@@ -1,0 +1,181 @@
+{% comment %}
+  Footer Section — Glamour Theme v2.1
+  Main site footer with links, branding, social media, and copyright.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign show_social = section.settings.show_social  %}
+{% assign show_payments = section.settings.show_payment_icons  %}
+{% assign footer_menu = section.menu %}
+
+{% if footer_menu == blank %}
+  {% assign footer_menu = menus.footer %}
+{% endif %}
+{% assign copyright_text = section.settings.copyright  %}
+{% assign copyright_text_ar = section.settings.copyright_ar  %}
+
+<footer class="gl-footer">
+  <div class="gl-container">
+    <div class="gl-footer-grid">
+      <!-- Column 1: Brand Info -->
+      <div class="gl-footer-brand">
+        <a href="/" class="gl-footer-logo">
+          {% assign dark_logo = theme.store_logo_dark | default: theme.store_logo %}
+          {% if dark_logo != blank %}
+            <img src="{{ dark_logo }}" alt="{{ shop.name }}" style="width :60px ;height: 70px; object-fit: contain;">
+          {% else %}
+            <span style="font-size:1.5rem;font-weight:700;color:#fff;font-family:var(--gl-font-heading);">{{- shop.name -}}</span>
+          {% endif %}
+        </a>
+
+        <p class="footer-description" >
+          {% if is_rtl %}
+            {{ theme.store_tagline_ar | default: 'وجهتك المفضلة لأرقى منتجات التجميل والعناية بالبشرة.' }}
+          {% else %}
+            {{ theme.store_tagline | default: 'Your destination for premium beauty and skincare products.' }}
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- Columns 2+: Footer Menu (dynamic, driven by menus.footer handle) -->
+      {% for column in footer_menu %}
+        <div>
+          {% if column.children.size > 0 %}
+            <h4 class="menus_title" >{{ column.title }}</h4>
+            <ul class="gl-footer-links">
+              {% for item in column.children %}
+                <li>
+                  <a href="{{ item.url }}"{% if item.new_tab %} target="_blank" rel="noopener"{% endif %}>
+                    {{- item.title -}}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <h4>
+              <a href="{{ column.url }}"{% if column.new_tab %} target="_blank" rel="noopener"{% endif %}
+                 class="gl-footer-standalone-link">
+                {{- column.title -}}
+              </a>
+            </h4>
+          {% endif %}
+        </div>
+      {% else %}
+        <!-- Fallback: no footer menu configured yet -->
+        <div>
+          <h4>{% if is_rtl %}روابط مهمة{% else %}Quick Links{% endif %}</h4>
+          <ul class="gl-footer-links">
+            <li>
+              <a href="/page/about-us">
+                {%- if is_rtl %}من نحن{% else %}About Us{% endif -%}
+              </a>
+            </li>
+            <li>
+              <a href="/page/contact-us">
+                {%- if is_rtl %}تواصل معنا{% else %}Contact Us{% endif -%}
+              </a>
+            </li>
+            <li>
+              <a href="/page/privacy-policy">
+                {%- if is_rtl %}سياسة الخصوصية{% else %}Privacy Policy{% endif -%}
+              </a>
+            </li>
+            <li>
+              <a href="/page/terms-conditions">
+                {%- if is_rtl %}الشروط والأحكام{% else %}Terms & Conditions{% endif -%}
+              </a>
+            </li>
+            <li>
+              <a href="/page/return-policy">
+                {%- if is_rtl %}سياسة الاسترجاع{% else %}Return Policy{% endif -%}
+              </a>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+      <div>
+           {% if show_social %}
+            <h4 class="menus_title" >{%- if is_rtl %}تابعنا على{% else %}Follow us on{% endif -%}</h4>
+          <div class="gl-footer-social">
+            {% if theme.social_instagram != blank %}
+              <a href="{{ theme.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            {% endif %}
+            {% if theme.social_facebook != blank %}
+              <a href="{{ theme.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+            {% endif %}
+            {% if theme.social_twitter != blank %}
+              <a href="{{ theme.social_twitter }}" target="_blank" rel="noopener" aria-label="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4l11.73 15h5L9 4H4zm13.15 13L6.35 6H5.25l10.8 11h1.1z"></path>
+                </svg>
+              </a>
+            {% endif %}
+            {% if theme.social_tiktok != blank %}
+              <a href="{{ theme.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.5z"></path>
+                </svg>
+              </a>
+            {% endif %}
+            {% if theme.social_snapchat != blank %}
+              <a href="{{ theme.social_snapchat }}" target="_blank" rel="noopener" aria-label="Snapchat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2C8 2 5 5 5 9v1c0 1-.5 2-1.5 2.5.5.5 1.5.5 2 .5-.5 1-1.5 2-3 2.5 1 .5 2 1 3 1 .5 1 1.5 2.5 6.5 2.5s6-1.5 6.5-2.5c1 0 2-.5 3-1-1.5-.5-2.5-1.5-3-2.5.5 0 1.5 0 2-.5C19.5 12 19 11 19 10V9c0-4-3-7-7-7z"></path>
+                </svg>
+              </a>
+            {% endif %}
+            {% if theme.social_youtube != blank %}
+              <a href="{{ theme.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- Bottom Bar -->
+  <div class="gl-footer-bottom">
+    <div class="gl-container gl-footer-bottom-wrapper">
+      <span class="footer-copy-right" >
+        {% if is_rtl %} {{ copyright_text_ar }}{% else %}{{ copyright_text }}{% endif %}
+      </span>
+  
+      {% if show_payments %}
+        <div class="gl-footer-payment">
+          <svg
+            viewBox="0 0 38 24"
+            width="38"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="pi-visa"
+          >
+            <title id="pi-visa">Visa</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2z" fill="#142688"></path>
+          </svg>
+          <svg
+            viewBox="0 0 38 24"
+            width="38"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="pi-master"
+          >
+            <title id="pi-master">Mastercard</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><circle fill="#EB001B" cx="15" cy="12" r="7"></circle><circle fill="#F79E1B" cx="23" cy="12" r="7"></circle><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path>
+          </svg>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>

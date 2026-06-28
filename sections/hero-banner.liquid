@@ -1,0 +1,356 @@
+{% comment %}
+  Hero Banner Slider Section — Glamour Theme v2.1
+  A striking first impression with full-bleed background slider, gradient overlay, and call-to-action.
+  Each instance is scoped by section.id to prevent style leaking between multiple hero sections.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+<section id="hero-{{ section.id }}" class="hero-banners gl-section">
+  <div class="swiper mySwiper-hero-banner main-banner">
+    <div class="swiper-wrapper">
+      {% for banner in section.settings.hero_banners %}
+        {% assign bg_image = banner.bg_image %}
+        {% if is_rtl and banner.bg_image_ar != blank %}
+          {% assign bg_image = banner.bg_image_ar %}
+        {% endif %}
+
+        {% assign main_title = banner.main_title %}
+        {% if is_rtl and banner.main_title_ar != blank %}
+          {% assign main_title = banner.main_title_ar %}
+        {% endif %}
+
+        {% assign highlighted_text = banner.highlighted_text %}
+        {% if is_rtl and banner.highlighted_text_ar != blank %}
+          {% assign highlighted_text = banner.highlighted_text_ar %}
+        {% endif %}
+
+        {% assign highlighted_text_color = banner.highlighted_text_color | default: '#CE5A67' %}
+
+        {% if highlighted_text != blank %}
+          {% assign highlighted_text_wrapped = '**' | append: highlighted_text | append: '**' %}
+        {% endif %}
+
+        {% assign featured_image = banner.featured_image %}
+        {% if is_rtl and banner.featured_image_ar != blank %}
+          {% assign featured_image = banner.featured_image_ar %}
+        {% endif %}
+
+        {% assign sub_title = banner.sub_title %}
+        {% if is_rtl and banner.sub_title_ar != blank %}
+          {% assign sub_title = banner.sub_title_ar %}
+        {% endif %}
+
+        {% assign btn_text = banner.btn_text %}
+        {% if is_rtl and banner.btn_text_ar != blank %}
+          {% assign btn_text = banner.btn_text_ar %}
+        {% endif %}
+
+        {% assign text_align = banner.text_align | default: 'center' %}
+
+        <div class="swiper-slide">
+          {% if bg_image != blank %}
+            <img src="{{ bg_image }}" alt="{{ main_title | default: 'Banner' }}" loading="lazy" class="banner-image">
+          {% else %}
+            <div
+              style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--gl-primary) 0%, var(--gl-primary-dark) 100%);"
+            ></div>
+          {% endif %}
+
+          <div
+            class="hero-content hero-content-{{ text_align }}"
+            style="color: {{ banner.text_color | default: '#ffffff' }};"
+          >
+            {% if main_title != blank %}
+              <h1
+                data-sal="slide-up"
+                data-sal-duration="700"
+                data-sal-delay="100"
+                data-sal-easing="ease-out-back"
+              >
+                {% if highlighted_text != blank %}
+                  {% assign parts = main_title | split: highlighted_text %}
+                  {{ parts[0] }}
+                  <span class="highlighted-text" style="color: {{ highlighted_text_color }};">
+                    {{ highlighted_text }}
+                    {% assign featured_img = featured_image %}
+                    {% if is_rtl and banner.featured_image_ar != blank %}
+                      {% assign featured_img = banner.featured_image_ar %}
+                    {% endif %}
+                    {% if featured_img != blank %}
+                      <img src="{{ featured_img }}" class="highlighted-img" alt="image-{{ forloop.index }}">
+                    {% endif %}
+                  </span>
+                  {{ parts[1] }}
+                {% else %}
+                  {{ main_title }}
+                {% endif %}
+              </h1>
+            {% endif %}
+            {% if sub_title != blank %}
+              <p
+                data-sal="slide-up"
+                data-sal-duration="700"
+                data-sal-delay="250"
+              >
+                {{ sub_title }}
+              </p>
+            {% endif %}
+
+            {% if btn_text != blank and banner.btn_url != blank %}
+              <a
+                data-sal="slide-up"
+                data-sal-duration="700"
+                data-sal-delay="400"
+                href="{{ banner.btn_url }}"
+                class="gl-btn"
+              >
+                <span>{{ btn_text }}</span>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="swiper-pagination swiper-pagination-hero-banner"></div>
+  </div>
+</section>
+
+<script>
+  var swiper = new Swiper('.mySwiper-hero-banner', {
+    effect: 'fade',
+    grabCursor: true,
+    loop: false,
+    speed: 700,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination-hero-banner',
+      clickable: true,
+    },
+  });
+</script>
+
+
+{% schema %}
+{
+    "slug": "hero-banner",
+    "name": {
+        "en": "Hero Banner - Moataz",
+        "ar": "بانر رئيسي - معتز"
+    },
+    "category": "hero",
+    "template": "sections/hero-banner.liquid",
+    "sort_order": 2,
+    "reusable": true,
+    "settings": [
+        {
+            "type": "repeater",
+            "id": "hero_banners",
+            "label": "Hero Banners",
+            "label_ar": "بانرات الرئيسية",
+            "item_label": "Hero Banner",
+            "item_label_ar": "بانر الرئيسية",
+            "max_items": 8,
+            "default": [
+                {
+                    "main_title": "Your look starts with Moataz",
+                    "main_title_ar": "إطـــلالتك تبـــدأ مـن معتــــز",
+                    "highlighted_text": "Moataz",
+                    "highlighted_text_ar": "معتــــز",
+                    "sub_title": " Original beauty products, handpicked to make you shine and feel confident every day",
+                    "sub_title_ar": "منتجات تجميل أصلية مختارة بعناية عشان تبرز جمالك وتناسب يومك بكل ثقة",
+                    "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/134/serve?variant=full&token=BZhP5uHQiFt7RpArSxGGdeKArwtOidyU",
+                    "bg_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/134/serve?variant=full&token=BZhP5uHQiFt7RpArSxGGdeKArwtOidyU",
+                    "featured_image": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
+                    "featured_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
+                    "btn_text": " Shop Now",
+                    "btn_text_ar": "تسوقي الان",
+                    "btn_url": " /collections/all",
+                    "text_align": "center",
+                    "text_color": "#000000",
+                    "highlighted_text_color": "#FFFFFF"
+                },
+                {
+                    "main_title": " A radiance that suits you",
+                    "main_title_ar": "إشراقـــة تليــق بـك",
+                    "sub_title": "Discover the best carefully selected skincare and makeup products to suit your everyday look.",
+                    "sub_title_ar": "اكتشفي أفضل منتجات العناية بالبشرة والمكياج المختارة بعناية لتناسب إطلالتك اليومية",
+                    "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/120/serve?variant=full&token=5zgzNMflqrMoDg3RWhjHLw7wIoctLMZ7",
+                    "bg_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/120/serve?variant=full&token=5zgzNMflqrMoDg3RWhjHLw7wIoctLMZ7",
+                    "btn_text": "Shop Now",
+                    "btn_text_ar": "تسوق الآن",
+                    "btn_url": "/collections/all",
+                    "text_align": "left",
+                    "text_color": "#000000"
+                }
+            ],
+            "fields": [
+                {
+                    "type": "text",
+                    "id": "main_title",
+                    "label": "Text",
+                    "label_ar": "النص",
+                    "default": "Unlimited Discounts & Gifts"
+                },
+                {
+                    "type": "text",
+                    "id": "main_title_ar",
+                    "label": "Text (Arabic)",
+                    "label_ar": "النص (عربي)",
+                    "default": "  خـصـومــات وهــــدايـا غير محـــدودة"
+                },
+                {
+                    "type": "text",
+                    "id": "highlighted_text",
+                    "label": "Highlighted Text",
+                    "label_ar": "نص مميز",
+                    "default": "Moataz"
+                },
+                {
+                    "type": "text",
+                    "id": "highlighted_text_ar",
+                    "label": "Highlighted Text (Arabic)",
+                    "label_ar": "نص مميز (عربي)",
+                    "default": "معتز"
+                },
+                {
+                    "type": "color",
+                    "id": "highlighted_text_color",
+                    "label": "Highlighted Text Color",
+                    "label_ar": "لون النص المميز",
+                    "default": "#CE5A67"
+                },
+                {
+                    "type": "image",
+                    "id": "featured_image",
+                    "label": "Featured Image",
+                    "label_ar": "صورة مميزة"
+                },
+                {
+                    "type": "image",
+                    "id": "featured_image_ar",
+                    "label": "Featured Image (Arabic)",
+                    "label_ar": "صورة مميزة (عربي)"
+                },
+                {
+                    "type": "text",
+                    "id": "sub_title",
+                    "label": "Sub title",
+                    "label_ar": "العنوان الفرعي",
+                    "default": "Your beauty today "
+                },
+                {
+                    "type": "text",
+                    "id": "sub_title_ar",
+                    "label": "Subtitle (Arabic)",
+                    "label_ar": "العنوان الفرعي (عربي)",
+                    "default": "     جمالك اليوم"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "Text Color",
+                    "default": "#000000"
+                },
+                {
+                    "type": "select",
+                    "id": "text_align",
+                    "label": "Text Align",
+                    "label_ar": "محاذاة النص",
+                    "default": "center",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "image",
+                    "id": "bg_image",
+                    "label": "Image",
+                    "label_ar": "الصورة"
+                },
+                {
+                    "type": "image",
+                    "id": "bg_image_ar",
+                    "label": "Background Image (Arabic)",
+                    "label_ar": "صورة الخلفية (عربي)"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text",
+                    "label": "Button Text",
+                    "label_ar": "نص الزرار",
+                    "default": "Shop Now"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text_ar",
+                    "label": "Button Text (Arabic)",
+                    "label_ar": "نص الزرار (عربي)",
+                    "default": " تسوقي الان"
+                },
+                {
+                    "type": "url",
+                    "id": "btn_url",
+                    "label": "Button URL",
+                    "label_ar": "رابط الزرار",
+                    "default": "/hello"
+                }
+            ]
+        }
+    ],
+    "defaults": {
+        "hero_banners": [
+            {
+                "main_title": "Your look starts with Moatazs",
+                "main_title_ar": "إطـــلالتك تبـــدأ مـن معتــــز",
+                "highlighted_text": "Moataz",
+                "highlighted_text_ar": "معتــــز",
+                "highlighted_text_color": "#ffffff",
+                "featured_image": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
+                "featured_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
+                "sub_title": " Original beauty products, handpicked to make you shine and feel confident every day",
+                "sub_title_ar": "منتجات تجميل أصلية مختارة بعناية عشان تبرز جمالك وتناسب يومك بكل ثقة",
+                "text_color": "#000000",
+                "text_align": "left",
+                "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/134/serve?variant=full&token=BZhP5uHQiFt7RpArSxGGdeKArwtOidyU",
+                "bg_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/134/serve?variant=full&token=BZhP5uHQiFt7RpArSxGGdeKArwtOidyU",
+                "btn_text": " Shop Now",
+                "btn_text_ar": "تسوقي الان",
+                "btn_url": "/collections/alls"
+            },
+            {
+                "main_title": " A radiance that suits you",
+                "main_title_ar": "إشراقـــة تليــق بـك",
+                "highlighted_text": "Moataz",
+                "highlighted_text_ar": "معتز",
+                "highlighted_text_color": "#ce5a67",
+                "featured_image": "",
+                "featured_image_ar": "",
+                "sub_title": "Discover the best carefully selected skincare and makeup products to suit your everyday look.",
+                "sub_title_ar": "اكتشفي أفضل منتجات العناية بالبشرة والمكياج المختارة بعناية لتناسب إطلالتك اليومية",
+                "text_color": "#ea9a9a",
+                "text_align": "left",
+                "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/120/serve?variant=full&token=5zgzNMflqrMoDg3RWhjHLw7wIoctLMZ7",
+                "bg_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/120/serve?variant=full&token=5zgzNMflqrMoDg3RWhjHLw7wIoctLMZ7",
+                "btn_text": "Shop Now",
+                "btn_text_ar": "تسوق الآنssssss",
+                "btn_url": "/collections/all"
+            }
+        ]
+    }
+}
+{% endschema %}

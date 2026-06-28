@@ -1,0 +1,40 @@
+{% comment %}
+Featured Categories Section — Glamour Theme
+Uses `category_picker` setting type.
+Selected categories are server-resolved into `section.resolved.selected_categories`
+— each item has: category_id, name, slug, url, image, description,
+meta_title, meta_description, meta_keywords.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign resolved_cats = section.resolved.selected_categories %}
+
+<section class="featured-categories" 
+   data-sal="zoom-in"
+  data-sal-duration="600"
+  data-sal-delay="{{ forloop.index0 | times: 60 }}"
+  style="padding-block:30px;{% if section.settings.section_bg_color != blank %}background-color:{{ section.settings.section_bg_color }};{% endif %}">
+  <div class="gl-container">
+    {% if section.settings.heading != blank or section.settings.heading_ar != blank %}
+      <h2 class="heading" >{% if is_rtl %}{{ section.settings.heading_ar }}{% else %}{{ section.settings.heading }}{% endif %}</h2>
+    {% endif %}
+     {% if resolved_cats.size > 0 %}
+    <div class="categories-wrapper">
+      {% for cat in resolved_cats %}
+      <a href="{{ cat.url }}" class="cate-item{% if cat.image == blank %} no-image{% endif %}" 
+       >
+        <div class="cate-image">
+          {% if cat.image != blank %}
+          <img src="{{ cat.image }}" alt="{{ cat.name }}" loading="lazy"
+            style="width:100%;height:100%;object-fit:cover;">
+          {% endif %}
+        </div>
+        <h2 class="cate-name">
+          {{ cat.name }}
+        </h2>
+      </a>
+      {% endfor %}
+    </div>
+     {% endif %}
+  </div>
+</section>

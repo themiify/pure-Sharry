@@ -1,0 +1,225 @@
+{% comment %}
+  Testimonials Section — Glamour Theme v2.1
+  Showcases customer reviews using dynamic settings.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign heading = section.settings.heading | default: 'What Our Customers Say' %}
+{% assign heading_ar = section.settings.heading_ar | default: 'ماذا يقول عملاؤنا' %}
+{% assign visible_count = section.settings.visible_count | default: 3 %}
+{% assign testimonial_items = section.settings.testimonials | default: empty %}
+
+<section
+  id="testimonials-{{ section.id }}"
+  data-testimonials-section="{{ section.id }}"
+    data-sal="fade"
+  data-sal-duration="900"
+  data-loop="{% if section.settings.infinite_loop %}true{% else %}false{% endif %}"
+  data-autoplay="{% if section.settings.auto_play %}true{% else %}false{% endif %}"
+  class="gl-section gl-testimonials"
+  style="{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} "
+>
+  <div class="gl-container">
+    <div class="gl-section-header">
+  {% include 'G-Header-section',
+        main_title_en: section.settings.main_title_en,
+        main_title_ar: section.settings.main_title_ar,
+        title_bg: section.settings.title_bg,
+        main_title_color: section.settings.main_title_color,
+        heading_font_size: section.settings.heading_font_size
+      %}  
+    </div>
+
+    <div class="swiper testimonials-swiper">
+      <div class="swiper-wrapper">
+        {% assign has_reviews = false %}
+        {% if testimonial_items.size > 0 %}
+          {% for testimonial in testimonial_items %}
+            {% assign display_name = testimonial.name | default: '' %}
+            {% assign display_text = testimonial.text | default: '' %}
+            {% assign display_job = testimonial.client_job | default: '' %}
+            {% assign avatar = testimonial.avatar %}
+            {% assign rating = testimonial.rating | default: 5 %}
+
+            {% if is_rtl %}
+              {% assign display_name = testimonial.name_ar | default: display_name %}
+              {% assign display_job = testimonial.client_job_ar | default: '' %}
+              {% assign display_text = testimonial.text_ar | default: display_text %}
+              {% if testimonial.avatar_ar != blank %}
+                {% assign avatar = testimonial.avatar_ar %}
+              {% endif %}
+            {% endif %}
+
+            {% if display_text != blank %}
+              {% assign has_reviews = true %}
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div class="testimonial-author">
+                    {% if avatar != blank %}
+                      <img src="{{ avatar }}" alt="{{ display_name }}" class="testimonial-avatar" loading="lazy">
+                    {% endif %}
+                  </div>
+                  {%- if display_text != blank -%}
+                    <p class="testimonial-text">"{{ display_text }}"</p>
+                  {%- endif -%}
+                  <div class="card-rating-name">
+                    {%- if display_name != blank -%}
+                      <div class="testimonial-author-name">{{ display_name }}</div>
+                    {%- endif -%}
+                    <div class="testimonial-stars">
+                      {% for star in (1..5) %}
+                        <span class="star {% if star <= rating %}filled{% endif %}">★</span>
+                      {% endfor %}
+                    </div>
+                    {%- if display_job != -%}
+                      <p class="testimonial-author-job">{{ display_job }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">
+                  {% if is_rtl %}س{% else %}S{% endif %}
+                </div>
+              </div>
+              <p class="testimonial-text">
+                "{%- if is_rtl -%}منتجات رائعة وخدمة عملاء ممتازة! أنصح بشدة.{%- else -%}Amazing products and excellent customer service! Highly recommend.{%- endif -%}"
+              </p>
+              <div class="card-rating-name">
+                <div class="testimonial-author-name">{%- if is_rtl -%}سارة أحمد{%- else -%}Sarah Johnson{%- endif -%}</div>
+                <div class="testimonial-stars">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                </div>
+                <p class="testimonial-author-job">{%- if is_rtl -%}عميلة راضية{%- else -%}Satisfied Customer{%- endif -%}</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">
+                  {% if is_rtl %}م{% else %}M{% endif %}
+                </div>
+              </div>
+              <p class="testimonial-text">
+                "{%- if is_rtl -%}جودة ممتازة وألوان جميلة. سأشتري مرة أخرى بالتأكيد.{%- else -%}Excellent quality and beautiful colors. Will definitely buy again.{%- endif -%}"
+              </p>
+              <div class="card-rating-name">
+                <div class="testimonial-author-name">{%- if is_rtl -%}مريم خالد{%- else -%}Maria Garcia{%- endif -%}</div>
+                <div class="testimonial-stars">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star">☆</span>
+                </div>
+                <p class="testimonial-author-job">{%- if is_rtl -%}مدونة تجميل{%- else -%}Beauty Blogger{%- endif -%}</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">
+                  {% if is_rtl %}ن{% else %}E{% endif %}
+                </div>
+              </div>
+              <p class="testimonial-text">
+                "{%- if is_rtl -%}شحن سريع وتغليف أنيق. تجربة تسوق مميزة!{%- else -%}Fast shipping and elegant packaging. A premium shopping experience!{%- endif -%}"
+              </p>
+              <div class="card-rating-name">
+                <div class="testimonial-author-name">{%- if is_rtl -%}نورا علي{%- else -%}Emma Wilson{%- endif -%}</div>
+                <div class="testimonial-stars">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                </div>
+                <p class="testimonial-author-job">{%- if is_rtl -%}فنانة مكياج{%- else -%}Makeup Artist{%- endif -%}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+        {%- if section.settings.show_pagination -%}
+              <div class="swiper-pagination"></div>
+        {%- endif -%}
+
+     {%- if section.settings.show_arrows -%}
+       <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+     {%- endif -%}
+    </div>
+  </div>
+
+
+  <script>
+    (function() {
+      function initTestimonialsSection(sectionEl) {
+        var swiperEl = sectionEl.querySelector('.testimonials-swiper');
+        if (!swiperEl) return;
+
+        var settings = sectionEl.dataset;
+        var loop = settings.loop === 'true';
+        var autoPlay = settings.autoplay === 'true';
+
+        var swiper = new Swiper(swiperEl, {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: loop,
+          autoplay: autoPlay ? {
+            delay: 5000,
+            disableOnInteraction: false
+          } : false,
+          pagination: {
+            el: sectionEl.querySelector('.swiper-pagination'),
+            clickable: true
+          },
+          navigation: {
+            nextEl: sectionEl.querySelector('.swiper-button-next'),
+            prevEl: sectionEl.querySelector('.swiper-button-prev')
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30
+            }
+          }
+        });
+      }
+
+      function initAllTestimonials() {
+        var sections = document.querySelectorAll('[data-testimonials-section]');
+        sections.forEach(function(section) {
+          initTestimonialsSection(section);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAllTestimonials);
+      } else {
+        initAllTestimonials();
+      }
+    })();
+  </script>
+</section>
+
+

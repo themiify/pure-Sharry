@@ -1,0 +1,135 @@
+{% comment %}
+  Video Banner Section — Glamour Theme v2.1
+  Background video with text overlay and CTA.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign video_url = section.settings.video_url %}
+{% assign heading = section.settings.heading  %}
+{% assign heading_ar = section.settings.heading_ar %}
+{% assign subtitle = section.settings.subtitle %}
+{% assign subtitle_ar = section.settings.subtitle_ar %}
+{% assign cta_text = section.settings.cta_text %}
+{% assign cta_text_ar = section.settings.cta_text_ar %}
+{% assign cta_url = section.settings.cta_url %}
+{% assign height = section.settings.height | default: 'large' %}
+
+{% case height %}
+  {% when 'small' -%}
+    {%- assign h_class = 'gl-video-banner--small' %}
+  {% when 'medium' -%}
+    {%- assign h_class = 'gl-video-banner--medium' %}
+  {% when 'fullscreen' -%}
+    {%- assign h_class = 'gl-video-banner--fullscreen' %}
+  {% else -%}
+    {%- assign h_class = 'gl-video-banner--large' %}
+{% endcase %}
+
+<section
+  id="video-{{ section.id }}"
+  class="gl-video-banner gl-section {{ h_class }}"
+>
+  {% if video_url != blank %}
+    <video
+      class="gl-video-banner-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;"
+    >
+      <source src="{{ video_url }}" type="video/mp4">
+    </video>
+  {% else %}
+    <div
+      style="position:absolute;inset:0;background: linear-gradient(135deg, var(--gl-bg-alt), var(--gl-primary-light));z-index:0;"
+    ></div>
+  {% endif %}
+  <div
+    class="gl-container"
+    style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;height:100%;"
+  >
+    {% assign display_subtitle = subtitle %}
+    {% assign display_heading = heading %}
+    {% assign display_cta = cta_text %}
+
+    {% if is_rtl %}
+      {% assign display_subtitle = subtitle_ar | default: subtitle %}
+      {% assign display_heading = heading_ar | default: heading %}
+      {% assign display_cta = cta_text_ar | default: cta_text %}
+    {% endif %}
+
+        {% if display_heading != blank %}
+      <h2 class="heading"   data-sal="slide-up"
+  data-sal-duration="900"
+  data-sal-easing="ease-out-back" >
+        {{ display_heading }}
+      </h2>
+    {% endif %}
+
+    {% if display_subtitle != blank %}
+      <span class="subtitle"    data-sal="slide-up"
+  data-sal-duration="800"
+  data-sal-delay="150">
+        {{- display_subtitle -}}
+      </span>
+    {% endif %}
+
+
+
+    {% if cta_url != blank and display_cta != blank %}
+      <div>
+        <a href="{{ cta_url }}" class="btn" style="font-size:1.1rem;"   data-sal="zoom-in"
+  data-sal-duration="700"
+  data-sal-delay="300">
+          {{ display_cta }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .gl-video-banner .heading {
+    font-size: 48px;
+    font-weight: bold;
+   line-height: 58px;
+   color: var(--gl-subheading);
+   margin-bottom: 18px;
+  }
+  .gl-video-banner .subtitle {
+     font-size: 20px;
+    font-weight: 500;
+   line-height: 24px;
+   color: var(--gl-subheading);
+  }
+  .gl-video-banner .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    background-color: var(--gl-primary);
+    color: var(--gl-subheading);
+    border-radius: var(--gl-radius);
+  }
+
+    @media (max-width: 768px) {
+    .gl-video-banner .heading {
+      font-size: 20px;
+      margin-bottom: 0px;
+    }
+    .gl-video-banner .subtitle {
+      font-size: 14px;
+      margin-bottom: 8px;
+  }
+   .gl-video-banner .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+   }
+
+
+
+    }
+
+</style>

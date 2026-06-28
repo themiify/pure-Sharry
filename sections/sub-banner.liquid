@@ -1,0 +1,127 @@
+{% comment %}
+  Hero Banner Section — Glamour Theme v2.1
+  A striking first impression with full-bleed background, gradient overlay, and call-to-action.
+  Each instance is scoped by section.id to prevent style leaking between multiple hero sections.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+{% assign banners = section.settings.banners | default: empty %}
+
+<section
+
+  id="sub-banner-{{ section.id }}"
+  data-sub-banner-section="{{ section.id }}"
+  data-loop="{% if section.settings.infinite_loop %}true{% else %}false{% endif %}"
+  data-autoplay="{% if section.settings.auto_play %}true{% else %}false{% endif %}"
+  class="gl-subbanner gl-section"
+  style="{% if section.settings.heading_font_override != blank %}--section-font-heading: '{{ section.settings.heading_font_override }}', sans-serif;{% endif %}{% if section.settings.body_font_override != blank %}--section-font-body: '{{ section.settings.body_font_override }}', sans-serif;{% endif %}{% if section.settings.heading_font_size > 0 %}--section-heading-size: {{ section.settings.heading_font_size }}px;{% endif %}{% if section.settings.body_font_size > 0 %}--section-body-size: {{ section.settings.body_font_size }}px;{% endif %}{% assign pad = section.settings.section_padding %}{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} "
+>
+  <div class="swiper hero-swiper" id="hero-swiper-{{ section.id }}">
+    <div class="swiper-wrapper">
+      {% for banner in banners %}
+        {% assign align = banner.text_align | default: 'center' %}
+        {% assign bg_image = banner.bg_image %}
+        {% if is_rtl and banner.bg_image_ar != blank %}
+          {% assign bg_image = banner.bg_image_ar %}
+        {% endif %}
+
+        <div
+          id="hero-{{ section.id }}-{{ forloop.index }}"
+          class="swiper-slide  gl-section gl-herobanner"
+          style="{% if bg_image and bg_image != blank %}background-image: url('{{ bg_image | img_url: 'master' }}'); background-size: cover; background-position: center;{% else %}background: linear-gradient(135deg, var(--gl-primary) 0%, var(--gl-primary-dark) 100%);{% endif %}"
+        >
+          <div class="gl-container gl-hero-container">
+            <div class="gl-hero-content align-{{ align }}">
+              {% assign display_heading = banner.heading | default: 'Discover Your Beauty' %}
+              {% if is_rtl %}{% assign display_heading = banner.heading_ar | default: banner.heading %}{% endif %}
+
+             {% assign styled_heading = display_heading %}
+
+              {% if styled_heading contains '*' %}
+                {% assign parts = styled_heading | split: '*' %}
+
+                {% capture styled_heading %}
+                  {{ parts[0] }}
+                  <span class="gl-highlight-word">{{ parts[1] }}</span>
+                  {{ parts[2] }}
+                {% endcapture %}
+              {% endif %}
+
+              {% if display_heading != blank %}
+                <h1 class="gl-hero-heading">{{ styled_heading }}</h1>
+              {% endif %}
+
+              {% assign display_subtitle = banner.subtitle %}
+              {% if is_rtl %}{% assign display_subtitle = banner.subtitle_ar | default: banner.subtitle %}{% endif %}
+
+              {% if display_subtitle != blank %}
+                <p class="gl-hero-subtitle" style="animation-delay: 0s;">{{ display_subtitle }}</p>
+              {% endif %}
+
+              {% assign display_cta = banner.cta_text %}
+              {% if is_rtl %}{% assign display_cta = banner.cta_text_ar | default: banner.cta_text %}{% endif %}
+
+              {% assign cta_url = banner.cta_url | default: '/collections/all' %}
+
+              {% if display_cta != blank %}
+                <div style="animation-delay: 0.3s;">
+                  <a href="{{ cta_url }}" class="gl-url-button">
+                    <span>{{ display_cta }}</span>
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+      {%- if section.settings.show_pagination -%}
+              <div class="swiper-pagination" id="hero-pagination-{{ section.id }}"></div>
+        {%- endif -%}
+      </div>
+</section>
+
+
+<script>
+  (function() {
+    function initSubBannerSection(sectionEl) {
+      var swiperEl = sectionEl.querySelector('.hero-swiper');
+      if (!swiperEl) return;
+
+      var settings = sectionEl.dataset;
+
+      var swiper = new Swiper(swiperEl, {
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: sectionEl.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        navigation: {
+          nextEl: sectionEl.querySelector('.swiper-button-next'),
+          prevEl: sectionEl.querySelector('.swiper-button-prev'),
+        },
+      });
+    }
+
+    function initAllSubBanners() {
+      var sections = document.querySelectorAll('[data-sub-banner-section]');
+      sections.forEach(function(section) {
+        initSubBannerSection(section);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllSubBanners);
+    } else {
+      initAllSubBanners();
+    }
+  })();
+</script>

@@ -1,0 +1,120 @@
+{% comment %}
+Category Cards Section — Glamour Theme v2.1
+Displays a grid of categories with images and product counts.
+{% endcomment %}
+
+{% assign is_rtl = request.is_rtl %}
+
+<section style="{% assign pad = section.settings.section_padding %}{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %} "  class="G-category-cards-section gl-container">
+  <div class="image-banner" data-sal="slide-left"
+  data-sal-duration="1000"
+  data-sal-easing="ease-out-back">
+    <img src="{{section.settings.bg_image}}" alt="image">
+  </div>
+  <div class="categories" >
+    <h2  data-sal="slide-right"
+  data-sal-duration="1000"
+  data-sal-delay="150"
+  data-sal-easing="ease-out-back" class="category-title">
+      <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M17.3943 13.6289C10.113 14.7516 9.47908 15.6618 8.69715 26.1171C7.91522 15.6618 7.28134 14.7516 0 13.6289C7.28134 12.5061 7.91523 11.5959 8.69715 1.14062C9.47908 11.5959 10.113 12.5061 17.3943 13.6289Z"
+          fill="url(#paint0_linear_11526_8141)" />
+        <path
+          d="M17.1764 4.15128C14.756 4.5245 14.5453 4.82706 14.2854 8.30255C14.0254 4.82706 13.8147 4.5245 11.3943 4.15128C13.8147 3.77805 14.0254 3.47549 14.2854 0C14.5453 3.47549 14.756 3.77805 17.1764 4.15128Z"
+          fill="#F39F5A" />
+        <path
+          d="M23 7.90714C20.5796 8.28036 20.3689 8.58292 20.109 12.0584C19.849 8.58292 19.6383 8.28036 17.2179 7.90714C19.6383 7.53391 19.849 7.23135 20.109 3.75586C20.3689 7.23134 20.5796 7.5339 23 7.90714Z"
+          fill="url(#paint1_linear_11526_8141)" />
+        <defs>
+          <linearGradient id="paint0_linear_11526_8141" x1="5.09407" y1="10.0258" x2="13.3428" y2="18.2745"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFDBAA" />
+            <stop offset="1" stop-color="#F39F5A" />
+          </linearGradient>
+          <linearGradient id="paint1_linear_11526_8141" x1="18.9112" y1="6.70941" x2="21.6533" y2="9.45142"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFDBAA" />
+            <stop offset="1" stop-color="#F39F5A" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {% if is_rtl %}
+      {{section.settings.heading_ar}}
+      {% else %}
+      {{section.settings.heading}}
+      {% endif %}
+    </h2>
+    <p  data-sal="slide-right"
+  data-sal-duration="1000"
+  data-sal-delay="150"
+  data-sal-easing="ease-out-back" class="category-description">
+      {% if is_rtl %}
+      {{section.settings.subtitle_ar}}
+      {% else %}
+      {{section.settings.subtitle}}
+      {% endif %}
+    </p>
+    <div class="category-wrapper">
+      {% for cate in section.settings.all_cate %}
+      <div class="category-item"  >
+        <div  data-sal="slide-up"
+              data-sal-duration="700"
+              data-sal-delay="{{ forloop.index0 | times: 100 }}"
+              data-sal-easing="ease-out-back">
+          <h3>
+            {% if is_rtl %}
+            {{cate.cate_name_ar}}
+            {% else %}
+            {{cate.cate_name}}
+            {% endif %}
+          </h3>
+          <p>
+            {% if is_rtl %}
+            {{cate.cate_description_ar}}
+            {% else %}
+            {{cate.cate_description}}
+            {% endif %}
+          </p>
+        </div>
+        <img  src="{{cate.cate_image}}" alt="category image">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Find all sections and handle each one independently
+  const sections = document.querySelectorAll('.G-category-cards-section');
+  
+  sections.forEach(section => {
+    const categoryItems = section.querySelectorAll('.category-item');
+    const bannerImage = section.querySelector('.image-banner img');
+    
+    categoryItems.forEach(item => {
+      item.addEventListener('mouseover', function() {
+        const categoryImage = this.querySelector('img');
+        if (categoryImage && bannerImage) {
+          bannerImage.style.transform = 'scale(0.8)';
+          bannerImage.style.filter = 'blur(5px)';
+          
+          setTimeout(() => {
+            bannerImage.src = categoryImage.src;
+            bannerImage.style.transform = 'scale(1.1)';
+            bannerImage.style.filter = 'blur(0px)';
+            
+            setTimeout(() => {
+              bannerImage.style.transform = 'scale(1)';
+            }, 200);
+          }, 200);
+        }
+      });
+    });
+  });
+});
+</script>

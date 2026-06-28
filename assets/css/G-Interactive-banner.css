@@ -1,0 +1,190 @@
+  .interactive-banners-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .interactive-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+  }
+
+  .interactive-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+
+  .interactive-banner:hover::before {
+    transform: scale(1.05);
+  }
+
+  .interactive-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .interactive-banner-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .interactive-banner:hover .interactive-banner-overlay,
+  .interactive-banner:hover .interactive-banner-content {
+    opacity: 1;
+  }
+.interactive-banner-text{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+  .interactive-banner-title {
+    color: var(--gl-subheading);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .interactive-banner-subtitle {
+    color: var(--gl-subheading);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: start;
+  }
+  .interactive-banner-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    width: fit-content;
+    background-color: var(--gl-primary);
+    color: var(--gl-subheading);
+  }
+  .interactive-banner-btn:hover {
+       color: var(--gl-subheading) !important;
+
+  }
+
+  /* 1 item */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(1)):not(:has(.interactive-banner:nth-child(2))) {
+    grid-template-columns: 1fr;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(1)):not(:has(.interactive-banner:nth-child(2))) .interactive-banner {
+    height: 250px;
+  }
+
+  /* 2 items */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(2)):not(:has(.interactive-banner:nth-child(3))) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(2)):not(:has(.interactive-banner:nth-child(3))) .interactive-banner {
+    height: 250px;
+  }
+
+  /* 3 items */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))) .interactive-banner {
+    height: 250px;
+  }
+
+  /* 4 items */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(4) {
+    grid-column: span 3;
+  }
+
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(1),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(2),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(3) {
+    height: 250px;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(4) {
+    height: 250px;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner:nth-child(4) .interactive-banner-content {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* 5 items */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(5) {
+    grid-column: span 2;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(1),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(2),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(3),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(4),
+  .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner:nth-child(5) {
+    height: 250px;
+  }
+
+  /* 6 items */
+  .interactive-banners-grid:has(.interactive-banner:nth-child(6)):not(:has(.interactive-banner:nth-child(7))) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .interactive-banners-grid:has(.interactive-banner:nth-child(6)):not(:has(.interactive-banner:nth-child(7))) .interactive-banner {
+    height: 250px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .interactive-banner-title {
+      font-size: 20px;
+    }
+    .interactive-banner-overlay,
+    .interactive-banner-content {
+      opacity: 1;
+    }
+    .interactive-banners-grid,
+    .interactive-banners-grid:has(.interactive-banner:nth-child(1)):not(:has(.interactive-banner:nth-child(2))),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(2)):not(:has(.interactive-banner:nth-child(3))),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(6)):not(:has(.interactive-banner:nth-child(7))) {
+      grid-template-columns: 1fr;
+    }
+
+    .interactive-banners-grid .interactive-banner,
+    .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))) .interactive-banner:nth-child(1),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))) .interactive-banner:nth-child(2),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(3)):not(:has(.interactive-banner:nth-child(4))) .interactive-banner:nth-child(3),
+    .interactive-banners-grid:has(.interactive-banner:nth-child(4)):not(:has(.interactive-banner:nth-child(5))) .interactive-banner,
+    .interactive-banners-grid:has(.interactive-banner:nth-child(5)):not(:has(.interactive-banner:nth-child(6))) .interactive-banner,
+    .interactive-banners-grid:has(.interactive-banner:nth-child(6)):not(:has(.interactive-banner:nth-child(7))) .interactive-banner {
+      height: 230px !important;
+      grid-row: auto !important;
+      grid-column: auto !important;
+    }
+  }

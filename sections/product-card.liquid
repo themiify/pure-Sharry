@@ -1,0 +1,437 @@
+{% assign product_card = product_card_item %}
+{% assign product_card_orientation = product_card_orientation | default: 'vertical' %}
+{% if product_card_orientation != 'horizontal' %}
+  {% assign product_card_orientation = 'vertical' %}
+{% endif %}
+{% assign product_card_actions = product_card_actions | default: 'view,addToCart,wishlist,compare' %}
+{% assign product_card_action_list = ',' | append: product_card_actions | append: ',' %}
+{% assign product_card_has_view = false %}
+{% assign product_card_has_add_to_cart = false %}
+{% assign product_card_has_wishlist = false %}
+{% assign product_card_has_compare = false %}
+{% if product_card_action_list contains ',view,' %}
+  {% assign product_card_has_view = true %}
+{% endif %}
+{% if product_card_action_list contains ',addToCart,' %}
+  {% assign product_card_has_add_to_cart = true %}
+{% endif %}
+{% if product_card_action_list contains ',wishlist,' %}
+  {% assign product_card_has_wishlist = true %}
+{% endif %}
+{% if product_card_action_list contains ',compare,' %}
+  {% assign product_card_has_compare = true %}
+{% endif %}
+
+{% if product_card != blank %}
+  {% comment %} ── Mode A: item object passed directly — full server-rendered card ── {% endcomment %}
+  {% assign product_card_image = product_card.image %}
+  {% if product_card_image == blank and product_card.base_image and product_card.base_image.medium_image_url != blank %}
+    {% assign product_card_image = product_card.base_image.medium_image_url %}
+  {% endif %}
+  {% if product_card_image == blank and product_card.base_image and product_card.base_image.url != blank %}
+    {% assign product_card_image = product_card.base_image.url %}
+  {% endif %}
+  {% assign product_card_brand_logo = theme.store_logo | default: theme.store_logo_dark %}
+  {% assign product_card_brand_name = theme.store_name | default: shop.name %}
+
+  {% assign product_card_new_label = translations.product.new | default: 'New' %}
+  {% assign product_card_sale_label = translations.product.sale | default: 'Sale' %}
+  {% assign product_card_quick_view_label = translations.product.quick_view | default: 'Quick View' %}
+  {% assign product_card_add_to_cart_label = translations.product.add_to_cart | default: 'Add to Cart' %}
+  {% assign product_card_add_to_wishlist_label = translations.product.add_to_wishlist | default: 'Add to Wishlist' %}
+  {% assign product_card_remove_from_wishlist_label = translations.product.remove_from_wishlist | default: 'Remove from Wishlist' %}
+  {% assign product_card_add_to_compare_label = translations.product.add_to_compare | default: 'Add to Compare' %}
+  {% assign product_card_remove_from_compare_label = translations.product.remove_from_compare | default: 'Remove from Compare' %}
+  {% assign product_card_compare_added_label = translations.product.compare_added | default: 'Product added to compare.' %}
+  {% assign product_card_compare_removed_label = translations.product.compare_removed | default: 'Product removed from compare.' %}
+  {% assign product_card_compare_duplicate_label = translations.product.already_in_compare | default: 'Product is already in compare.' %}
+  {% assign starting_offer = product_card.special_price_from  %}
+  {% assign ending_offer = product_card.special_price_to  %}
+
+  {% comment %} 
+   <p>{{starting_offer}}</p>
+        <p>{{ending_offer}}</p>
+  {% endcomment %}
+  
+
+  <div class="gl-product-card gl-product-card-custom gl-product-card--{{ product_card_orientation }} gl-product-card-{{ product_card_orientation }}-custom">
+    <div class="gl-product-card-image">
+      <a href="{{ product_card.url }}">
+        {% if product_card_image != blank %}
+          <img src="{{ product_card_image }}" alt="{{ product_card.name }}" loading="lazy">
+        {% else %}
+          <div class="gl-product-placeholder"></div>
+        {% endif %}
+        <div class="gl-product-card-horizontal-badges">
+        {% if product_card.is_new %}
+          <span class="gl-badge gl-badge-accent gl-badge-new">{{ product_card_new_label }}</span>
+        {% endif %}
+
+        {% if product_card.special_price %}
+          <span class="gl-badge gl-badge-hot gl-badge-sale">{{ product_card_sale_label }}</span>
+        {% endif %}
+      </div>
+      </a>
+
+      <!-- Brand Logo -->
+      {% if product_card_brand_logo != blank %}
+        <div class="gl-product-card-brand-logo">
+          <img
+            src="{{ product_card_brand_logo }}"
+            alt="{{ product_card_brand_name }}"
+            loading="lazy"
+          >
+        </div>
+      {% elsif product_card_brand_name != blank %}
+        <div class="gl-product-card-brand-logo">
+          <span>{{ product_card_brand_name }}</span>
+        </div>
+      {% endif %}
+
+      <div class="gl-product-card-vertical-badges">
+        {% if product_card.is_new %}
+          <span class="gl-badge gl-badge-accent gl-badge-new">{{ product_card_new_label }}</span>
+        {% endif %}
+
+        {% if product_card.special_price %}
+          <span class="gl-badge gl-badge-hot gl-badge-sale">{{ product_card_sale_label }}</span>
+        {% endif %}
+      </div>
+
+      <div class="gl-product-card-add-to-cart">
+        <div class="gl-product-card-hover-icons">
+          {% if product_card_has_view %}
+            <button
+              type="button"
+              class="gl-product-card-action-btn  gl-product-card-hover-icons__quick-view-btn"
+              aria-label="{{ product_card_quick_view_label }}"
+              data-gl-action="quick-view"
+              data-product-id="{{ product_card.id }}"
+              data-product-name="{{ product_card.name }}"
+              data-product-url="{{ product_card.url }}"
+              data-product-image="{{ product_card_image }}"
+              data-product-price="{{ product_card.formatted_price }}"
+               data-product-images="[{% for img in product_card.images %}'{{ img.url }}'{% unless forloop.last %},{% endunless %}{% endfor %}]"
+              data-product-sku="{{ product_card.sku }}"
+              data-product-stock="{% if product_card.in_stock %}in-stock{% else %}out-of-stock{% endif %}"
+              data-product-rating="{{ product_card.avg_rating }}"
+              data-product-reviews="{{ product_card.reviews_count }}"
+              data-product-description="{{ product_card.description_text }}"
+              data-product-short-description="{{ product_card.short_description_text }}"
+              data-product-category-name="{{ product_card.category.name }}"
+              data-product-add-to-cart-url="{{ product_card.actions.add_to_cart_url }}"
+              data-product-type="{{ product_card.type }}"
+              {% if product_card.special_price %}
+                data-product-special-price="{{ product_card.formatted_regular_price }}"
+              {% endif %}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          {% endif %}
+
+          {% if product_card_has_wishlist and product_card.wishlist_enabled %}
+            <button
+              class="gl-product-card-action-btn gl-product-card-hover-icons__quick-view-btn"
+              aria-label="{{ product_card_add_to_wishlist_label }}"
+              type="button"
+              data-gl-action="wishlist-toggle"
+              data-product-id="{{ product_card.id }}"
+              data-wishlist-url="{{ product_card.actions.wishlist_url }}"
+              data-wishlist-index-url="{{ product_card.actions.wishlist_index_url }}"
+              data-login-url="{{ product_card.actions.login_url }}"
+              data-active-label="{{ product_card_remove_from_wishlist_label }}"
+              data-inactive-label="{{ product_card_add_to_wishlist_label }}"
+              aria-pressed="false"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+          {% endif %}
+
+          {% if product_card_has_compare and product_card.compare_enabled %}
+            <button
+              class="gl-product-card-action-btn gl-product-card-hover-icons__quick-view-btn"
+              aria-label="{{ product_card_add_to_compare_label }}"
+              type="button"
+              data-gl-action="compare-toggle"
+              data-product-id="{{ product_card.id }}"
+              data-compare-url="{{ product_card.actions.compare_url }}"
+              data-compare-index-url="{{ product_card.actions.compare_index_url }}"
+              data-compare-destroy-url="{{ product_card.actions.compare_destroy_url }}"
+              data-active-label="{{ product_card_remove_from_compare_label }}"
+              data-inactive-label="{{ product_card_add_to_compare_label }}"
+              data-added-message="{{ product_card_compare_added_label }}"
+              data-removed-message="{{ product_card_compare_removed_label }}"
+              data-duplicate-message="{{ product_card_compare_duplicate_label }}"
+              aria-pressed="false"
+            >
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.0143 12.2489V7.65561C13.0143 5.49064 13.0143 4.40738 12.3414 3.73523C11.6693 3.06231 10.586 3.06231 8.42103 3.06231H6.12438M6.12438 3.06231C6.12438 2.52643 7.65089 1.52509 8.03826 1.14844M6.12438 3.06231C6.12438 3.5982 7.65089 4.59954 8.03826 4.97619M2.29663 4.97619V9.56949C2.29663 11.7345 2.29663 12.8177 2.96955 13.4899C3.6417 14.1628 4.72496 14.1628 6.88993 14.1628H9.18658M9.18658 14.1628C9.18658 14.6987 7.66008 15.7008 7.27271 16.0767M9.18658 14.1628C9.18658 13.6269 7.66008 12.6248 7.27271 12.2489" stroke="#303030" stroke-width="1.14833" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13.0145 15.311C13.8601 15.311 14.5456 14.6255 14.5456 13.7799C14.5456 12.9343 13.8601 12.2488 13.0145 12.2488C12.1689 12.2488 11.4834 12.9343 11.4834 13.7799C11.4834 14.6255 12.1689 15.311 13.0145 15.311Z" stroke="#303030" stroke-width="1.14833"/>
+                <path d="M2.29673 4.59321C3.14233 4.59321 3.82783 3.90771 3.82783 3.06211C3.82783 2.2165 3.14233 1.53101 2.29673 1.53101C1.45112 1.53101 0.765625 2.2165 0.765625 3.06211C0.765625 3.90771 1.45112 4.59321 2.29673 4.59321Z" stroke="#303030" stroke-width="1.14833"/>
+              </svg>
+            </button>
+          {% endif %}
+        </div>
+
+        {% if product_card_has_add_to_cart %}
+          {% if product_card.type == 'simple' or product_card.type == 'virtual' %}
+            <button
+              type="button"
+              class="gl-product-card-action-btn gl-add-to-cart-btn"
+              aria-label="{{ product_card_add_to_cart_label }}"
+              data-gl-action="quick-add"
+              data-product-id="{{ product_card.id }}"
+              data-add-to-cart-url="{{ product_card.actions.add_to_cart_url }}"
+            >
+            {{ product_card_add_to_cart_label }}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </button>
+          {% else %}
+            <a
+              href="{{ product_card.url }}"
+              class="gl-product-card-action-btn gl-add-to-cart-btn"
+              aria-label="{{ product_card_add_to_cart_label }}"
+            >
+            {{ product_card_add_to_cart_label }}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="gl-product-card-body">
+      <h3 class="product-card-category">
+        <a href="{{ product_card.category.url }}" class="gl-product-card-category" >{{ product_card.category.name }}</a>
+      </h3>
+      <div class="gl-product-card-header">
+        <h3 class="gl-product-card-title">
+          <a href="{{ product_card.url }}">{{ product_card.name }}</a>
+        </h3>
+  
+       
+          <div class="gl-product-card-rating ">
+  {% assign rating = product_card.avg_rating %}
+  
+  {% for i in (1..5) %}
+    <span class="star">
+      <svg viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="grad-{{ i }}">
+            <stop offset="{% if rating >= i %}100%{% elsif rating > i-1 %}{{ rating | minus: i | plus: 1 | times: 100 }}%{% else %}0%{% endif %}" stop-color="#f5a623"/>
+            <stop offset="0%" stop-color="#ddd"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#grad-{{ i }})"
+          d="M12 17.27L18.18 21 16.54 13.97 
+             22 9.24 14.81 8.63 
+             12 2 9.19 8.63 
+             2 9.24 7.46 13.97 
+             5.82 21z"/>
+      </svg>
+    </span>
+  {% endfor %}
+
+  <span class="count">({{ product_card.reviews_count }})</span>
+</div>
+      </div>
+      
+
+      <div class="gl-product-card-price">
+        <span class="current">{{ product_card.formatted_price }}</span>
+        {% if product_card.special_price %}
+          <span class="original">{{ product_card.formatted_regular_price }}</span>
+        {% endif %}
+      </div>
+
+      {% if ending_offer and ending_offer != blank and starting_offer and starting_offer != blank %}
+      {% assign months_ar = "يناير,فبراير,مارس,ابريل,مايو,يونيو,يوليو,اغسطس,سبتمبر,اكتوبر,نوفمبر,ديسمبر" | split: "," %}
+      {% assign end_parts = ending_offer | split: '-' %}
+      {% if end_parts.size == 3 %}
+        {% assign end_day = end_parts[2] %}
+        {% assign end_month = end_parts[1] | minus: 1 %}
+        {% assign end_month_name = months_ar[end_month] %}
+      {% endif %}
+
+      <div class="offer-timer offer-timer-grid" data-start="{{ starting_offer }}" data-end="{{ ending_offer }}">
+        <div class="offer-timer-col offer-timer-remaining">
+          <div class="offer-timer-label">الوقت المتبقي</div>
+          <div class="offer-timer-values">
+            <div class="timer-section">
+              <span class="countdown-days">--</span>
+              <span class="offer-timer-unit">يوم</span>
+            </div>
+            <span class="sep">:</span>
+            <div class="timer-section">
+              <span class="countdown-hours">--</span>
+              <span class="offer-timer-unit">ساعة</span>
+            </div>
+            <span class="sep">:</span>
+            <div class="timer-section">
+              <span class="countdown-minutes">--</span>
+              <span class="offer-timer-unit">دقيقة</span>
+            </div>
+          </div>
+        </div>
+        <div class="offer-timer-col offer-timer-end">
+          <div class="offer-timer-label">نهاية العرض</div>
+          <div class="offer-timer-values-end">
+            <span class="offer-timer-end-day">{{ end_day }}</span>
+            <span class="offer-timer-end-month">{{ end_month_name }}</span>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+      <div class="action-horizontal-wrapper" >
+         {% if product_card_has_add_to_cart %}
+          {% if product_card.type == 'simple' or product_card.type == 'virtual' %}
+            <button
+              type="button"
+              class="gl-product-card-action-btn gl-add-to-cart-btn"
+              aria-label="{{ product_card_add_to_cart_label }}"
+              data-gl-action="quick-add"
+              data-product-id="{{ product_card.id }}"
+              data-add-to-cart-url="{{ product_card.actions.add_to_cart_url }}"
+            >
+              <span class="btn-text-add-to-cart" >
+                {{ product_card_add_to_cart_label }}
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </button>
+          {% else %}
+            <a
+              href="{{ product_card.url }}"
+              class="gl-product-card-action-btn gl-add-to-cart-btn"
+              aria-label="{{ product_card_add_to_cart_label }}"
+            >
+             <span class="btn-text-add-to-cart" >
+                {{ product_card_add_to_cart_label }}
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </a>
+          {% endif %}
+        {% endif %}
+         {% if product_card_has_wishlist and product_card.wishlist_enabled %}
+            <button
+              class="gl-product-card-action-btn gl-product-card-hover-icons__quick-view-btn"
+              aria-label="{{ product_card_add_to_wishlist_label }}"
+              type="button"
+              data-gl-action="wishlist-toggle"
+              data-product-id="{{ product_card.id }}"
+              data-wishlist-url="{{ product_card.actions.wishlist_url }}"
+              data-wishlist-index-url="{{ product_card.actions.wishlist_index_url }}"
+              data-login-url="{{ product_card.actions.login_url }}"
+              data-active-label="{{ product_card_remove_from_wishlist_label }}"
+              data-inactive-label="{{ product_card_add_to_wishlist_label }}"
+              aria-pressed="false"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+          {% endif %}
+      </div>
+
+      {% if product_card.avg_rating > 0 %}
+        <div class="gl-product-card-rating">
+          {% for i in (1..5) %}
+            {% if i <= product_card.avg_rating %}
+              <span class="gl-star filled">★</span>
+            {% else %}
+              <span class="gl-star">☆</span>
+            {% endif %}
+          {% endfor %}
+          <span class="count">({{ product_card.reviews_count }})</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% elsif product_card_loading %}
+  <div
+    class="gl-product-card gl-product-card--{{ product_card_orientation }} gl-product-card--loading"
+    aria-hidden="true"
+  >
+    <div class="gl-product-card-image">
+      <div class="gl-product-placeholder"></div>
+    </div>
+    <div class="gl-product-card-body">
+      <!-- Skeleton title -->
+      <div class="gl-skeleton gl-skeleton-title"></div>
+      
+      <!-- Skeleton rating -->
+      <div class="gl-skeleton-rating">
+        <div class="gl-skeleton gl-skeleton-star"></div>
+        <div class="gl-skeleton gl-skeleton-star"></div>
+        <div class="gl-skeleton gl-skeleton-star"></div>
+        <div class="gl-skeleton gl-skeleton-star"></div>
+        <div class="gl-skeleton gl-skeleton-star"></div>
+      </div>
+      
+      <!-- Skeleton price -->
+      <div class="gl-product-card-price">
+        <div class="gl-skeleton gl-skeleton-price"></div>
+        <div class="gl-skeleton gl-skeleton-price-original"></div>
+      </div>
+      
+      <!-- Skeleton button -->
+      <div class="gl-skeleton gl-skeleton-button"></div>
+    </div>
+  </div>
+{% elsif product_card_id != blank %}
+  {% comment %}
+    ── Mode B: only an ID was passed — render a loading skeleton.
+    JS batches all IDs on the page and fires ONE request:
+      GET {product_card_api_url}?ids[]=1&ids[]=2&ids[]=3
+    Response: JSON { "data": { "1": "<html>", "2": "<html>" } }
+    The server renders product-card.liquid (Mode A) per ID via the Liquid engine.
+    Liquid team owns 100% of the card HTML — no card building in JS.
+
+    Required render args:
+      product_card_id       — integer product ID
+      product_card_api_url  — api_routes.product_card_html
+  {% endcomment %}
+  <div
+    class="gl-product-card gl-product-card--{{ product_card_orientation }} gl-product-card--loading"
+    data-gl-hydrate-product-id="{{ product_card_id }}"
+    data-product-cards-url="{{ product_card_api_url }}"
+    data-product-card-orientation="{{ product_card_orientation }}"
+    data-product-card-actions="{{ product_card_actions }}"
+  >
+    <div class="gl-product-card-image">
+      <div class="gl-product-placeholder"></div>
+        <!-- Skeleton button -->
+          <div class="gl-skeleton-rating">
+        <div class="gl-skeleton-absolute gl-skeleton-star"></div>
+        <div class="gl-skeleton-absolute gl-skeleton-star"></div>
+        <div class="gl-skeleton-absolute gl-skeleton-star"></div>
+      </div>
+      <div class="gl-skeleton-absolute gl-skeleton-button"></div>
+    </div>
+    <div class="gl-product-card-body">
+      <!-- Skeleton title -->
+      <div class="gl-skeleton gl-skeleton-description"></div>
+      <div class="gl-skeleton gl-skeleton-title"></div>
+
+
+         <!-- Skeleton price -->
+      <div class="gl-product-card-price-skeleton">
+        <div class="gl-skeleton gl-skeleton-price"></div>
+        <div class="gl-skeleton gl-skeleton-price-original"></div>
+      </div>  
+    </div>
+  </div>
+{% endif %}

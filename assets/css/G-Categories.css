@@ -1,0 +1,114 @@
+  .all-catgories .categories-swiper {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .all-catgories .swiper-wrapper {
+    align-items: center;
+  }
+
+  .all-catgories .swiper-slide {
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .all-catgories .category-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .all-catgories .category-card .categore-image {
+    width: 150px;
+    height: 150px;
+  }
+  .all-catgories .category-card .categore-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  .all-catgories .category-card .cate-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gl-heading);
+  }
+
+  .all-catgories .swiper-button-next,
+  .all-catgories .swiper-button-prev {
+    color: var(--gl-heading);
+    width: 40px;
+    height: 40px;
+    background: var(--gl-bg, #ffffff);
+    border-radius: 50%;
+    border: 1px solid var(--gl-border, #e5e7eb);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .all-catgories .swiper-button-next:after,
+  .all-catgories .swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+   .all-catgories .swiper-pagination {
+    bottom: 0;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .all-catgories .swiper-pagination-bullet {
+    background: #E8B3B9;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+  }
+
+  .all-catgories .swiper-pagination-bullet-active {
+    background: var(--gl-primary);
+  }
+
+    .all-catgories .swiper-button-next,
+  .all-catgories .swiper-button-prev {
+    color: var(--gl-primary);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    position: absolute;
+    top: 25px !important;
+  }
+
+  .all-catgories .swiper-button-next {
+    left: 3px !important;
+  }
+
+  .all-catgories .swiper-button-prev {
+    left: 60px !important;
+    right: auto !important;
+  }
+
+  html[dir="ltr"] .all-catgories .swiper-button-next {
+    right: 3px !important;
+    left: auto !important;
+  }
+
+  html[dir="ltr"] .all-catgories .swiper-button-prev {
+    right: 60px !important;
+    left: auto !important;
+  }
+
+  .all-catgories svg{
+    width: 20% !important;
+  }
+  .all-catgories .swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+  }
+

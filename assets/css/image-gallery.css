@@ -1,0 +1,149 @@
+  .mini-banners-grid {
+    display: grid;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .mini-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+  }
+
+  .mini-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+  }
+
+  .mini-banner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    text-align: center;
+  }
+.mini-banner-text{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+  .mini-banner-title {
+    color: var(--gl-subheading);
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  .mini-banner-subtitle {
+    color: var(--gl-subheading);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: start;
+  }
+  .mini-banner-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    width: fit-content;
+    background-color: var(--gl-primary);
+    color: var(--gl-subheading);
+  }
+  .mini-banner-btn:hover {
+       color: var(--gl-subheading) !important;
+
+  }
+
+  /* 1 item */
+  .mini-banners-grid:has(.mini-banner:nth-child(1)):not(:has(.mini-banner:nth-child(2))) {
+    grid-template-columns: 1fr;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(1)):not(:has(.mini-banner:nth-child(2))) .mini-banner {
+    height: 700px;
+  }
+
+  /* 2 items */
+  .mini-banners-grid:has(.mini-banner:nth-child(2)):not(:has(.mini-banner:nth-child(3))) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(2)):not(:has(.mini-banner:nth-child(3))) .mini-banner {
+    height: 700px;
+  }
+
+  /* 3 items */
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(1) {
+    grid-row: span 2;
+    height: 715px;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4)))
+    .mini-banner:nth-child(2)
+    .mini-banner-title,
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4)))
+    .mini-banner:nth-child(3)
+    .mini-banner-title {
+    font-size: 35px;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(2),
+  .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(3) {
+    height: 350px;
+  }
+
+  /* 4 items */
+  .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) .mini-banner-title {
+    font-size: 35px;
+  }
+  .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) .mini-banner {
+    height: 350px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .mini-banner-title {
+      font-size: 32px;
+    }
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4)))
+      .mini-banner:nth-child(2)
+      .mini-banner-title,
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4)))
+      .mini-banner:nth-child(3)
+      .mini-banner-title {
+      font-size: 24px;
+    }
+
+    .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) .mini-banner-title {
+      font-size: 24px;
+    }
+    .mini-banners-grid,
+    .mini-banners-grid:has(.mini-banner:nth-child(1)):not(:has(.mini-banner:nth-child(2))),
+    .mini-banners-grid:has(.mini-banner:nth-child(2)):not(:has(.mini-banner:nth-child(3))),
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))),
+    .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) {
+      grid-template-columns: 1fr;
+    }
+
+    .mini-banners-grid .mini-banner,
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(1),
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(2),
+    .mini-banners-grid:has(.mini-banner:nth-child(3)):not(:has(.mini-banner:nth-child(4))) .mini-banner:nth-child(3),
+    .mini-banners-grid:has(.mini-banner:nth-child(4)):not(:has(.mini-banner:nth-child(5))) .mini-banner {
+      height: 230px !important;
+      grid-row: auto !important;
+    }
+  }
+
