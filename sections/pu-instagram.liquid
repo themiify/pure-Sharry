@@ -1,0 +1,219 @@
+
+{% assign c = section.settings %}
+
+<section class="pu pu-{{ section.id }} {% unless c.disable_space_between_components %}sec__space{% endunless %} animate-component">
+
+  {% if c.Transition_is_slider %}
+    <div class="swiper pu__swiper pu__swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for post in c.instagram_collection %}
+          <div class="swiper-slide">
+            <div class="pu__post-wrap {% cycle 'pu__post-wrap--odd', 'pu__post-wrap--even' %}">
+              <a href="{{ c.instagram_url }}" target="_blank" class="pu__post-link">
+                <img src="{{ post.instagram_cover }}" class="pu__post-img" alt="" loading="lazy" />
+                <div class="pu__post-overlay"></div>
+                <i class="sicon-instagram pu__post-icon"></i>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination pu__pagination"></div>
+      <div class="swiper-button-prev pu__prev"></div>
+      <div class="swiper-button-next pu__next"></div>
+    </div>
+
+  {% else %}
+    <div class="pu__grid-wrap">
+      {% for post in c.instagram_collection %}
+        <div class="pu__post-wrap {% cycle 'pu__post-wrap--odd', 'pu__post-wrap--even' %}">
+          <a href="{{ c.instagram_url }}" target="_blank" class="pu__post-link">
+            <img src="{{ post.instagram_cover }}" class="pu__post-img" alt="" loading="lazy" />
+            <div class="pu__post-overlay"></div>
+            <i class="fa-brands fa-instagram pu__post-icon"></i>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+</section>
+<style>
+    /* pu-instagram — Social Media Pure Section */
+
+.pu {
+  padding: 24px 0;
+}
+
+/* Grid layout (non-slider mode) */
+.pu__grid-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 8px;
+}
+
+/* Individual post card */
+.pu__post-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 118px;
+  width: calc(50% - 8px);
+}
+
+.pu__post-wrap--odd {
+  transform: rotate(12deg);
+}
+
+.pu__post-wrap--even {
+  transform: rotate(-12deg);
+  z-index: 30;
+}
+
+.pu__post-wrap:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Post link & image */
+.pu__post-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  overflow: hidden;
+}
+
+.pu__post-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay */
+.pu__post-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+/* Instagram icon */
+.pu__post-icon {
+  font-size: 14px;
+  background: #ffffff;
+  color: #000000;
+  padding: 4px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  transition: bottom 0.5s, transform 0.5s;
+}
+
+/* Transition shared */
+.pu__post-wrap,
+.pu__post-link {
+  transition: transform 0.5s;
+}
+
+/* ─── Swiper overrides ─── */
+.pu__swiper {
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.pu__swiper .swiper-slide {
+  height: auto;
+}
+
+.pu__pagination {
+  bottom: 4px;
+}
+
+.pu__prev,
+.pu__next {
+  color: #1c352d;
+}
+
+/* ─── Responsive ─── */
+@media (min-width: 640px) {
+  .pu__post-wrap {
+    width: calc(33.333% - 8px);
+    height: 160px;
+  }
+
+  .pu__post-icon {
+    font-size: 16px;
+    padding: 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pu__post-wrap {
+    width: calc(25% - 8px);
+    height: 230px;
+  }
+
+  .pu__post-overlay {
+    opacity: 0;
+  }
+
+  .pu__post-link:hover .pu__post-overlay {
+    opacity: 1;
+  }
+
+  .pu__post-icon {
+    font-size: 20px;
+    padding: 8px;
+    bottom: -40px;
+  }
+
+  .pu__post-link:hover .pu__post-icon {
+    bottom: 50%;
+    transform: translateX(-50%) translateY(50%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pu__post-wrap {
+    width: calc(16.666% - 8px);
+  }
+}
+
+/* Container helper */
+.pu__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+</style>
+{% if c.Transition_is_slider %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.pu__swiper-{{ section.id }}', {
+      slidesPerView: 2,
+      spaceBetween: 8,
+      {% if c.is_autoplay %}
+      autoplay: { delay: 2000, disableOnInteraction: false },
+      {% endif %}
+      pagination: { el: '.pu__pagination', clickable: true },
+      navigation: { nextEl: '.pu__next', prevEl: '.pu__prev' },
+      breakpoints: {
+        640:  { slidesPerView: 3 },
+        768:  { slidesPerView: 4 },
+        1024: { slidesPerView: 6 }
+      }
+    });
+  });
+</script>
+{% endif %}
+

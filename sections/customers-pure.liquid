@@ -1,0 +1,252 @@
+
+{% assign c = section.settings %}
+
+{% if request.is_rtl %}
+  {% assign section_title = c.section_title_ar | default: c.section_title_en %}
+{% else %}
+  {% assign section_title = c.section_title_en | default: c.section_title_ar %}
+{% endif %}
+
+<section class="pu pu-{{ section.id }} {% unless c.disable_space_between_components %}sec__space{% endunless %} animate-component"
+  {% if c.is_bg_img %}
+    style="background-image: url('{{ c.background_image }}'); background-position: center; background-repeat: no-repeat; background-size: cover;"
+  {% else %}
+    style="background-color: {{ c.section_bg_color }};"
+  {% endif %}
+>
+  <div class="pu__containercus gl-container">
+    <h2 class="pu__title">{{ section_title }}</h2>
+
+    <div class="swiper pu__swiper pu__swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for card in c.testominiasls_collection %}
+          {% if request.is_rtl %}
+            {% assign feedback = card.customer_feedback_ar | default: card.customer_feedback_en %}
+            {% assign cust_name = card.customer_name_ar | default: card.customer_name_en %}
+            {% assign cust_job = card.customer_job_ar | default: card.customer_job_en %}
+          {% else %}
+            {% assign feedback = card.customer_feedback_en | default: card.customer_feedback_ar %}
+            {% assign cust_name = card.customer_name_en | default: card.customer_name_ar %}
+            {% assign cust_job = card.customer_job_en | default: card.customer_job_ar %}
+          {% endif %}
+
+          <div class="swiper-slide">
+            <div class="pu__card">
+              <svg class="sicon-quote pu__quote-icon" width="30" height="23" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.66667 20.8333C1 19 0 17 0 13.6667C0 7.83333 4.16667 2.66667 10 0L11.5 2.16667C6 5.16667 4.83333 9 4.5 11.5C5.33333 11 6.5 10.8333 7.66667 11C10.6667 11.3333 13 13.6667 13 16.8333C13 18.3333 12.3333 19.8333 11.3333 21C10.1667 22.1667 8.83333 22.6667 7.16667 22.6667C5.33333 22.6667 3.66667 21.8333 2.66667 20.8333ZM19.3333 20.8333C17.6667 19 16.6667 17 16.6667 13.6667C16.6667 7.83333 20.8333 2.66667 26.6667 0L28.1667 2.16667C22.6667 5.16667 21.5 9 21.1667 11.5C22 11 23.1667 10.8333 24.3333 11C27.3333 11.3333 29.6667 13.6667 29.6667 16.8333C29.6667 18.3333 29 19.8333 28 21C27 22.1667 25.5 22.6667 23.8333 22.6667C22 22.6667 20.3333 21.8333 19.3333 20.8333Z" fill="#6B9426"/>
+</svg>
+
+              <p class="pu__feedback">{{ feedback }}</p>
+              <div class="pu__customer-info">
+                <img src="{{ card.customer_image }}" class="pu__customer-img" alt="{{ cust_name }}" loading="lazy">
+                <div class="pu__customer-meta">
+                  <h3 class="pu__customer-name">{{ cust_name }}</h3>
+                  <p class="pu__customer-job">{{ cust_job }}</p>
+                </div>
+                <div class="pu-stars">
+                      {% for star in (1..5) %}
+                        <span style="color:{{c.starcolor}}" class="star {% if star <= rating %}filled{% endif %}">★</span>
+                      {% endfor %}
+                    </div>
+              </div>
+              {% if c.additional_image %}
+                <div class="pu__additional-img-wrapper">
+                  <img src="{{ c.additional_image }}" class="pu__additional-img" alt="">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var swiperEl = document.querySelector('.pu__swiper-{{ section.id }}');
+    if (!swiperEl || typeof Swiper === 'undefined') return;
+    new Swiper(swiperEl, {
+      centeredSlides: true,
+      speed: 2000,
+      {% if c.is_autoplay %}
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      {% endif %}
+      {% if c.is_loop %}
+      loop: true,
+      {% endif %}
+      centerInsufficientSlides: true,
+      breakpoints: {
+        0:    { slidesPerView: 1 },
+        480:  { slidesPerView: 1 },
+        768:  { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }
+    });
+  })();
+</script>
+<style>
+    /* --- Section wrapper --- */
+.pu {
+  padding: 24px 0;
+  background-color: #f7ffe9;
+}
+ 
+/* --- Container --- */
+.pu__containercus {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+ 
+/* --- Section title --- */
+.pu__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+ 
+/* --- Swiper wrapper --- */
+.pu__swiper {
+  width: 100%;
+  overflow: hidden;
+}
+ 
+/* --- Individual card --- */
+.pu__card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 26px 24px;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 30px;
+}
+ 
+/* --- Quote icon --- */
+.pu__quote-icon {
+  color: var(--color-primary, #10B981);
+  font-size: 32px;
+  display: block;
+  width: fit-content;
+  transform: rotate(180deg);
+}
+ 
+@media (min-width: 768px) {
+  .pu__quote-icon {
+    font-size: 40px;
+  }
+}
+ 
+/* --- Customer feedback text --- */
+.pu__feedback {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 18px 0;
+  line-height: 1.6;
+}
+ 
+@media (min-width: 768px) {
+  .pu__feedback {
+    font-size: 16px;
+  }
+}
+ 
+/* --- Customer info row --- */
+.pu__customer-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+ 
+/* --- Customer avatar --- */
+.pu__customer-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+ 
+/* --- Name + job column --- */
+.pu__customer-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+ 
+.pu__customer-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 4px;
+}
+ 
+@media (min-width: 768px) {
+  .pu__customer-name {
+    font-size: 18px;
+  }
+}
+ 
+.pu__customer-job {
+  font-weight: 400;
+  font-size: 14px;
+}
+ 
+@media (min-width: 768px) {
+  .pu__customer-job {
+    font-size: 16px;
+  }
+}
+ 
+/* --- Stars --- */
+.pu__stars {
+  margin-inline-end: 10px;
+}
+ 
+@media (min-width: 768px) {
+  .pu__stars {
+    margin-inline-end: 8px;
+  }
+}
+ 
+/* --- Decorative image --- */
+.pu__additional-img-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+ 
+@media (min-width: 768px) {
+  .pu__additional-img-wrapper {
+    display: block;
+  }
+}
+ 
+.pu__additional-img {
+  transition: transform 0.5s ease;
+  transform: translateY(100%);
+}
+ 
+.pu__card:hover .pu__additional-img {
+  transform: translateY(0);
+}
+ 
+/* --- Swiper controls --- */
+.pu__pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+ 
+.pu__prev,
+.pu__next {
+  color: var(--color-primary, #10B981);
+}
+ 
+</style>

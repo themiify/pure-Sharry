@@ -13,9 +13,11 @@
 {% endif %}
 {% assign copyright_text = section.settings.copyright  %}
 {% assign copyright_text_ar = section.settings.copyright_ar  %}
+{%assign additional_img_switch = theme.additional_img_switch %}
+{%assign additional_img = theme.additional_img %}
 
 <footer class="gl-footer">
-  <div class="gl-container">
+  <div class="gl-container p" style="position: relative;">
     <div class="gl-footer-grid">
       <!-- Column 1: Brand Info -->
       <div class="gl-footer-brand">
@@ -143,7 +145,27 @@
           </div>
         {% endif %}
       </div>
+
     </div>
+          {% if additional_img_switch %}
+			<div
+    class="additional-img"
+    style="
+        position: absolute;
+        top: 82%;
+        right: 95%;
+        width: 100px;
+        height: 100px; 
+        overflow: hidden;
+    "
+>
+    <img
+        src="{{ additional_img }}"
+        alt="Additional Image"
+        style="width: 100%; height: 100%;"
+    >
+</div>
+				{% endif %}
   </div>
   <!-- Bottom Bar -->
   <div class="gl-footer-bottom">

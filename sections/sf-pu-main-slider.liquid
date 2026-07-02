@@ -1,0 +1,428 @@
+<link rel="stylesheet" href="{{ 'sf-pu-main-slider.css' | asset_url }}">
+
+{% assign c = section.settings %}
+
+{% if request.is_rtl %}
+  {% assign brand_text = c.brand_text_ar | default: c.brand_text_en %}
+{% else %}
+  {% assign brand_text = c.brand_text_en | default: c.brand_text_ar %}
+{% endif %}
+
+<section
+  id="PU_main_slider-{{ section.id }}"
+  class="pu pu-{{ section.id }} {% unless c.disable_space_between_components %}pu--spaced{% endunless %}"
+>
+
+  {% unless c.use_simple_banner %}
+
+    <div class="swiper pu__swiperreact pu__swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+
+        {% for slide in c.products_sliders %}
+
+          {% if slide.is_bg_image and slide.bg_image %}
+            {% assign slide_bg_style = slide.bg_image | prepend: "background-image:url('" | append: "'); background-size:cover; background-position:center;" %}
+            {% assign content_bg_style = "background-color:transparent;" %}
+          {% elsif c.toggle_theme_color_main_banner and slide.bg_color %}
+            {% assign slide_bg_style = slide.bg_color | prepend: "background-color:" | append: ";" %}
+            {% assign content_bg_style = slide.bg_color | prepend: "background-color:" | append: ";" %}
+          {% else %}
+            {% assign slide_bg_style = "background-color:var(--color-primary);" %}
+            {% assign content_bg_style = "background-color:var(--color-primary);" %}
+          {% endif %}
+
+          {% if request.is_rtl %}
+            {% assign main_title = slide.main_title2_ar | default: slide.main_title2_en %}
+            {% assign sub_title  = slide.sub_title_ar   | default: slide.sub_title_en %}
+            {% assign btn_txt    = slide.btn_txt_ar      | default: slide.btn_txt_en %}
+          {% else %}
+            {% assign main_title = slide.main_title2_en | default: slide.main_title2_ar %}
+            {% assign sub_title  = slide.sub_title_en   | default: slide.sub_title_ar %}
+            {% assign btn_txt    = slide.btn_txt_en     | default: slide.btn_txt_ar %}
+          {% endif %}
+
+          <div class="swiper-slide pu__slide" style="{{ slide_bg_style }}">
+
+            <div class="pu__slide-inner">
+
+              <div class="pu__brand-wrap">
+                {% if c.is_brand_text %}
+                  <h1 class="pu__brand-text" style="color:{{ slide.text_color | default: '#ffffff' }};">{{ brand_text }}</h1>
+                {% else %}
+                  <img src="{{ c.brand_image }}" alt="brand image" class="pu__brand-img">
+                {% endif %}
+              </div>
+
+              <img src="{{ slide.prod_img }}" alt="product image" class="pu__prod-img">
+
+              {% if slide.sec_prod_img and slide.sec_prod_img != blank %}
+                <div class="pu__sec-img-wrap">
+                  <img src="{{ slide.sec_prod_img }}" alt="secondary product image" class="pu__sec-img">
+                </div>
+              {% endif %}
+
+            </div>
+
+            <div class="pu__content gl-container" style="{{ content_bg_style }}">
+              <h1 class="pu__title" style="color:{{ slide.text_color | default: '#ffffff' }};">{{ main_title }}</h1>
+              <p class="pu__subtitle" style="color:{{ slide.text_color | default: '#ffffff' }};">{{ sub_title }}</p>
+              {% if slide.is_btn %}
+                <a class="pu__btn" href="{{ slide.btn_url }}" style="color:{{ slide.btn_color | default: '#ffffff' }}; border-color:{{ slide.btn_color | default: '#ffffff' }};">{{ btn_txt }}</a>
+              {% endif %}
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+<div class="pu__nav-wrap">
+      <div class="swiper-button-prev pu__prev"></div>
+      <div class="swiper-button-next pu__next"></div>
+  </div>
+    </div>
+
+  {% else %}
+
+    <picture class="pu__simple-banner">
+      <source srcset="{{ c.desktop_banner_image }}" media="(min-width: 768px)">
+      <source srcset="{{ c.mobile_banner_image }}"  media="(max-width: 767px)">
+      <img src="{{ c.desktop_banner_image }}" alt="Main banner image" class="pu__simple-img" loading="lazy">
+    </picture>
+
+  {% endunless %}
+
+</section>
+
+<script>
+  (function () {
+    function initSlider() {
+      var el = document.querySelector('.pu__swiper-{{ section.id }}');
+      if (!el) return;
+
+      if (typeof Swiper === 'undefined') {
+        setTimeout(initSlider, 200);
+        return;
+      }
+
+      new Swiper(el, {
+        loop: {{ c.is_loop | default: false }},
+        speed: 500,
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        allowTouchMove: true,
+        {% if c.is_autplay %}
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        },
+        {% endif %}
+        pagination: {
+          el: el.querySelector('.pu__pagination'),
+          clickable: true
+        },
+        navigation: {
+          prevEl: el.querySelector('.pu__prev'),
+          nextEl: el.querySelector('.pu__next')
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSlider);
+    } else {
+      initSlider();
+    }
+  })();
+</script>
+<style>
+ /* حاوية الأسهم ثابتة ومتموضعة فوق السلايدر */
+.pu__nav-wrap {
+      position: absolute;
+    bottom: 14%;
+    z-index: 10;
+    display: flex
+;
+    gap: 10px;
+    right: 20%;
+}
+.pu__nav-wrap .swiper-navigation-icon{
+    width: 12px;
+    fill:#fff ;
+    stroke: #fff;
+}
+/* دعم اتجاه الأسهم في العربية */
+[dir="rtl"] .pu__nav-wrap {
+    right: unset;
+    left: 20%;
+}
+.pu__prev,
+.pu__next {
+    position: static !important; /* إلغاء التموضع التلقائي لـ swiper */
+    margin: 0 !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.pu__prev::after,
+.pu__next::after {
+    font-size: 14px !important;
+    color: #fff !important;
+}
+
+.pu {
+  overflow: hidden;
+  padding: 0;
+  display: block;
+}
+
+.pu--spaced {
+  margin-bottom: 48px;
+}
+
+/* ---------- Simple banner ---------- */
+.pu__simple-banner { display: block; width: 100%; }
+.pu__simple-img    { width: 100%; height: auto; display: block; }
+
+/* ---------- Swiper container ---------- */
+.pu__swiperreact {
+  width: 100%;
+  height: 470px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .pu__swiperreact {
+    height: 800px;
+  }
+}
+
+/* ---------- Swiper wrapper & slides ---------- */
+.pu__swiperreact .swiper-wrapper {
+  height: 100%;
+}
+
+/* Show first slide before Swiper init — no flash of blank */
+.pu__swiperreact .swiper-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* Swiper fade adds opacity itself after init */
+}
+
+/* ---------- Slide layout ---------- */
+.pu__slide {
+  padding-top: 48px;
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .pu__slide {
+    padding-top: 75px;
+  }
+}
+
+/* ---------- Slide inner: image area ---------- */
+.pu__slide-inner {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2) 12%,
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+@media (min-width: 768px) {
+  .pu__slide-inner {
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.2) 12%,
+      rgba(255, 255, 255, 0) 36%
+    );
+  }
+}
+
+/* ---------- Brand ---------- */
+.pu__brand-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pu__brand-text {
+  font-size: 9rem;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin: 0;
+  opacity: 0.25;
+}
+
+@media (min-width: 640px) {
+  .pu__brand-text { font-size: 12rem; }
+}
+
+@media (min-width: 768px) {
+  .pu__brand-text { font-size: 22rem; }
+}
+
+@media (min-width: 1024px) {
+  .pu__brand-text { font-size: 30rem; }
+}
+
+.pu__brand-img {
+  width: 90%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .pu__brand-img { width: 100%; margin-inline-end: 0; }
+}
+
+/* ---------- Product image ---------- */
+.pu__prod-img {
+  height: 90%;
+  width: auto;
+  max-width: 60%;
+  object-fit: contain;
+  position: relative;
+  z-index: 100;
+  display: block;
+  transform: translateX(-350%) translateY(100%) rotate(-110deg);
+  transition: transform 1.5s ease-in-out;
+}
+
+/* ---------- Secondary image ---------- */
+.pu__sec-img-wrap {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pu__sec-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Content area ---------- */
+.pu__content {
+  padding: 16px 16px 24px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .pu__content { padding: 24px 32px 32px; }
+}
+
+.pu__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+@media (min-width: 768px) {
+  .pu__title { font-size: 3rem; }
+}
+
+.pu__subtitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .pu__subtitle { max-width: 50%; }
+}
+
+@media (min-width: 768px) {
+  .pu__subtitle { font-size: 1.125rem; }
+}
+
+.pu__btn {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid;
+  border-radius: 9999px;
+  padding: 8px 28px;
+  margin-top: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .pu__btn { font-size: 1.25rem; padding: 8px 40px; }
+}
+
+/* ---------- Swiper fade: active slide shows product image ---------- */
+.pu__swiperreact .swiper-slide-active .pu__prod-img {
+  transform: translateX(0) translateY(0) rotate(0deg);
+}
+
+.pu__swiperreact .swiper-slide-active .pu__sec-img-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pu__swiperreact .swiper-slide-next .pu__prod-img {
+  transform: translateX(-350%) translateY(100%) rotate(-110deg);
+}
+
+.pu__swiperreact .swiper-slide-prev .pu__prod-img {
+  transform: translateX(350%) translateY(100%) rotate(110deg);
+}
+
+/* ---------- Navigation ---------- */
+.pu__prev,
+.pu__next {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 50%;
+  box-shadow: none;
+  width: 40px;
+  height: 40px;
+  top: auto;
+  bottom: 24px;
+}
+
+.pu__prev  { left: 14%; }
+.pu__next  { right: auto; left: calc(14% + 52px); }
+
+.pu__prev::after,
+.pu__next::after {
+  font-size: 14px;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .pu__prev, .pu__next { width: 28px; height: 28px; }
+  .pu__prev::after, .pu__next::after { font-size: 11px; }
+}
+
+/* ---------- Pagination ---------- */
+.pu__pagination {
+  bottom: 8px;
+}
+</style>

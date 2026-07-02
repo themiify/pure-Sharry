@@ -1,0 +1,533 @@
+{% assign c = section.settings %}
+{% assign text_clr = c.toggle_theme_color_main_banner | default: false %}
+{% assign product_ids = c.Prouducts_choozen | default: empty %}
+{% assign is_rtl = request.is_rtl %}
+
+<section class="pu-advanced-products pu-advanced-products-{{ section.id }} {% unless c.disable_space_between_components %}pu-advanced-products--spaced{% endunless %}">
+  <div class="pu-advanced-products__bg" style="{% if c.is_bg_color %}background-color: {% if text_clr %}{{ c.bg_color }}{% else %}var(--color-primary){% endif %};{% else %}background-image: url('{{ c.bg_img }}');{% endif %}">
+    <div class="pu-advanced-products__inner">
+
+      {% if c.banner_img %}
+        <div class="pu-advanced-products__side-img pu-advanced-products__side-img--desktop">
+          <img src="{{ c.banner_img }}" alt="image side of banner" class="pu-advanced-products__side-img-el">
+        </div>
+      {% endif %}
+
+      <div class="pu-advanced-products__slider-wrap swiper pu-advanced-products__swiper pu-advanced-products__swiper-{{ section.id }}">
+        <div class="swiper-wrapper">
+          {% for product_id in product_ids %}
+            <div class="swiper-slide pu-advanced-products__slide" data-product-id="{{ product_id }}">
+              <div class="pu-advanced-products__product-name" style="color: {% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %};"></div>
+              <div class="pu-advanced-products__product-desc" style="color: {% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %};"></div>
+              <div class="pu-advanced-products__price-wrap" style="color: {% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %};"></div>
+              <a href="#" class="pu-advanced-products__cta"
+                style="color: {% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %}; border-color: {% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %};">
+                 {% if is_rtl %}{{ c.btn_txt_ar }}{% else %}{{ c.btn_txt_en }}{% endif %}
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if c.banner_img %}
+        <div class="pu-advanced-products__side-img pu-advanced-products__side-img--mobile">
+          <img src="{{ c.banner_img }}" alt="image side of banner" class="pu-advanced-products__side-img-el">
+        </div>
+      {% endif %}
+
+      <div class="pu-advanced-products__circle-area pu-advanced-products__circle-area-{{ section.id }}">
+        <svg class="pu-advanced-products__arc-svg" width="562" height="284" viewBox="0 0 562 284" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="arcPath-{{ section.id }}"
+            d="M1 278C1.7 204 32 133 85 81C138 29 209 0 284 1C359 2 429 32 481 85C533 138 562 209 561 283"
+            stroke="{% if text_clr %}{{ c.text_color }}{% else %}var(--color-primary){% endif %}"
+            stroke-dasharray="10 8"/>
+        </svg>
+        <div class="pu-advanced-products__circle-marquee" id="circle-marquee-{{ section.id }}"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="pu-advanced-products__data-source pu-advanced-products__data-source-{{ section.id }}" style="display:none;" aria-hidden="true">
+  {% for product_id in product_ids %}
+    <div class="pu-advanced-products__data-item" data-pu-index="{{ forloop.index0 }}">
+      {% render 'product-card',
+        product_card_id: product_id,
+        product_card_api_url: api_routes.product_card_html,
+        product_card_orientation: 'vertical',
+        product_card_actions: 'view',
+        theme: theme,
+        shop: shop
+      %}
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+(function () {
+  var dataItems = Array.prototype.slice.call(
+    document.querySelectorAll('.pu-advanced-products__data-source-{{ section.id }} .pu-advanced-products__data-item')
+  );
+  if (!dataItems.length) return;
+
+  var container = document.getElementById('circle-marquee-{{ section.id }}');
+  var swiperEl  = document.querySelector('.pu-advanced-products__swiper-{{ section.id }}');
+  if (!container || !swiperEl) return;
+
+  var slides = swiperEl.querySelectorAll('.pu-advanced-products__slide');
+  var total = dataItems.length;
+  var collected = new Array(total);
+  var observers = [];
+  var started = false;
+
+  function extractProduct(item) {
+    var btn = item.querySelector('[data-gl-action="quick-view"]');
+    if (!btn) return null;
+    return {
+      id: btn.getAttribute('data-product-id') || '',
+      name: btn.getAttribute('data-product-name') || '',
+      url: btn.getAttribute('data-product-url') || '',
+      image: btn.getAttribute('data-product-image') || '',
+      price: btn.getAttribute('data-product-price') || '',
+      specialPrice: btn.getAttribute('data-product-special-price') || '',
+      shortDesc: btn.getAttribute('data-product-short-description') || ''
+    };
+  }
+
+  function tryResolve(item, index) {
+    if (collected[index]) return;
+    var data = extractProduct(item);
+    if (data) {
+      collected[index] = data;
+      if (observers[index]) { observers[index].disconnect(); }
+      checkDone();
+    }
+  }
+
+  function checkDone() {
+    var resolvedCount = collected.filter(Boolean).length;
+    if (resolvedCount === total) finalize();
+  }
+
+  dataItems.forEach(function (item, index) {
+    tryResolve(item, index);
+    if (collected[index]) return;
+
+    var observer = new MutationObserver(function () {
+      tryResolve(item, index);
+    });
+    observer.observe(item, { childList: true, subtree: true });
+    observers[index] = observer;
+  });
+
+  /* fallback: don't wait forever for hydration */
+  setTimeout(function () {
+    observers.forEach(function (o) { if (o) o.disconnect(); });
+    finalize();
+  }, 8000);
+
+  function finalize() {
+    if (started) return;
+    started = true;
+
+    var products = collected.filter(Boolean);
+    if (!products.length) return;
+
+    /* ── 1. Fill slides ── */
+    slides.forEach(function (slide, i) {
+      var p = products[i];
+      if (!p) return;
+
+      slide.querySelector('.pu-advanced-products__product-name').textContent = p.name;
+      slide.querySelector('.pu-advanced-products__product-desc').textContent = p.shortDesc;
+
+      var priceWrap = slide.querySelector('.pu-advanced-products__price-wrap');
+      if (p.specialPrice) {
+        priceWrap.innerHTML =
+          '<span class="pu-advanced-products__sale-price">'    + p.price        + '</span>' +
+          '<span class="pu-advanced-products__regular-price">' + p.specialPrice + '</span>';
+      } else {
+        priceWrap.innerHTML =
+          '<span class="pu-advanced-products__price">' + p.price + '</span>';
+      }
+
+      var cta = slide.querySelector('.pu-advanced-products__cta');
+      if (cta) cta.href = p.url;
+    });
+
+    /* ── 2. Init Swiper ── */
+    var swiperInstance = new Swiper('.pu-advanced-products__swiper-{{ section.id }}', {
+      speed: 80,
+      effect: 'fade',
+      loop: true,
+      allowTouchMove: false,
+      fadeEffect: { crossFade: true }
+    });
+
+    /* ── 3. Build circles ── */
+    var slideSize, radius, centerX, centerY;
+    var offset = 0, paused = false;
+    var circleSlides = [];
+
+    function setConfig() {
+      var w = window.innerWidth;
+      if (w < 768)                     { slideSize = 45;  radius = 110; centerX = 110; centerY = 110; }
+      else if (w >= 1024 && w <= 1366) { slideSize = 80;  radius = 180; centerX = 180; centerY = 180; }
+      else if (w >= 768  && w < 1024)  { slideSize = 70;  radius = 200; centerX = 200; centerY = 200; }
+      else                              { slideSize = 90;  radius = 300; centerX = 250; centerY = 220; }
+
+      circleSlides.forEach(function (s) {
+        s.style.width  = slideSize + 'px';
+        s.style.height = slideSize + 'px';
+      });
+
+      offset = 0;
+    }
+
+    products.forEach(function (p, index) {
+      var el = document.createElement('div');
+      el.className = 'pu-advanced-products__marquee-slide';
+      el.dataset.index = index;
+      el.innerHTML = '<img src="' + p.image + '" alt="' + p.name + '">';
+      container.appendChild(el);
+      circleSlides.push(el);
+    });
+
+    setConfig();
+    window.addEventListener('resize', setConfig);
+
+    /* ── 4. Animate ── */
+    function animate() {
+      if (!paused) offset += 0.004;
+
+      var closestSlide = null, minDist = Infinity;
+
+      circleSlides.forEach(function (slide, i) {
+        var spacing = 0.65;
+        var angle = (i * spacing + offset) % Math.PI;
+        var x = centerX + radius * Math.cos(angle);
+        var y = centerY - radius * Math.sin(angle);
+
+        slide.style.transform = 'translate(' + (x - slideSize / 2) + 'px, ' + (y - slideSize / 2) + 'px)';
+
+        var dist = Math.abs(x - centerX);
+        if (dist < minDist) { minDist = dist; closestSlide = slide; }
+      });
+
+      if (closestSlide && closestSlide.dataset.index !== undefined) {
+        swiperInstance.slideToLoop(parseInt(closestSlide.dataset.index));
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    swiperEl.addEventListener('mouseenter', function () { paused = true; });
+    swiperEl.addEventListener('mouseleave', function () { paused = false; });
+
+    var sectionEl = document.querySelector('.pu-advanced-products-{{ section.id }}');
+    new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { animate(); obs.disconnect(); }
+      });
+    }, { threshold: 0.3 }).observe(sectionEl);
+  }
+})();
+</script>
+
+<style>
+  /* ============================================================
+   pu-advanced-products.css
+   ============================================================ */
+
+.pu-advanced-products {
+  overflow: hidden;
+}
+
+.pu-advanced-products--spaced {
+  padding-bottom: 60px;
+}
+
+.pu-advanced-products__bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 200px;
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__bg {
+    height: 580px;
+  }
+}
+
+.pu-advanced-products__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__inner {
+    flex-wrap: nowrap;
+    padding: 0;
+  }
+}
+
+.pu-advanced-products__side-img--desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__side-img--desktop {
+    display: block;
+    width: 30%;
+    height: 100%;
+  }
+
+  .pu-advanced-products__side-img--desktop .pu-advanced-products__side-img-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.pu-advanced-products__side-img--mobile {
+  display: block;
+  width: calc(33% - 12px);
+  height: clamp(165px, calc(165px + 70 * (100vw - 375px) / 445), 235px);
+}
+
+.pu-advanced-products__side-img--mobile .pu-advanced-products__side-img-el {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__side-img--mobile {
+    display: none;
+  }
+}
+
+.pu-advanced-products__slider-wrap {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__slider-wrap {
+    margin-right: 40px;
+    padding: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__slider-wrap {
+    width: 30%;
+  }
+}
+
+/* ── Swiper transitions ── */
+.pu-advanced-products__swiper .swiper-slide {
+  opacity: 0 !important;
+  overflow: hidden !important;
+  transition: opacity 0.3s ease-in-out !important;
+}
+
+.pu-advanced-products__swiper .swiper-slide-active {
+  opacity: 1 !important;
+  z-index: 2 !important;
+}
+
+.pu-advanced-products__slide {
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.pu-advanced-products__product-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__product-name {
+    font-size: 2.5rem;
+  }
+}
+
+.pu-advanced-products__product-desc {
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 500px;
+}
+
+.pu-advanced-products__product-desc p {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__product-desc p {
+    font-size: 1.125rem;
+  }
+}
+
+.pu-advanced-products__price-wrap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pu-advanced-products__sale-price {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__sale-price {
+    font-size: 1.75rem;
+  }
+}
+
+.pu-advanced-products__regular-price {
+  text-decoration: line-through;
+  font-size: 1.125rem;
+  color: #dc2626;
+}
+
+.pu-advanced-products__price {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.pu-advanced-products__cta {
+  display: inline-block;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  text-align: center;
+  padding: 4px 20px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  width: 50%;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__cta {
+    padding: 12px 28px;
+    width: 75%;
+  }
+}
+
+.pu-advanced-products__circle-area {
+  position: relative;
+  overflow: hidden;
+  height: 165px;
+  width: calc(65% - 12px);
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__circle-area {
+    height: 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__circle-area {
+    height: 100%;
+    width: 40%;
+  }
+}
+
+.pu-advanced-products__arc-svg {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__arc-svg {
+    top: unset;
+    bottom: -50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__arc-svg {
+    bottom: -2rem;
+  }
+}
+
+.pu-advanced-products__circle-marquee {
+  position: absolute;
+  bottom: 44%;
+  left: 22%;
+}
+
+@media (min-width: 768px) {
+  .pu-advanced-products__circle-marquee {
+    bottom: 65%;
+    left: 24%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pu-advanced-products__circle-marquee {
+    bottom: 28%;
+    left: 27%;
+  }
+}
+
+.pu-advanced-products__marquee-slide {
+  position: absolute;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.pu-advanced-products__marquee-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px;
+}
+
+@media (width: 1024px) {
+  .pu-advanced-products__circle-marquee {
+    bottom: 34% !important;
+  }
+
+  .pu-advanced-products__arc-svg {
+    bottom: -6rem !important;
+  }
+
+  .pu-advanced-products__circle-area {
+    width: 50%;
+  }
+
+  .pu-advanced-products__bg {
+    height: 400px;
+  }
+}
+</style>

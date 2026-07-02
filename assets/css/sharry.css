@@ -2500,22 +2500,22 @@ html {
 .gl-footer .footer-description {
   font-size: 16px;
   font-weight: 400;
-  color: var(--gl-heading);
-  opacity: 0.6;
+  color: var(--gl-subheading);
+  opacity: 1;
 }
 
 .gl-footer .menus_title {
   font-size: 16px;
   font-weight: bold;
-  color: var(--gl-heading);
+  color: var(--gl-subheading);
   margin-bottom: 16px;
 }
 
 .gl-footer .gl-footer-links li a {
   font-size: 16px;
   font-weight: 400;
-  color: var(--gl-heading) !important;
-  opacity: 0.6;
+  color: var(--gl-subheading) !important;
+  opacity: 1;
   margin-bottom: 8px;
 }
 

@@ -22,7 +22,7 @@
   font-size: 12px;
   width: 100%;
   border: 1px solid var(--gl-heading);
-  background-color: var(--gl-subheading);
+  background-color: var(--gl-text);
   color: var(--gl-heading);
   padding-block: 12px;
   border-radius: 8px;

@@ -1,0 +1,277 @@
+
+{% assign c = section.settings %}
+
+{% if request.is_rtl %}
+  {% assign section_title    = c.title_section_ar    | default: c.title_section_en %}
+  {% assign section_subtitle = c.sub_title_section_ar | default: c.sub_title_section_en %}
+{% else %}
+  {% assign section_title    = c.title_section_en    | default: c.title_section_ar %}
+  {% assign section_subtitle = c.sub_title_section_en | default: c.sub_title_section_ar %}
+{% endif %}
+
+<section
+  id="product-feature-{{ section.id }}"
+  class="puprod pu-{{ section.id }} {% unless c.disable_space_between_components %}sec__space{% endunless %} animate-component"
+  {% unless c.feature_video %}
+    style="background-image: url('{{ c.img_bg_desctop_section }}'); background-size: cover; background-position: center; width: 100%;"
+  {% endunless %} 
+>
+
+  {% if c.feature_video and c.feature_video_url %}
+    <video autoplay muted loop playsinline class="pu__bg-video">
+      <source src="{{ c.feature_video_url }}" type="video/mp4">
+    </video>
+  {% endif %}
+
+  <div class="pu__text">
+    <p class="pu__title" style="color: {{ c.text_color_title }}">{{ section_title }}</p>
+    <p class="pu__subtitle" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.text_color_title }}{% else %}var(--color-primary){% endif %};">{{ section_subtitle }}</p>
+  </div>
+
+  <div class="gl-container pu__body">
+
+    <div class="pu__col pu__col--right">
+      {% assign right_idx = 0 %}
+      {% for item in c.productsec %}
+        {% assign mod = forloop.index | modulo: 2 %}
+        {% if mod == 1 %}
+          {% assign right_idx = right_idx | plus: 1 %}
+          {% if request.is_rtl %}
+            {% assign item_label = item.text_fe_ar | default: item.text_fe_en %}
+          {% else %}
+            {% assign item_label = item.text_fe_en | default: item.text_fe_ar %}
+          {% endif %}
+          <div class="pu__feature-item pu__feature-item--r{{ right_idx }}" data-aos="fade-left" data-aos-delay="{{ forloop.index0 | times: 100 }}" data-aos-duration="1500">
+            <div class="pu__feature-bubble" style="color: {% if c.toggle_theme_color_main_banner %}{{ item.color_text_fe }}{% else %}var(--color-primary){% endif %};">
+              {{ item_label }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="pu__col pu__col--left">
+      {% assign left_idx = 0 %}
+      {% for item in c.productsec %}
+        {% assign mod = forloop.index | modulo: 2 %}
+        {% if mod == 0 %}
+          {% assign left_idx = left_idx | plus: 1 %}
+          {% if request.is_rtl %}
+            {% assign item_label = item.text_fe_ar | default: item.text_fe_en %}
+          {% else %}
+            {% assign item_label = item.text_fe_en | default: item.text_fe_ar %}
+          {% endif %}
+          <div class="pu__feature-item pu__feature-item--l{{ left_idx }}" data-aos="fade-right" data-aos-delay="{{ forloop.index0 | times: 100 }}" data-aos-duration="1500">
+            <div class="pu__feature-bubble" style="color: {% if c.toggle_theme_color_main_banner %}{{ item.color_text_fe }}{% else %}var(--color-primary){% endif %};">
+              {{ item_label }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="pu__product-center">
+      {% assign pro_id = c.pro %}
+      {% render 'product-card',
+        product_card_id:          pro_id,
+        product_card_api_url:     api_routes.product_card_html,
+        product_card_orientation: 'vertical',
+        product_card_actions:     'view,addToCart,wishlist',
+        theme:                    theme,
+        shop:                     shop
+      %}
+    </div>
+
+  </div>
+</section>
+
+{% unless c.feature_video %}
+<style>
+  @media (max-width: 768px) {
+    .pu-{{ section.id }} {
+      background-image: url('{{ c.img_bg_mobile_section }}') !important;
+    }
+  }
+</style>
+{% endunless %}
+<style>
+.puprod {
+  position: relative;
+  min-height: 440px;
+  padding: 24px 0 40px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .puprod { min-height: 600px; }
+}
+@media (min-width: 1024px) {
+  .puprod { min-height: 750px; }
+}
+.puprod .gl-product-card-vertical-custom .gl-product-card-brand-logo,
+.puprod .gl-product-card-vertical-badges, .gl-product-card-horizontal-badges,
+.puprod .gl-product-card-hover-icons{
+  display: none !important;
+}
+.puprod .gl-product-card-vertical-custom .gl-product-card-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.puprod .gl-product-card-vertical-custom{
+  transform: translateY(-2px) !important;
+}
+/* ── Background video ── */
+.pu__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+ 
+/* ── Heading block ── */
+.pu__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .pu__text { padding: 27px 16px; gap: 13px; }
+}
+ 
+.pu__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+@media (min-width: 768px) { .pu__title { font-size: 28px; } }
+ 
+.pu__subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  max-width: 480px;
+}
+@media (min-width: 768px) { .pu__subtitle { font-size: 15px; } }
+ 
+/* ── Body: positions everything relative to this container ── */
+.pu__body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  /* tall enough to hold the absolute columns + centred product */
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) { .pu__body { min-height: 520px; } }
+@media (min-width: 1024px) { .pu__body { min-height: 600px; } }
+ 
+/* ── Centred product card ── */
+.pu__product-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 3;
+  width: 180px;
+}
+@media (min-width: 768px) { .pu__product-center { width: 280px; } }
+@media (min-width: 1024px) { .pu__product-center { width: 360px; } }
+ 
+/* ── Feature columns ── */
+.pu__col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;   /* right col: items flush right */
+  width: 28%;
+  pointer-events: none;
+}
+.pu__col--left {
+  left: 0;
+  align-items: flex-start; /* left col: items flush left */
+}
+.pu__col--right {
+  right: 0;
+}
+ 
+/* ── Individual feature item ── */
+.pu__feature-item {
+  pointer-events: auto;
+  position: relative;
+}
+ 
+/*
+  Positional nudges — mirror the design:
+  Right column (items 1,3,5  → r1,r2,r3):
+    r1: top-right  → slight push toward centre
+    r2: mid-right  → furthest right
+    r3: bot-right  → slight push toward centre
+  Left column (items 2,4,6 → l1,l2,l3):
+    l1: top-left   → slight push toward centre
+    l2: mid-left   → furthest left
+    l3: bot-left   → slight push toward centre
+*/
+@media (min-width: 768px) {
+  .pu__feature-item--r1 { transform: translateX(-30%); }
+  .pu__feature-item--r2 { transform: translateX(0);    }
+  .pu__feature-item--r3 { transform: translateX(-30%); }
+ 
+  .pu__feature-item--l1 { transform: translateX(30%);  }
+  .pu__feature-item--l2 { transform: translateX(0);    }
+  .pu__feature-item--l3 { transform: translateX(30%);  }
+}
+ 
+/* ── Bubble ── */
+.pu__feature-bubble {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1.5px dashed currentColor;   /* uses the inline color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 6px;
+  line-height: 1.3;
+  background: transparent;
+}
+@media (min-width: 768px) {
+  .pu__feature-bubble {
+    width: 120px;
+    height: 120px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 1024px) {
+  .pu__feature-bubble {
+    width: 150px;
+    height: 150px;
+    font-size: 18px;
+  }
+}
+ 
+/* ── Add-to-cart button override ── */
+.puprod .s-button-wide {
+  color: var(--color-primary);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+ 
+</style>

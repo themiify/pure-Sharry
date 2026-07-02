@@ -23,23 +23,14 @@
   style="{% if section.settings.heading_font_override != blank %}--section-font-heading: '{{ section.settings.heading_font_override }}', sans-serif;{% endif %}{% if section.settings.body_font_override != blank %}--section-font-body: '{{ section.settings.body_font_override }}', sans-serif;{% endif %}{% if section.settings.section_bg_color != blank %}background-color: {{ section.settings.section_bg_color }};{% endif %}{% if pad %}padding: {{ pad.top | default: 80 }}px {{ pad.right | default: 0 }}px {{ pad.bottom | default: 80 }}px {{ pad.left | default: 0 }}px;{% endif %}"
 >
   <div class="gl-container">
-    {% if heading != blank or heading_ar != blank %}
-      <div class="gl-section-header">
-        <h2>
-          {% if is_rtl and heading_ar != blank %}{{ heading_ar }}{% elsif heading != blank %}{{ heading }}{% endif %}
-        </h2>
-      </div>
-    {% endif %}
+
 
     <div
       class="gl-spotlight-inner"
       style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;"
       dir="{{ is_rtl | iif: 'rtl', 'ltr' }}"
     >
-      <div
-        class="gl-spotlight-media{% if layout == 'image-right' %} gl-spotlight-media--right{% endif %}"
-        style="{% if layout == 'image-right' %}order:2;{% else %}order:{% if is_rtl %}2{% else %}1{% endif %};{% endif %}"
-      >
+   <div class="gl-spotlight-media gl-layout-{{ layout }} {% if is_rtl %}gl-is-rtl{% endif %}">
         <div
           class="gl-spotlight-media-wrap"
           style="position:relative;border-radius:var(--gl-radius-lg,20px);overflow:hidden;aspect-ratio:4/5;background:var(--gl-bg-alt,#f8f4f5);"
@@ -200,3 +191,12 @@
     </div>
   </div>
 </section>
+<style>
+  /* في حالة الاتجاه العادي */
+.gl-layout-image-right { order: 1; }
+.gl-layout-image-left { order: 2; }
+
+/* في حالة الـ RTL (إذا كنت تحتاج لعكس الترتيب يدوياً) */
+.gl-is-rtl .gl-layout-image-right { order: 2; }
+.gl-is-rtl .gl-layout-image-left { order: 1; }
+</style>

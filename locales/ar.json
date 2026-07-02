@@ -10,7 +10,8 @@
         "menu": "القائمة",
         "cart": "السلة",
         "wishlist": "المفضلة",
-        "back_to_home": "العودة للرئيسية"
+        "back_to_home": "العودة للرئيسية",
+        "order_now":"اطلب الان"
     },
     "product": {
         "add_to_cart": "أضيفي للسلة",

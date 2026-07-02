@@ -1,0 +1,154 @@
+{% assign c = section.settings %}
+
+{% if request.is_rtl %}
+  {% assign title_section_text = c.title_section_ar | default: c.title_section_en %}
+  {% assign des_section_text = c.des_section_ar | default: c.des_section_en %}
+  {% assign text_btn_text = c.text_btn_ar | default: c.text_btn_en %}
+{% else %}
+  {% assign title_section_text = c.title_section_en | default: c.title_section_ar %}
+  {% assign des_section_text = c.des_section_en | default: c.des_section_ar %}
+  {% assign text_btn_text = c.text_btn_en | default: c.text_btn_ar %}
+{% endif %}
+
+<section
+  class="sfloc sf-{{ section.id }} animate-component{% unless c.disable_space_between_components %} sec__space{% endunless %}"
+  {% if c.is_color_image %}
+    style="background-color: {% if c.toggle_theme_color_main_banner %}{{ c.color_bg }}{% else %}var(--color-primary){% endif %};"
+  {% else %}
+    style="background-image: url({{ c.img_section }}); background-size: cover; background-position: center; background-repeat: no-repeat;"
+  {% endif %}
+>
+  <div class="sf__container gl-container">
+    <div class="sf__text" data-aos="zoom-in-up" data-aos-delay="200" data-aos-duration="2000">
+      <p class="sf__title" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.color_title_section }}{% else %}var(--gl-primary){% endif %};">{{ title_section_text }}</p>
+      <p class="sf__desc" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.color_title_section }}{% else %}var(--gl-primary){% endif %};">{{ des_section_text }}</p>
+      {% if text_btn_text %}
+        <a class="sf__btn" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.color_btn }}{% else %}var(--gl-text){% endif %}; background-color: {% if c.toggle_theme_color_main_banner %}{{ c.bg_btn }}{% else %}var(--gl-primary){% endif %};" href="">{{ text_btn_text }}</a>
+      {% endif %}
+    </div>
+    <div class="sf__map" data-aos="zoom-in-up" data-aos-duration="2000" data-aos-delay="200">
+      <iframe
+        src="{{ c.url_mabes }}"
+        class="sf__iframe"
+        width="300"
+        frameborder="0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+<style>
+    .sfloc {
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 28px;
+  height: 650px;
+}
+
+@media (min-width: 768px) {
+  .sfloc {
+    flex-direction: row;
+    gap: 80px;
+    height: 480px;
+  }
+}
+
+.sf__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 28px;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .sf__container {
+    flex-direction: row;
+    gap: 80px;
+    padding: 0 40px;
+  }
+}
+
+.sf__text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .sf__text {
+    width: 40%;
+    align-items: flex-start;
+    text-align: right;
+  }
+}
+
+.sf__title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+@media (min-width: 768px) {
+  .sf__title {
+    font-size: 32px;
+  }
+}
+
+.sf__desc {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .sf__desc {
+    font-size: 20px;
+  }
+}
+
+.sf__btn {
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 24px;
+  padding: 10px 30px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .sf__btn {
+    font-size: 18px;
+  }
+}
+
+.sf__map {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sf__map {
+    width: 50%;
+  }
+}
+
+.sf__iframe {
+  border-radius: 12px;
+  height: 288px;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .sf__iframe {
+    height: 450px;
+  }
+}
+</style>

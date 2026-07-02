@@ -10,7 +10,8 @@
         "menu": "Menu",
         "cart": "Cart",
         "wishlist": "Wishlist",
-        "back_to_home": "Back to Home"
+        "back_to_home": "Back to Home",
+        "order_now":"order now"
     },
     "product": {
         "add_to_cart": "Add to Cart",

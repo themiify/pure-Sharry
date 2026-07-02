@@ -11,7 +11,7 @@
       —
       {{ shop.name }}
     </title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Fonts (dynamic from theme settings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,9 @@
           {% if theme.heading_font %}--gl-font-heading: '{{ theme.heading_font }}', sans-serif;{% endif %}
           {% if theme.body_font %}--gl-font-body: '{{ theme.body_font }}', sans-serif;{% endif %}
       }
+      html{
+        overflow-x: hidden;
+      }
  
     </style>
   </head>
@@ -81,6 +84,8 @@
             src="{{ _logo_src }}"
             alt="{{ theme.store_name | default: shop.name }}"
             class="gl-logo-img"
+            style="width: 100px;"
+
           >
         {% else %}
           <span class="gl-logo-text">
@@ -275,7 +280,36 @@
         </div>
       </div>
     </div>
+    {% assign show_breadcrumb_image=theme.show_breadcrumb_image %}
+{% assign bredcrumb_img=theme.image_breadcrumb %}
 
+{% if show_breadcrumb_image %}
+    <style>
+  .gl-breadcrumb {
+    background-image: url('{{ bredcrumb_img }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 168px;
+    border-radius: 20px;
+    position: relative;
+}
+.gl-breadcrumb::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* غيّر اللون والشفافية حسب الحاجة */
+    z-index: 1;
+}
+
+
+
+
+</style>
+{% endif %}
     <!-- Header Section -->
     {{ content_for_header }}
 
@@ -283,7 +317,7 @@
     {% assign is_rtl = request.is_rtl %}
     {% assign page_type = page.type %}
     {% assign current_title = page.title %}
-    
+
     {% unless page_type == 'home' %}
       {% capture breadcrumb_html %}
         <nav aria-label="Breadcrumb" >
@@ -438,6 +472,15 @@
     <!-- Main Content -->
     <main>
       {{ content_for_layout }}
+       {% if theme.is_whatsapp_icon != blank %}
+        {% render 'os_whatsapp' , theme: theme %}
+      {% endif %}
+      {% if theme.is_arow_to_top != blank %}
+        {% render 'osh_arrowtop' , theme: theme %}
+      {% endif %}
+       {% if  theme.show_popup  != blank %}
+        {% render 'osh-poup' , is_rtl: is_rtl, theme: theme %}
+      {% endif %}
     </main>
 
     <!-- Footer Section -->

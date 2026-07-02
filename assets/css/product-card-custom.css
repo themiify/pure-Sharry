@@ -110,24 +110,21 @@
 .gl-product-card-vertical-custom .gl-product-card-hover-icons {
     display: flex;
     gap: 12px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 4;
 }
 
-.gl-product-card-vertical-custom:hover .gl-product-card-hover-icons {
-    opacity: 1;
-    visibility: visible;
-}
+
 
 .gl-product-card-vertical-custom .gl-product-card-hover-icons .gl-product-card-hover-icons__quick-view-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: var(--gl-subheading);
+    background: var(--gl-text);
     padding: 4px;
     display: flex;
     align-items: center;
@@ -180,42 +177,46 @@
 
 /* Add to Cart Button - Bottom Overlay */
 .gl-product-card-vertical-custom .gl-product-card-add-to-cart {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+position: absolute;
+    top: 0;
+    /* left: 0; */
     right: 0;
-    padding: 0 12px 12px;
-    transform: translateY(100%);
+    padding:  12px ;
+    transform: translateY(0);
+
     transition: transform 0.3s ease;
     z-index: 5;
-    display: flex;
+    display: flex
+;
     flex-direction: column;
     align-content: space-between;
     align-items: center;
     gap: 8px;
 }
 
-.gl-product-card-vertical-custom:hover .gl-product-card-add-to-cart {
-    transform: translateY(0);
-}
+
 
 .gl-product-card-vertical-custom .gl-add-to-cart-btn , 
 .gl-product-card-horizontal-custom .gl-add-to-cart-btn  {
     width: 100%;
-    background: var(--gl-primary);
-    color: var(--gl-subheading);
+    color: var(--gl-primary);
     border: none;
     padding: 12px 16px;
     border-radius: 6px;
     font-size: 14px;
+    background: transparent;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: transform 0.3s ease;
-    text-decoration: none;
+    transition: transform 0.5s ease;
+    text-decoration: underline;
+    -webkit-transition: transform 0.5s ease;
+    -moz-transition: transform 0.5s ease;
+    -ms-transition: transform 0.5s ease;
+    -o-transition: transform 0.5s ease;
 }
 
 .gl-product-card-vertical-custom .gl-add-to-cart-btn:hover , 
@@ -233,7 +234,11 @@
 /* Product Card Body */
 .gl-product-card-vertical-custom .gl-product-card-body {
     padding: 16px;
-    background: var(--gl-subheading);
+    color: var(--gl-text);
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Product Title */
@@ -242,7 +247,7 @@
 .gl-product-card-vertical-custom .gl-product-card-title a {
     font-size: 16px;
     font-weight: bold;
-    color: var(--gl-heading);
+    color: var(--gl-primary);
     text-decoration: none;
     margin-bottom: 8px;
     display: block;
@@ -382,7 +387,7 @@
 .gl-product-card-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
 }

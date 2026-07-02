@@ -65,6 +65,17 @@
   color: var(--gl-heading);
   font-weight: 500;
 }
+.product-single .share-icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  flex-shrink: 0;
+}
 
 .product-single .product-meta .rating-product .product-share {
   display: flex;
@@ -245,7 +256,7 @@
   width: 50px;
   height: 100%;
   border: none;
-  background: white;
+  background:var(--gl-accent) !important;
   cursor: pointer;
   font-size: 18px;
   color: var(--gl-heading);
@@ -264,7 +275,7 @@
   height: 100%;
   border: none;
   border-inline: 1px solid var(--gl-border);
-  background: white;
+  background: var(--gl-accent);
   text-align: center;
   font-size: 15px;
   font-weight: 500;
@@ -290,15 +301,21 @@
 }
 
 .product-single .qty-price {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  align-items: center;
+    display: flex
+;
+    justify-content: center;
+    flex-direction: column-reverse;
+    margin-bottom: 24px;
+    align-items: flex-start;
 }
 
 .product-single .gl-product-info-price {
-  font-weight: 700;
-  margin-bottom: 0px;
+    font-weight: 700;
+    margin-bottom: 0px;
+    display: flex
+;
+    justify-content: end;
+    width: 100%;
 }
 
 .product-single .gl-product-info-price .current,
@@ -451,14 +468,16 @@
 }
 
 .product-single .gl-product-tabs-nav button.active {
-  background-color: var(--gl-primary);
-  color: var(--gl-subheading);
+  color: var(--gl-primary);
+
   border-top-right-radius: 8px;
 }
-
-.gl-product-tabs-nav {
-  border-bottom: 1px solid var(--gl-primary);
+.product-single .gl-product-tabs-nav{
+  display: flex;
+  justify-content: center;
+  border: none;
 }
+
 
 .product-single .gl-product-tab-content {
   color: var(--gl-heading);
@@ -471,7 +490,7 @@
   font-size: 16px;
   font-weight: 700;
   color: var(--gl-heading);
-  background-color: color-mix(in srgb, var(--gl-primary) 20%, transparent);
+
 }
 
 .product-single .gl-info-table {

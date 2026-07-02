@@ -1,0 +1,109 @@
+{% assign c = section.settings %}
+{% assign is_rtl = request.is_rtl %}
+
+<section class="osh-offer-sec" style=" padding: 40px 0; direction: {% if is_rtl %}rtl{% else %}ltr{% endif %};">
+  <div class="gl-container">
+    <div class="osh-offers-layout" >
+       <div class="osh-content-box"  style="background-color: {{ c.bg_c }};"   data-sal="slide-down"
+  data-sal-duration="600"
+ data-sal-delay="0"
+  data-sal-easing="ease-out-cubic"
+       >
+        <h4 style="color: {{c.block_title_color}}; font-size: 32px; margin-bottom: 10px;">
+          {% if is_rtl %}{{ c.block_title_ar }}{% else %}{{ c.block_title_en }}{% endif %}
+        </h4>
+        <p style="color: {{c.promo_title_color}}; margin-bottom: 25px; font-size: 16px;">
+          {% if is_rtl %}{{ c.promo_title_ar }}{% else %}{{ c.promo_title_en }}{% endif %}
+        </p>
+
+        {% unless c.countdown_switch %}
+        <div class="osh-countdown-container" data-date="{{ c.offer_date }}">
+          <div class="osh-cd-item"><span class="osh-cd-val" style="color:{{c.countdown_txt_color}} ;background:{{c.countdown_bg_color}}" data-days>00</span><span class="osh-cd-lbl">{% if is_rtl %}يوم{% else %}Days{% endif %}</span></div>
+          <span class="osh-cd-sep">:</span>
+          <div class="osh-cd-item"><span class="osh-cd-val" style="color:{{c.countdown_txt_color}} ;background:{{c.countdown_bg_color}}" data-hours>00</span><span class="osh-cd-lbl">{% if is_rtl %}ساعة{% else %}Hours{% endif %}</span></div>
+          <span class="osh-cd-sep">:</span>
+          <div class="osh-cd-item"><span class="osh-cd-val" style="color:{{c.countdown_txt_color}} ;background:{{c.countdown_bg_color}}" data-mins>00</span><span class="osh-cd-lbl">{% if is_rtl %}دقيقة{% else %}Mins{% endif %}</span></div>
+          <span class="osh-cd-sep">:</span>
+          <div class="osh-cd-item"><span class="osh-cd-val" style="color:{{c.countdown_txt_color}} ;background:{{c.countdown_bg_color}}" data-secs>00</span><span class="osh-cd-lbl">{% if is_rtl %}ثانية{% else %}Secs{% endif %}</span></div>
+        </div>
+        {% endunless %}
+
+        {% if c.add_button %}
+          <a href="{{ c.url }}" class="osh-offer-btn" style="color: {{c.btn_txt_color}};background:{{c.btn_bg_color}}">
+            {% if is_rtl %}{{ c.btn_txt_ar }}{% else %}{{ c.btn_txt_en }}{% endif %}
+          </a>
+        {% endif %}
+      </div>
+     <div class="osh-img-offer"
+     data-sal="slide-up"
+  data-sal-duration="700"
+ data-sal-delay="0"
+  data-sal-easing="ease-out-cubic">
+        <img src="{{ c.offer_product_img }}" alt="offer image" style="width:100%;border-radius: 16px;">
+      </div>
+
+     
+    </div>
+  </div>
+</section>
+
+<style>
+  .osh-offers-layout { display: flex; flex-direction: row-reverse; align-items: stretch; gap: 30px; height:450px}
+  
+  /* هنا حل مشكلة طول الصورة */
+  .osh-img-offer { width: 50%; display: flex; }
+  .osh-offer-img { 
+    width: 100%; 
+    height: 450px; /* نفس ارتفاع الكتلة البنية ليتطابقا */
+    object-fit: cover; /* هذا يمنع التمدد الطولي ويقص الصورة بشكل احترافي */
+    border-radius: 16px; 
+    display: block; 
+  }
+  
+  .osh-content-box { width: 50%; padding: 40px; border-radius: 16px; text-align: center;  display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  
+  /* العداد */
+  .osh-countdown-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+  .osh-cd-item { display: flex; flex-direction: column; align-items: center; }
+  .osh-cd-val { width: 60px; height: 60px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; }
+  .osh-cd-lbl {  font-size: 10px; margin-top: 5px; }
+  .osh-cd-sep { font-size: 24px; font-weight: bold; margin-top: 15px; }
+
+  /* الزر */
+  .osh-offer-btn {  padding: 12px 30px; border-radius: 30px; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: bold; }
+  .osh-btn-icon { 
+
+    width: 35px; 
+    height: 35px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size:30px;
+    /* تحويل السهم ليشير للأعلى وللجانب الآخر */
+    transform: rotate(208deg); 
+  }
+  @media (max-width: 768px) { 
+    .osh-offers-layout { flex-direction: column;height:700px } 
+    .osh-img-offer, .osh-content-box { width: 100%;height:50% } 
+    .osh-offer-img { height: 300px; } /* ارتفاع مناسب للموبايل */
+  }
+</style>
+
+<script>
+(function(){
+  const cd = document.querySelector('.osh-countdown-container');
+  if (!cd) return;
+  const end = new Date(cd.dataset.date).getTime();
+  const pad = (n) => String(n).padStart(2,'0');
+  const tick = () => {
+    const diff = end - Date.now();
+    if (diff <= 0) return;
+    cd.querySelector('[data-days]').textContent = pad(Math.floor(diff/86400000));
+    cd.querySelector('[data-hours]').textContent = pad(Math.floor((diff%86400000)/3600000));
+    cd.querySelector('[data-mins]').textContent = pad(Math.floor((diff%3600000)/60000));
+    cd.querySelector('[data-secs]').textContent = pad(Math.floor((diff%60000)/1000));
+  };
+  tick(); setInterval(tick, 1000);
+})();
+</script>

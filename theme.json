@@ -1,6 +1,6 @@
 {
-    "name": "Glamour",
-    "slug": "glamour",
+    "name": "Pure",
+    "slug": "pure",
     "version": "1.0.0",
     "description": "A luxurious makeup & cosmetics theme with pink and white palette, RTL support, and bilingual Arabic/English design.",
     "author": "GoSharry",
@@ -191,7 +191,7 @@
                     "id": "primary_color",
                     "label": "Primary",
                     "label_ar": "اللون الأساسي",
-                    "default": "#09c30c"
+                    "default": "#82AF38"
                 },
                 {
                     "type": "color",
@@ -205,7 +205,7 @@
                     "id": "accent_color",
                     "label": "Accent",
                     "label_ar": "لون التمييز",
-                    "default": "#ffc400"
+                    "default": "#F6FFE6"
                 },
                 {
                     "type": "color",
@@ -219,14 +219,14 @@
                     "id": "heading_color",
                     "label": "Primary Text Color",
                     "label_ar": "لون النص الأساسي",
-                    "default": "#c84c4c"
+                    "default": "#2D2D2D"
                 },
                 {
                     "type": "color",
                     "id": "subheading_color",
                     "label": "Accent (Secondary Text Color)",
                     "label_ar": "لون التمييز (لون النص الثانوي)",
-                    "default": "#ffffff"
+                    "default": "#000000"
                 },
                 {
                     "type": "color",
@@ -240,7 +240,26 @@
                     "id": "background_footer_color",
                     "label": "Footer Background",
                     "label_ar": "خلفية الفوتر",
-                    "default": "#ffffff"
+                    "default": "#C9EB8F"
+                }
+            ]
+        },
+        {
+            "name": "Breadcrumb",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "show_breadcrumb_image",
+                    "label": " Add Breadcrumb to Product Pages",
+                    "label_ar": "يمكنك تفعيل هذا الخيار لإظهار صورة بانر مميزة أعلى جميع الصفحات الداخلية،",
+                    "default": true
+                },
+                {
+                    "type": "image",
+                    "id": "image_breadcrumb",
+                    "label": "Breadcrumb Image",
+                    "label_ar": "ارفع صورة بانر مناسبة تظهر أعلى الصفحات الداخلية",
+                    "default": "https://cdn.salla.sa/form-builder/6sNUA0WZEzA8nX3eQ62zr84tgdxWa6c5be1OE4gD.jpg"
                 }
             ]
         },
@@ -506,28 +525,28 @@
                     "id": "store_logo_dark",
                     "label": "Footer Logo",
                     "label_ar": "شعار الفوتر",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/121/serve?variant=full&token=YDEt0YCkeWin5xmQhJNXOqTsTPDDxnzF"
+                    "default": "https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/ePjXlO/Wj7XBulc7gEW29lCFgY89540COp406riUJ8Cr6rq.png"
                 },
                 {
                     "type": "image",
                     "id": "store_logo",
                     "label": "Store Logo",
                     "label_ar": "شعار المتجر",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/121/serve?variant=full&token=YDEt0YCkeWin5xmQhJNXOqTsTPDDxnzF"
+                    "default": "https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/ePjXlO/Wj7XBulc7gEW29lCFgY89540COp406riUJ8Cr6rq.png"
                 },
                 {
                     "type": "image",
                     "id": "favicon",
                     "label": "Site Icon (Favicon)",
                     "label_ar": "أيقونة الموقع (Favicon)",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/123/serve?variant=full&token=M2EVVzQurtUZdO99ybAT4xHjRpZUEtRP"
+                    "default": "https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/ePjXlO/Wj7XBulc7gEW29lCFgY89540COp406riUJ8Cr6rq.png"
                 },
                 {
                     "type": "image",
                     "id": "loader_logo",
                     "label": "Loading Logo",
                     "label_ar": "شعار التحميل",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/186/serve?variant=full&token=p35ZvNidnwYnlRAvxCow85y1WRSf6D2K"
+                    "default": "https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/ePjXlO/Wj7XBulc7gEW29lCFgY89540COp406riUJ8Cr6rq.png"
                 },
                 {
                     "type": "checkbox",
@@ -537,6 +556,22 @@
                     "info": "Use store name as text instead of the logo",
                     "info_ar": "يعتمد على اسم المتجر نصاً بدلاً من اللوجو",
                     "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "additional_img_switch",
+                    "label": "additional img switch",
+                    "label_ar": "إضافة صورة تزيينية جانبية اسفل الصفحه",
+                    "info": "",
+                    "info_ar": "",
+                    "default": true
+                },
+                {
+                    "type": "image",
+                    "id": "additional_img",
+                    "label": "additional img",
+                    "label_ar": "  صورة تزيينية جانبية اسفل الصفحه",
+                    "default": "https://cdn.files.salla.network/homepage/1738600994/e76a772c-a587-4be1-a806-af2afefab80b.webp"
                 }
             ]
         },
@@ -585,6 +620,224 @@
                     "label": "YouTube",
                     "label_ar": "يوتيوب",
                     "default": ""
+                }
+            ]
+        },
+        {
+            "name": "Social Media",
+            "settings": [
+                {
+                    "type": "url",
+                    "id": "social_instagram",
+                    "label": "Instagram URL",
+                    "default": ""
+                },
+                {
+                    "type": "url",
+                    "id": "social_facebook",
+                    "label": "Facebook URL",
+                    "default": ""
+                },
+                {
+                    "type": "url",
+                    "id": "social_twitter",
+                    "label": "X (Twitter) URL",
+                    "default": ""
+                },
+                {
+                    "type": "url",
+                    "id": "social_tiktok",
+                    "label": "TikTok URL",
+                    "default": ""
+                },
+                {
+                    "type": "url",
+                    "id": "social_snapchat",
+                    "label": "Snapchat URL",
+                    "default": ""
+                },
+                {
+                    "type": "url",
+                    "id": "social_youtube",
+                    "label": "YouTube URL",
+                    "default": ""
+                }
+            ]
+        },
+        {
+            "name": "WhatsApp Icon",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "is_whatsapp_icon",
+                    "label": " إضافة أيقونة واتساب متحركة ",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "phone_whatsapp",
+                    "label": "رقم الجوال",
+                    "default": "123456789"
+                },
+                {
+                    "type": "text",
+                    "id": "message_whatsapp",
+                    "label": "نص الرساله الترحيبيه",
+                    "default": "شكرًا لتواصلك معنا. كيف يمكننا مساعدتك اليوم؟"
+                }
+            ]
+        },
+        {
+            "name": "Arow to top ",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "is_arow_to_top",
+                    "label": "اظهار زر الرجوع للاعلى",
+                    "default": true
+                }
+            ]
+        },
+        {
+            "name": "Popup Settings",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "show_popup",
+                    "label": "تفعيل ظهور النافذة المنبثقة",
+                    "default": true
+                },
+                {
+                    "type": "color",
+                    "id": "popup_bg",
+                    "label": "لون خلفية النافذة",
+                    "default": "#82AF38"
+                },
+                {
+                    "type": "image",
+                    "id": "popup_img",
+                    "label": "صورة خلفية النافذة",
+                    "default": "https://cdn.files.salla.network/homepage/1738600994/29a22698-1c2d-4967-973d-b43013b8fca5.webp"
+                },
+                {
+                    "type": "text",
+                    "id": "promotional_header_ar",
+                    "label": "عنوان العرض الترويجي",
+                    "default": "خصم 10% لأول طلب لك"
+                },
+                {
+                    "type": "text",
+                    "id": "promotional_header_en",
+                    "label": "عنوان العرض الترويجي",
+                    "default": " 10%  discount for your first order "
+                },
+                {
+                    "type": "color",
+                    "id": "promotional_header_color",
+                    "label": "لون عنوان العرض الترويجي",
+                    "default": "#202020"
+                },
+                {
+                    "type": "text",
+                    "id": "main_header_ar",
+                    "label": "Main title of the popup",
+                    "label_ar": "العنوان الرئيسي للنافذة",
+                    "default": "اشترك الآن واستمتع بأحدث تصاميم الطرح والعروض الحصرية"
+                },
+                {
+                    "type": "text",
+                    "id": "main_header_en",
+                    "label": "Main title of the popup",
+                    "label_ar": "العنوان الرئيسي للنافذة",
+                    "default": "Subscribe now and enjoy the latest designs and exclusive offers"
+                },
+                {
+                    "type": "color",
+                    "id": "main_header_color",
+                    "label": "لون العنوان الرئيسي",
+                    "default": "#202020"
+                },
+                {
+                    "type": "select",
+                    "id": "popup_type",
+                    "label": "نوع النافذة",
+                    "default": "discount_code",
+                    "options": [
+                        {
+                            "value": "discount_code",
+                            "label": "كود خصم"
+                        },
+                        {
+                            "value": "newsletter",
+                            "label": "نشرة بريدية"
+                        }
+                    ]
+                },
+                {
+                    "type": "url",
+                    "id": "newsletter_url",
+                    "label": "رابط الاشتراك في النشرة البريدية",
+                    "default": "https://s.salla.sa"
+                },
+                {
+                    "type": "color",
+                    "id": "input_text_bg",
+                    "label": "لون خلفية حقل الإدخال",
+                    "default": "#56112a"
+                },
+                {
+                    "type": "color",
+                    "id": "input_text_color",
+                    "label": "لون نص حقل الإدخال",
+                    "default": "#005366"
+                },
+                {
+                    "type": "color",
+                    "id": "placeholder_text_color",
+                    "label": "لون نص العنصر النائب",
+                    "default": "#ffffff"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text_ar",
+                    "label": "نص الزر",
+                    "default": "إستكشف الآن"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text_en",
+                    "label": "نص الزر",
+                    "default": "Explore now"
+                },
+                {
+                    "type": "color",
+                    "id": "btn_text_color",
+                    "label": "لون نص الزر",
+                    "default": "#ffffff"
+                },
+                {
+                    "type": "color",
+                    "id": "btn_text_bg",
+                    "label": "لون خلفية الزر",
+                    "default": "#00809d"
+                },
+                {
+                    "type": "text",
+                    "id": "code_text",
+                    "label": "أضف كود الخصم",
+                    "default": "pure500"
+                },
+                {
+                    "type": "color",
+                    "id": "code_text_color",
+                    "label": "لون الكود",
+                    "default": "#2D2D2D"
+                },
+                {
+                    "type": "color",
+                    "id": "code_text_bg",
+                    "label": "لون خلفية الكود",
+                    "default": "#F6FFE6"
                 }
             ]
         },
@@ -735,7 +988,7 @@
                     "type": "text",
                     "id": "copyright_ar",
                     "label": "Copyright Text (Arabic)",
-                    "default": "© 2026 جميع الحقوق محفوظة لمتجر جلامور"
+                    "default": "© 2026 جميع الحقوق محفوظة لمتجر بيور"
                 },
                 {
                     "type": "checkbox",
@@ -757,10 +1010,1450 @@
             }
         },
         {
+            "slug": "sf-pu-main-slider",
+            "name": {
+                "en": "Main Banner - Pure",
+                "ar": "البانر الرئيسي - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/sf-pu-main-slider.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Disable Bottom Spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use Custom Colors",
+                    "label_ar": "استخدام الألوان المخصصة",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "use_simple_banner",
+                    "label": "Use Ready-Made Banner Images",
+                    "label_ar": "استخدام صور بانر جاهز",
+                    "default": false
+                },
+                {
+                    "type": "image",
+                    "id": "desktop_banner_image",
+                    "label": "Desktop Banner Image",
+                    "label_ar": "صورة البانر للديسكتوب",
+                    "default": null
+                },
+                {
+                    "type": "image",
+                    "id": "mobile_banner_image",
+                    "label": "Mobile Banner Image",
+                    "label_ar": "صورة البانر للموبايل",
+                    "default": null
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_autplay",
+                    "label": "Auto-play Slider",
+                    "label_ar": "تشغيل تلقائي للسلايدر",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_loop",
+                    "label": "Enable Loop",
+                    "label_ar": "تشغيل التكرار",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_brand_text",
+                    "label": "Show Store Name as Text Instead of Image",
+                    "label_ar": "جعل اسم متجرك نصًا بدلًا من صورة",
+                    "default": true
+                },
+                {
+                    "type": "image",
+                    "id": "brand_image",
+                    "label": "Brand Image",
+                    "label_ar": "صورة الماركة",
+                    "default": "https://cdn.salla.sa/form-builder/w7uUyz2fqT8lK7LLvFe1dnSGQlTEpX8k7xkWZXAC.png"
+                },
+                {
+                    "type": "text",
+                    "id": "brand_text_en",
+                    "label": "Store Name (English)",
+                    "label_ar": "اسم المتجر (إنجليزي)",
+                    "default": "pure"
+                },
+                {
+                    "type": "text",
+                    "id": "brand_text_ar",
+                    "label": "Store Name (Arabic)",
+                    "label_ar": "اسم المتجر (عربي)",
+                    "default": ""
+                },
+                {
+                    "type": "repeater",
+                    "id": "products_sliders",
+                    "label": "Slide Items",
+                    "label_ar": "المنتجات",
+                    "default": [
+                        {
+                            "is_bg_image": false,
+                            "bg_image": null,
+                            "bg_color": "#82AF38",
+                            "is_sec_prod_img": true,
+                            "sec_prod_img": "https://cdn.salla.sa/form-builder/Lw4GaUyCw2st38Kjqvshb3KEICAitcqgwx2itWW0.png",
+                            "prod_img": "https://cdn.salla.sa/form-builder/GiRzC4EzX99d07yvfVjoahBWeNsFI55PTKmRCoWH.png",
+                            "main_title2_en": "",
+                            "main_title2_ar": "",
+                            "sub_title_en": "The unique kiwi flavor comes to you from Pure in a special way.",
+                            "sub_title_ar": "نكهة الكيوي بطعمها الفريد تجيكم من بيور بطريقة غير نختار أجود الفواكه الطبيعية عشان نمنحكم انتعاش  ذائقتكم بكل .",
+                            "text_color": "#ffffff",
+                            "is_btn": true,
+                            "btn_txt_en": "Discover More",
+                            "btn_txt_ar": "أكتشف المزيد",
+                            "btn_url": "",
+                            "btn_color": "#ffffff"
+                        },
+                        {
+                            "is_bg_image": false,
+                            "bg_image": null,
+                            "bg_color": "#E99B37",
+                            "is_sec_prod_img": true,
+                            "sec_prod_img": "https://cdn.salla.sa/form-builder/8KFL3WBmmCUuB9zvBuYs5zHutGmYWYeelz83bmEn.png",
+                            "prod_img": "https://cdn.salla.sa/form-builder/Skrb1TsmuIblteVEOontwPQWTjfB5Mr0CRQuW5cl.png",
+                            "main_title2_en": "",
+                            "main_title2_ar": "",
+                            "sub_title_en": "The original orange flavor from Pure — fresh and delicious with a Saudi touch.",
+                            "sub_title_ar": "نكهة البرتقال الأصلية من بيور، طازجة ولذيذة بطابع سعودي نعتمد على مكونات طبيعية 100٪ لتقدم لكم تجربة  ومنعشة بكل ",
+                            "text_color": "#ffffff",
+                            "is_btn": true,
+                            "btn_txt_en": "Discover More",
+                            "btn_txt_ar": "أكتشف المزيد",
+                            "btn_url": "",
+                            "btn_color": "#ffffff"
+                        },
+                        {
+                            "is_bg_image": false,
+                            "bg_image": null,
+                            "bg_color": "#D94644",
+                            "is_sec_prod_img": true,
+                            "sec_prod_img": "https://cdn.salla.sa/form-builder/8rZ41FCMSxBrH8DJc4aBBnqoxx5pPSSOpKGTsGyH.png",
+                            "prod_img": "https://cdn.salla.sa/form-builder/1yB4RS84K9Rtm5eZ4uQrTlAGbMSuvf2vn3wJL8I9.png",
+                            "main_title2_en": "",
+                            "main_title2_ar": "",
+                            "sub_title_en": "Experience a refreshing moment with the taste of fresh strawberry from Pure.",
+                            "sub_title_ar": "عيشوا لحظة انتعاش بطعم الفراولة الطازج من بيور. نكهتنا تجمع بين الطبيعة والمذاق الفاخر لتقدم لكم عصير يرضي كل .",
+                            "text_color": "#ffffff",
+                            "is_btn": true,
+                            "btn_txt_en": "Discover More",
+                            "btn_txt_ar": "أكتشف المزيد",
+                            "btn_url": "",
+                            "btn_color": "#ffffff"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "id": "is_bg_image",
+                            "label": "Use Background Image",
+                            "label_ar": "استخدام صورة للخلفية",
+                            "default": false
+                        },
+                        {
+                            "type": "image",
+                            "id": "bg_image",
+                            "label": "Background Image",
+                            "label_ar": "صورة الخلفية",
+                            "default": null
+                        },
+                        {
+                            "type": "color",
+                            "id": "bg_color",
+                            "label": "Section Background Color",
+                            "label_ar": "لون خلفية القسم",
+                            "default": "#61BECF"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "is_sec_prod_img",
+                            "label": "Additional Product Image",
+                            "label_ar": "صورة إضافية للمنتج",
+                            "default": true
+                        },
+                        {
+                            "type": "image",
+                            "id": "sec_prod_img",
+                            "label": "Secondary Product Image",
+                            "label_ar": "أضف الصورة",
+                            "default": null
+                        },
+                        {
+                            "type": "image",
+                            "id": "prod_img",
+                            "label": "Product Image",
+                            "label_ar": "صورة المنتج",
+                            "default": null
+                        },
+                        {
+                            "type": "text",
+                            "id": "main_title2_en",
+                            "label": "Main Title (English)",
+                            "label_ar": "العنوان الرئيسى (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "main_title2_ar",
+                            "label": "Main Title (Arabic)",
+                            "label_ar": "العنوان الرئيسى (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "sub_title_en",
+                            "label": "Sub Title (English)",
+                            "label_ar": "العنوان الفرعى (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "sub_title_ar",
+                            "label": "Sub Title (Arabic)",
+                            "label_ar": "العنوان الفرعى (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "color",
+                            "id": "text_color",
+                            "label": "Text Color",
+                            "label_ar": "لون العناويين",
+                            "default": "#ffffff"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "is_btn",
+                            "label": "Add Button",
+                            "label_ar": "إضافة زر",
+                            "default": true
+                        },
+                        {
+                            "type": "text",
+                            "id": "btn_txt_en",
+                            "label": "Button Text (English)",
+                            "label_ar": "نص الزر (إنجليزي)",
+                            "default": "Discover More"
+                        },
+                        {
+                            "type": "text",
+                            "id": "btn_txt_ar",
+                            "label": "Button Text (Arabic)",
+                            "label_ar": "نص الزر (عربي)",
+                            "default": "أكتشف المزيد"
+                        },
+                        {
+                            "type": "text",
+                            "id": "btn_url",
+                            "label": "Button URL",
+                            "label_ar": "رابط الزر",
+                            "default": "",
+                            "_note": "inferred from items+variable-list with multiple sources; stored as plain text URL"
+                        },
+                        {
+                            "type": "color",
+                            "id": "btn_color",
+                            "label": "Button Text Color",
+                            "label_ar": "لون نص الزر",
+                            "default": "#ffffff"
+                        }
+                    ]
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "toggle_theme_color_main_banner": false,
+                "use_simple_banner": false,
+                "desktop_banner_image": null,
+                "mobile_banner_image": null,
+                "is_autplay": false,
+                "is_loop": false,
+                "is_brand_text": true,
+                "brand_image": "https://cdn.salla.sa/form-builder/w7uUyz2fqT8lK7LLvFe1dnSGQlTEpX8k7xkWZXAC.png",
+                "brand_text_en": "pure",
+                "brand_text_ar": "",
+                "products_sliders": [
+                    {
+                        "is_bg_image": false,
+                        "bg_image": null,
+                        "bg_color": "#82AF38",
+                        "is_sec_prod_img": true,
+                        "sec_prod_img": "https://cdn.salla.sa/form-builder/Lw4GaUyCw2st38Kjqvshb3KEICAitcqgwx2itWW0.png",
+                        "prod_img": "https://cdn.salla.sa/form-builder/GiRzC4EzX99d07yvfVjoahBWeNsFI55PTKmRCoWH.png",
+                        "main_title2_en": "",
+                        "main_title2_ar": "",
+                        "sub_title_en": "The unique kiwi flavor comes to you from Pure in a special way.",
+                        "sub_title_ar": "نكهة الكيوي بطعمها الفريد تجيكم من بيور بطريقة غير نختار أجود الفواكه الطبيعية عشان نمنحكم انتعاش  ذائقتكم بكل .",
+                        "text_color": "#ffffff",
+                        "is_btn": true,
+                        "btn_txt_en": "Discover More",
+                        "btn_txt_ar": "أكتشف المزيد",
+                        "btn_url": "",
+                        "btn_color": "#ffffff"
+                    },
+                    {
+                        "is_bg_image": false,
+                        "bg_image": null,
+                        "bg_color": "#E99B37",
+                        "is_sec_prod_img": true,
+                        "sec_prod_img": "https://cdn.salla.sa/form-builder/8KFL3WBmmCUuB9zvBuYs5zHutGmYWYeelz83bmEn.png",
+                        "prod_img": "https://cdn.salla.sa/form-builder/Skrb1TsmuIblteVEOontwPQWTjfB5Mr0CRQuW5cl.png",
+                        "main_title2_en": "",
+                        "main_title2_ar": "",
+                        "sub_title_en": "The original orange flavor from Pure — fresh and delicious with a Saudi touch.",
+                        "sub_title_ar": "نكهة البرتقال الأصلية من بيور، طازجة ولذيذة بطابع سعودي نعتمد على مكونات طبيعية 100٪ لتقدم لكم تجربة  ومنعشة بكل ",
+                        "text_color": "#ffffff",
+                        "is_btn": true,
+                        "btn_txt_en": "Discover More",
+                        "btn_txt_ar": "أكتشف المزيد",
+                        "btn_url": "",
+                        "btn_color": "#ffffff"
+                    },
+                    {
+                        "is_bg_image": false,
+                        "bg_image": null,
+                        "bg_color": "#D94644",
+                        "is_sec_prod_img": true,
+                        "sec_prod_img": "https://cdn.salla.sa/form-builder/8rZ41FCMSxBrH8DJc4aBBnqoxx5pPSSOpKGTsGyH.png",
+                        "prod_img": "https://cdn.salla.sa/form-builder/1yB4RS84K9Rtm5eZ4uQrTlAGbMSuvf2vn3wJL8I9.png",
+                        "main_title2_en": "",
+                        "main_title2_ar": "",
+                        "sub_title_en": "Experience a refreshing moment with the taste of fresh strawberry from Pure.",
+                        "sub_title_ar": "عيشوا لحظة انتعاش بطعم الفراولة الطازج من بيور. نكهتنا تجمع بين الطبيعة والمذاق الفاخر لتقدم لكم عصير يرضي كل .",
+                        "text_color": "#ffffff",
+                        "is_btn": true,
+                        "btn_txt_en": "Discover More",
+                        "btn_txt_ar": "أكتشف المزيد",
+                        "btn_url": "",
+                        "btn_color": "#ffffff"
+                    }
+                ]
+            }
+        },
+        {
+            "slug": "sf-store-location",
+            "name": {
+                "en": "Our Location - Pure",
+                "ar": "موقعنا - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/sf-store-location.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Disable bottom spacing",
+                    "label_ar": "إلغاء المسافة السفلية"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use custom colors",
+                    "label_ar": "استخدام الألوان المخصصة"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_color_image",
+                    "label": "Use color instead of image",
+                    "label_ar": "استخدام لون بدلاً من صورة"
+                },
+                {
+                    "type": "image",
+                    "id": "img_section",
+                    "label": "Section background image",
+                    "label_ar": "أضف صورة خلفية القسم"
+                },
+                {
+                    "type": "color",
+                    "id": "color_bg",
+                    "label": "Section background color",
+                    "label_ar": "لون الخلفيه القسم"
+                },
+                {
+                    "type": "text",
+                    "id": "title_section_en",
+                    "label": "Main title",
+                    "label_ar": "العنوان الرئيسي"
+                },
+                {
+                    "type": "text",
+                    "id": "title_section_ar",
+                    "label": "Main title (Arabic)",
+                    "label_ar": "العنوان الرئيسي (عربي)"
+                },
+                {
+                    "type": "color",
+                    "id": "color_title_section",
+                    "label": "Titles color",
+                    "label_ar": "لون العناوين"
+                },
+                {
+                    "type": "text",
+                    "id": "des_section_en",
+                    "label": "Subtitle",
+                    "label_ar": "العنوان الفرعي"
+                },
+                {
+                    "type": "text",
+                    "id": "des_section_ar",
+                    "label": "Subtitle (Arabic)",
+                    "label_ar": "العنوان الفرعي (عربي)"
+                },
+                {
+                    "type": "text",
+                    "id": "text_btn_en",
+                    "label": "Button text",
+                    "label_ar": "نص الزر"
+                },
+                {
+                    "type": "text",
+                    "id": "text_btn_ar",
+                    "label": "Button text (Arabic)",
+                    "label_ar": "نص الزر (عربي)"
+                },
+                {
+                    "type": "color",
+                    "id": "color_btn",
+                    "label": "Button text color",
+                    "label_ar": "لون نص الزر"
+                },
+                {
+                    "type": "color",
+                    "id": "bg_btn",
+                    "label": "Button background color",
+                    "label_ar": "لون خلفيه الزر"
+                },
+                {
+                    "type": "image",
+                    "id": "url_mabes",
+                    "label": "Map link",
+                    "label_ar": "رابط الخريطة",
+                    "_note": "inferred: no matching type in mapping table (format=url) and no existing theme.json entries to match against; original Salla value was null, so defaulted to 'image' per null-value inference rule. Functionally this holds a map URL, not an image — review before using."
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "toggle_theme_color_main_banner": true,
+                "is_color_image": false,
+                "img_section": "/assets/images/0gelA6oPAxXqOkprggEtUygludSzaZSxIzRyUvGl-1782904215483.png",
+                "color_bg": "#313131",
+                "title_section_en": "عصائرنا اللذيذة توصلك وين ما كنت في مدن المملكة",
+                "title_section_ar": "",
+                "color_title_section": "#010c0e",
+                "des_section_en": "ذوق الطعم الفريش، نكهات مغذية ومنعشة، محضّرة بعناية، واكتشف نكهاتنا الفريدة للانتعاش الصحي في أقرب نقطة لك.",
+                "des_section_ar": "",
+                "text_btn_en": "أكتشف متجرنا",
+                "text_btn_ar": "",
+                "color_btn": "#e0f2f5",
+                "bg_btn": "#005711",
+                "url_mabes": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232410.15056690286!2d39.452748407500415!3d24.471295541193335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15bdbe5197d220d5%3A0x2e54514fea3b08d9!2sMadinah%20Saudi%20Arabia!5e0!3m2!1sen!2seg!4v1752424972992!5m2!1sen!2seg"
+            }
+        },
+        {
+            "slug": "sf-categories",
+            "name": {
+                "en": "Categories - Pure",
+                "ar": "التصنيفات-بيور"
+            },
+            "category": "promotional",
+            "template": "sections/sf-categories.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Remove bottom spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use custom colors",
+                    "label_ar": "استخدام الألوان المخصصة",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_border_reduis",
+                    "label": "Display images in circular shape?",
+                    "label_ar": "عرض الصور بشكل دائري؟",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_autoplay_slider",
+                    "label": "Enable auto slider",
+                    "label_ar": "تفعيل السليدر التلقائي",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_loop_slider",
+                    "label": "Enable looping slider",
+                    "label_ar": "تفعيل السلدير المتكرر",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "title_en",
+                    "label": "Main Title (English)",
+                    "label_ar": "العنوان الرئيسي (إنجليزي)",
+                    "default": "Juices for Every Moment"
+                },
+                {
+                    "type": "text",
+                    "id": "title_ar",
+                    "label": "Main Title (Arabic)",
+                    "label_ar": "العنوان الرئيسي (عربي)",
+                    "default": "عصائر لكل لحظة"
+                },
+                {
+                    "type": "color",
+                    "id": "title_color",
+                    "label": "Title color",
+                    "label_ar": "لون العنوان",
+                    "default": "#1F1F1F"
+                },
+                {
+                    "type": "color",
+                    "id": "color_catogry",
+                    "label": "Category titles color",
+                    "label_ar": "لون عناوين التصنيفات",
+                    "default": "#1F1F1F"
+                },
+                {
+                    "type": "repeater",
+                    "id": "collection",
+                    "label": "Categories",
+                    "label_ar": "التصنيفات",
+                    "default": [],
+                    "fields": [
+                        {
+                            "type": "url",
+                            "id": "url",
+                            "label": "Category Link",
+                            "label_ar": "رابط التصنيف"
+                        },
+                        {
+                            "type": "image",
+                            "id": "img_catogry",
+                            "label": "Category Image",
+                            "label_ar": "صورة التصنيف"
+                        },
+                        {
+                            "type": "color",
+                            "id": "bg_color_catogry",
+                            "label": "Image background color",
+                            "label_ar": "لون خلفية الصورة",
+                            "default": "#2cbbce"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_catogry_en",
+                            "label": "Category Title (English)",
+                            "label_ar": "عنوان التصنيف (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_catogry_ar",
+                            "label": "Category Title (Arabic)",
+                            "label_ar": "عنوان التصنيف (عربي)",
+                            "default": ""
+                        }
+                    ]
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "toggle_theme_color_main_banner": false,
+                "is_border_reduis": false,
+                "is_autoplay_slider": true,
+                "show_arrow_slider": true,
+                "is_loop_slider": true,
+                "title_en": "Juices for Every Moment",
+                "title_ar": "عصائر لكل لحظة",
+                "title_color": "#1F1F1F",
+                "color_catogry": "#1F1F1F",
+                "collection": [
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/PAVixnMyGVVMgl3yLprfRrxaEAM9YaPTKi5iO8w5.png",
+                        "bg_color_catogry": "#FEE4CE",
+                        "title_catogry_en": "Milk Juices",
+                        "title_catogry_ar": "عصائر بالحليب"
+                    },
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/MYAB9fvfBWz6hAs0HPCyIkMwMUWEtTUw6cdfP3mi.png",
+                        "bg_color_catogry": "#E3F1B7",
+                        "title_catogry_en": "Healthy Smoothie",
+                        "title_catogry_ar": "سموذي صحي"
+                    },
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/NWHM2WlxwVfvmVbAu3jtGjL2qJSpJ6S4qjrxqlAa.png",
+                        "bg_color_catogry": "#D5E3FD",
+                        "title_catogry_en": "Cocktails",
+                        "title_catogry_ar": "الكوكتيلات"
+                    },
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/PAVixnMyGVVMgl3yLprfRrxaEAM9YaPTKi5iO8w5.png",
+                        "bg_color_catogry": "#FEE4CE",
+                        "title_catogry_en": "Milk Juices",
+                        "title_catogry_ar": "عصائر بالحليب"
+                    },
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/MYAB9fvfBWz6hAs0HPCyIkMwMUWEtTUw6cdfP3mi.png",
+                        "bg_color_catogry": "#E3F1B7",
+                        "title_catogry_en": "Healthy Smoothie",
+                        "title_catogry_ar": "سموذي صحي"
+                    },
+                    {
+                        "url": "",
+                        "img_catogry": "https://cdn.salla.sa/form-builder/NWHM2WlxwVfvmVbAu3jtGjL2qJSpJ6S4qjrxqlAa.png",
+                        "bg_color_catogry": "#D5E3FD",
+                        "title_catogry_en": "Cocktails",
+                        "title_catogry_ar": "الكوكتيلات"
+                    }
+                ]
+            }
+        },
+        {
+            "slug": "sf-pu-product-features",
+            "name": {
+                "en": "Product Features - Pure",
+                "ar": "مميزات المنتج-بيور"
+            },
+            "category": "promotional",
+            "template": "sections/sf-pu-product-features.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Remove Bottom Spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use Custom Colors",
+                    "label_ar": "استخدام الألوان المخصصة",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "title_section_en",
+                    "label": "Main Title (English)",
+                    "label_ar": "العنوان الرئيسي (إنجليزي)",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id": "title_section_ar",
+                    "label": "Main Title (Arabic)",
+                    "label_ar": "العنوان الرئيسي (عربي)",
+                    "default": "ليش تختار عصير البرتقال من بيور؟"
+                },
+                {
+                    "type": "text",
+                    "id": "sub_title_section_en",
+                    "label": "Sub Title (English)",
+                    "label_ar": "العنوان الفرعي (إنجليزي)",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id": "sub_title_section_ar",
+                    "label": "Sub Title (Arabic)",
+                    "label_ar": "العنوان الفرعي (عربي)",
+                    "default": "طعمه طبيعي ومنعش، يروّي عطشك ويغذّي جسمك. مكوّن من برتقال فاخر 100٪، وغني بالفيتامينات اللي تعطيك نشاط وانتعاش طول اليوم."
+                },
+                {
+                    "type": "color",
+                    "id": "text_color_title",
+                    "label": "Section Title Color",
+                    "label_ar": "لون عناوين القسم",
+                    "default": "#0d1a1c"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "feature_video",
+                    "label": "Use Video Background",
+                    "label_ar": "جعل الخلفية فيديو",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "feature_video_url",
+                    "label": "Video URL",
+                    "label_ar": "رابط الفيديو",
+                    "default": ""
+                },
+                {
+                    "type": "image",
+                    "id": "img_bg_desctop_section",
+                    "label": "Desktop Background Image",
+                    "label_ar": "أضف صورة الخلفية في الشاشات الكبيرة",
+                    "default": "https://cdn.salla.sa/form-builder/jU2hjBo3l4iadt0QfNibtR5PGnWux6dlSH1isGvu.png"
+                },
+                {
+                    "type": "image",
+                    "id": "img_bg_mobile_section",
+                    "label": "Mobile Background Image",
+                    "label_ar": "أضف صورة الخلفية في الجوال",
+                    "default": "https://cdn.salla.sa/form-builder/jU2hjBo3l4iadt0QfNibtR5PGnWux6dlSH1isGvu.png"
+                },
+                {
+                    "type": "product",
+                    "id": "pro",
+                    "label": "Select Product",
+                    "label_ar": "اختر المنتج",
+                    "multiple": false,
+                    "default": []
+                },
+                {
+                    "type": "repeater",
+                    "id": "productsec",
+                    "label": "Product Features",
+                    "label_ar": "مميزات المنتج",
+                    "default": [],
+                    "fields": [
+                        {
+                            "type": "text",
+                            "id": "text_fe_en",
+                            "label": "Feature Text (English)",
+                            "label_ar": "نص الميزة (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "text_fe_ar",
+                            "label": "Feature Text (Arabic)",
+                            "label_ar": "نص الميزة (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "color",
+                            "id": "color_text_fe",
+                            "label": "Feature Text Color",
+                            "label_ar": "لون نص الميزة",
+                            "default": "#ce5d12"
+                        }
+                    ]
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "toggle_theme_color_main_banner": true,
+                "title_section_en": "",
+                "title_section_ar": "ليش تختار عصير البرتقال من بيور؟",
+                "sub_title_section_en": "",
+                "sub_title_section_ar": "طعمه طبيعي ومنعش، يروّي عطشك ويغذّي جسمك. مكوّن من برتقال فاخر 100٪، وغني بالفيتامينات اللي تعطيك نشاط وانتعاش طول اليوم.",
+                "text_color_title": "#0d1a1c",
+                "feature_video": false,
+                "feature_video_url": "",
+                "img_bg_desctop_section": "https://cdn.salla.sa/form-builder/jU2hjBo3l4iadt0QfNibtR5PGnWux6dlSH1isGvu.png",
+                "img_bg_mobile_section": "https://cdn.salla.sa/form-builder/jU2hjBo3l4iadt0QfNibtR5PGnWux6dlSH1isGvu.png",
+                "pro": 1,
+                "productsec": [
+                    {
+                        "text_fe_en": "فيتامين",
+                        "text_fe_ar": "",
+                        "color_text_fe": "#ce5d12"
+                    },
+                    {
+                        "text_fe_en": "فيتامين",
+                        "text_fe_ar": "",
+                        "color_text_fe": "#ce5d12"
+                    }
+                ]
+            }
+        },
+        {
+            "slug": "sf-advanced-products",
+            "name": {
+                "en": "Interactive Banner - Pure",
+                "ar": "بانر تفاعلي - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/sf-advanced-products.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Disable bottom spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use custom colors",
+                    "label_ar": "استخدام الألوان المخصصة",
+                    "default": false
+                },
+                {
+                    "type": "image",
+                    "id": "banner_img",
+                    "label": "Side banner image",
+                    "label_ar": "صورة البانر الجانبية",
+                    "default": "https://cdn.salla.sa/form-builder/HoY3PwykZcWTNISyZhd88mbD9ca8cxxZL55cHCkM.webp"
+                },
+                {
+                    "type": "product",
+                    "id": "Prouducts_choozen",
+                    "label": "Choose products to display",
+                    "label_ar": "اختر المنتجات لعرضها",
+                    "multiple": true,
+                    "default": []
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_bg_color",
+                    "label": "Use a color as background instead of an image",
+                    "label_ar": "استخدام لون كخلفية بدلاً من صورة",
+                    "default": true
+                },
+                {
+                    "type": "image",
+                    "id": "bg_img",
+                    "label": "Section background image",
+                    "label_ar": "صورة خلفية القسم",
+                    "default": "https://cdn.salla.sa/form-builder/193lR3wKSN2jUU1MiIAHO05TABUvsnB1MnUB84em.webp"
+                },
+                {
+                    "type": "color",
+                    "id": "bg_color",
+                    "label": "Section background color",
+                    "label_ar": "لون خلفية القسم",
+                    "default": "#74A226"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "Text color",
+                    "label_ar": "لون النصوص",
+                    "default": "#ffffff"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_txt_en",
+                    "label": "Button Text (English)",
+                    "label_ar": "نص الزر (إنجليزي)",
+                    "default": "order now"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_txt_ar",
+                    "label": "Button Text (Arabic)",
+                    "label_ar": "نص الزر (عربي)",
+                    "default": "أطلب الان"
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": false,
+                "toggle_theme_color_main_banner": true,
+                "banner_img": "https://cdn.salla.sa/form-builder/HoY3PwykZcWTNISyZhd88mbD9ca8cxxZL55cHCkM.webp",
+                "Prouducts_choozen": [
+                    1,
+                    3,
+                    5
+                ],
+                "is_bg_color": false,
+                "bg_img": "https://cdn.salla.sa/form-builder/193lR3wKSN2jUU1MiIAHO05TABUvsnB1MnUB84em.webp",
+                "bg_color": "#74a226",
+                "text_color": "#ffffff",
+                "btn_txt_ar": "أطلب الان",
+                "btn_txt_en": "order now"
+            }
+        },
+        {
+            "slug": "pu-specialpro",
+            "name": {
+                "en": "Special Product - Pure",
+                "ar": "منتج مميز - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/pu-specialpro.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Disable Bottom Spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "toggle_theme_color_main_banner",
+                    "label": "Use Custom Colors",
+                    "label_ar": "استخدام الألوان المخصصة",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "add_side_banners",
+                    "label": "Add Complementary Banners",
+                    "label_ar": "إضافة بانرات مكمّلة",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "side_videoes_switch",
+                    "label": "Show Banners as Video",
+                    "label_ar": "عرض البانرات كفيديو",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "first_video_url",
+                    "label": "First Banner Video URL",
+                    "label_ar": "لينك فيديو البانر الاول",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id": "second_video_url",
+                    "label": "Second Banner Video URL",
+                    "label_ar": "لينك فيديو البانر الثاني",
+                    "default": ""
+                },
+                {
+                    "type": "image",
+                    "id": "first_side_image",
+                    "label": "First Banner Image",
+                    "label_ar": "أضف صورة البانر الأول",
+                    "default": "https://cdn.salla.sa/form-builder/FQ12pw9CZYvby3Zzf0iIiL0KTzaJUbBe9MpHJgAL.png"
+                },
+                {
+                    "type": "image",
+                    "id": "second_side_image",
+                    "label": "Second Banner Image",
+                    "label_ar": "اضف صورة البانر الثاني",
+                    "default": "https://cdn.salla.sa/form-builder/XQJNPNAzR8vHYBQEBH70F1mNk4lUJIt1lxkzi9ZH.png"
+                },
+                {
+                    "type": "color",
+                    "id": "main_banner_bg",
+                    "label": "Main Banner Background Color",
+                    "label_ar": "خلفية البانر الرئيسي",
+                    "default": "#F6FFE6"
+                },
+                {
+                    "type": "text",
+                    "id": "pro_title_en",
+                    "label": "Promotional Title (English)",
+                    "label_ar": "عنوان ترويجي (English)",
+                    "default": "Product of the Week"
+                },
+                {
+                    "type": "text",
+                    "id": "pro_title_ar",
+                    "label": "Promotional Title (Arabic)",
+                    "label_ar": "عنوان ترويجي (عربي)",
+                    "default": "منتج الأسبوع"
+                },
+                {
+                    "type": "text",
+                    "id": "main_title_en",
+                    "label": "Main Title (English)",
+                    "label_ar": "العنوان الرئيسي (English)",
+                    "default": "Rich natural flavors to refresh you this summer"
+                },
+                {
+                    "type": "text",
+                    "id": "main_title_ar",
+                    "label": "Main Title (Arabic)",
+                    "label_ar": "العنوان الرئيسي (عربي)",
+                    "default": "نكهات طبيعية لذيدة وغنية، تنعشك بالصيف"
+                },
+                {
+                    "type": "product",
+                    "id": "special_product",
+                    "label": "Featured Product",
+                    "label_ar": "المنتج المميز",
+                    "multiple": true,
+                    "default": []
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "toggle_theme_color_main_banner": false,
+                "add_side_banners": true,
+                "side_videoes_switch": true,
+                "first_video_url": "",
+                "second_video_url": "",
+                "first_side_image": "https://cdn.salla.sa/form-builder/FQ12pw9CZYvby3Zzf0iIiL0KTzaJUbBe9MpHJgAL.png",
+                "second_side_image": "https://cdn.salla.sa/form-builder/XQJNPNAzR8vHYBQEBH70F1mNk4lUJIt1lxkzi9ZH.png",
+                "main_banner_bg": "#f6ffe6",
+                "pro_title_en": "Product of the Week",
+                "pro_title_ar": "منتج الأسبوع",
+                "main_title_en": "Rich natural flavors to refresh you this summer",
+                "main_title_ar": "نكهات طبيعية لذيدة وغنية، تنعشك بالصيف",
+                "special_product": [
+                    1
+                ]
+            }
+        },
+        {
+            "slug": "customers-pure",
+            "name": {
+                "en": "Customer Testimonials - Pure",
+                "ar": "اراء العملاء - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/customers-pure.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Remove Bottom Spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_autoplay",
+                    "label": "Enable Auto-play",
+                    "label_ar": "تفعيل التمرير التلقائي",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_loop",
+                    "label": "Loop Slider Items",
+                    "label_ar": "تكرار المنتجات داخل السلايدر",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "section_title_en",
+                    "label": "Section Title (English)",
+                    "label_ar": "العنوان الرئيسي (إنجليزي)",
+                    "default": "What Are Our Customers Saying?"
+                },
+                {
+                    "type": "text",
+                    "id": "section_title_ar",
+                    "label": "Section Title (Arabic)",
+                    "label_ar": "العنوان الرئيسي (عربي)",
+                    "default": "ماذا يقول عملاؤنا؟"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_bg_img",
+                    "label": "Use Image as Background",
+                    "label_ar": "استخدام صورة كخلفية بدلاً من لون",
+                    "default": true
+                },
+                {
+                    "type": "image",
+                    "id": "background_image",
+                    "label": "Section Background Image",
+                    "label_ar": "صورة خلفية السكشن",
+                    "default": null
+                },
+                {
+                    "type": "color",
+                    "id": "section_bg_color",
+                    "label": "Section Background Color",
+                    "label_ar": "لون خلفية القسم",
+                    "default": "#f7ffe9"
+                },
+                {
+                    "type": "color",
+                    "id": "starcolor",
+                    "label": "Stars  Color",
+                    "label_ar": "لون التقييم",
+                    "default": "#FDD264"
+                },
+                {
+                    "type": "repeater",
+                    "id": "testominiasls_collection",
+                    "label": "Customer Reviews",
+                    "label_ar": "آراء العملاء",
+                    "default": [],
+                    "fields": [
+                        {
+                            "type": "text",
+                            "id": "customer_feedback_en",
+                            "label": "Customer Feedback (English)",
+                            "label_ar": "رأي العميل (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "customer_feedback_ar",
+                            "label": "Customer Feedback (Arabic)",
+                            "label_ar": "رأي العميل (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "customer_name_en",
+                            "label": "Customer Name (English)",
+                            "label_ar": "اسم العميل (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "customer_name_ar",
+                            "label": "Customer Name (Arabic)",
+                            "label_ar": "اسم العميل (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "customer_job_en",
+                            "label": "Customer Job (English)",
+                            "label_ar": "مهنة العميل (إنجليزي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "customer_job_ar",
+                            "label": "Customer Job (Arabic)",
+                            "label_ar": "مهنة العميل (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "number",
+                            "id": "customer_rating",
+                            "label": "Customer Rating (1–5)",
+                            "label_ar": "تقييم العميل",
+                            "default": null
+                        },
+                        {
+                            "type": "image",
+                            "id": "customer_image",
+                            "label": "Customer Photo",
+                            "label_ar": "صورة العميل",
+                            "default": null
+                        }
+                    ]
+                },
+                {
+                    "type": "image",
+                    "id": "additional_image",
+                    "label": "Decorative Side Image",
+                    "label_ar": "صورة اضافية للتزيين",
+                    "default": null
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "is_autoplay": true,
+                "is_loop": true,
+                "section_title_en": "What Are Our Customers Saying?",
+                "section_title_ar": "ماذا يقول عملاؤنا؟",
+                "is_bg_img": true,
+                "background_image": null,
+                "section_bg_color": "#f7ffe9",
+                "starcolor": "#FDD264",
+                "testominiasls_collection": [
+                    {
+                        "customer_feedback_en": "Honestly, your juices are top quality! The flavor is so natural and refreshing — it really feels like drinking real fruit. Especially the orange with mint, it's become essential after workouts. A great experience, highly recommended!",
+                        "customer_feedback_ar": "الصراحة عصايركم شي فاخر، النكهة طبيعية والمنعشة، تحس إنك تشرب فاكهة فعلاً، خصوصاً البرتقال بالنعناع.. صار أساسي بعد التمرين. تجربة رائعة وأنصح بها بشدة!",
+                        "customer_name_en": "Abdulaziz Al-Mutairi",
+                        "customer_name_ar": "عبدالعزيز المطيري",
+                        "customer_job_en": "engineer",
+                        "customer_job_ar": "مهندس",
+                        "customer_rating": 3,
+                        "customer_image": "https://cdn.salla.sa/form-builder/Bz6eZuNXUpVj56vjpuoSXcJm3divG03C7uNnCcg3.jpg"
+                    },
+                    {
+                        "customer_feedback_en": "Honestly, your juices are top quality! The flavor is so natural and refreshing — it really feels like drinking real fruit. Especially the orange with mint, it's become essential after workouts. A great experience, highly recommended!",
+                        "customer_feedback_ar": "الصراحة عصايركم شي فاخر، النكهة طبيعية والمنعشة، تحس إنك تشرب فاكهة فعلاً، خصوصاً البرتقال بالنعناع.. صار أساسي بعد التمرين. تجربة رائعة وأنصح بها بشدة!",
+                        "customer_name_en": "Abdulaziz Al-Mutairi",
+                        "customer_name_ar": "عبدالعزيز المطيري",
+                        "customer_job_en": "engineer",
+                        "customer_job_ar": "مهندس",
+                        "customer_rating": 4,
+                        "customer_image": "https://cdn.salla.sa/form-builder/DDdomUGHiyTbXWbHmJkjx1ncwBXxMyuMnxrSe5EC.jpg"
+                    },
+                    {
+                        "customer_feedback_en": "Honestly, your juices are top quality! The flavor is so natural and refreshing — it really feels like drinking real fruit. Especially the orange with mint, it's become essential after workouts. A great experience, highly recommended!",
+                        "customer_feedback_ar": "الصراحة عصايركم شي فاخر، النكهة طبيعية والمنعشة، تحس إنك تشرب فاكهة فعلاً، خصوصاً البرتقال بالنعناع.. صار أساسي بعد التمرين. تجربة رائعة وأنصح بها بشدة!",
+                        "customer_name_en": "Abdulaziz Al-Mutairi",
+                        "customer_name_ar": "عبدالعزيز المطيري",
+                        "customer_job_en": "engineer",
+                        "customer_job_ar": "مهندس",
+                        "customer_rating": 5,
+                        "customer_image": "https://cdn.salla.sa/form-builder/3QdCtSc8w1iZgTC2dWABtO2zuIZiKBekt2dvA4P1.jpg"
+                    }
+                ],
+                "additional_image": "https://cdn.salla.sa/form-builder/ozMEjuAnH5COZX01oQ16r6lDt4x6KpKfjBxWjgrj.png"
+            }
+        },
+        {
+            "slug": "best-offer",
+            "name": {
+                "en": "Best Offer",
+                "ar": "بانر عروض - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/best-offer.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "countdown_switch",
+                    "label": "إخفاء تاريخ العرض",
+                    "label_ar": "إخفاء تاريخ العرض",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "shadow_switch",
+                    "label": "إخفاء الطبقة الظلالية من علي البانر",
+                    "label_ar": "إخفاء الطبقة الظلالية من علي البانر",
+                    "default": true
+                },
+                {
+                    "id": "bg_c",
+                    "type": "color",
+                    "format": "color",
+                    "label": "لون الخلفيه",
+                    "default": "#F6FFE6"
+                },
+                {
+                    "type": "text",
+                    "id": "block_title_en",
+                    "label": "العنوان الرئيسى",
+                    "label_ar": "العنوان الرئيسى",
+                    "default": "Your beauty, your choice"
+                },
+                {
+                    "type": "text",
+                    "id": "block_title_ar",
+                    "label": "العنوان الرئيسى (Arabic)",
+                    "label_ar": "العنوان الرئيسى (عربي)",
+                    "default": "الحق قبل ما يفوتك "
+                },
+                {
+                    "type": "color",
+                    "id": "block_title_color",
+                    "label": "لون العنوان الرئيسى",
+                    "label_ar": "لون العنوان الرئيسى",
+                    "value": "#6B9426"
+                },
+                {
+                    "type": "text",
+                    "id": "promo_title_en",
+                    "label": "العنوان الفرعي",
+                    "label_ar": "العنوان الفرعي",
+                    "default": "Choose now before you miss out on our special offers!"
+                },
+                {
+                    "type": "text",
+                    "id": "promo_title_ar",
+                    "label": "العنوان الفرعي (Arabic)",
+                    "label_ar": "العنوان الفرعي (عربي)",
+                    "default": "بضع ساعات فقط متبقية للاستمتاع بأسعار خاصة على نكهاتنا الأكثر مبيعًا."
+                },
+                {
+                    "type": "color",
+                    "id": "promo_title_color",
+                    "label": "لون العنوان الفرعي",
+                    "label_ar": "لون العنوان الفرعي",
+                    "default": "#6B9426"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "add_button",
+                    "label": "إضافة زر",
+                    "label_ar": "إضافة زر",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "btn_txt_en",
+                    "label": "نص الزر",
+                    "label_ar": "نص الزر",
+                    "default": "Shop now"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_txt_ar",
+                    "label": "نص الزر (Arabic)",
+                    "label_ar": "نص الزر (عربي)",
+                    "default": "تسوقِ الآن"
+                },
+                {
+                    "type": "color",
+                    "id": "btn_txt_color",
+                    "label": "لون نص الزر",
+                    "label_ar": "لون نص الزر",
+                    "default": "#fff"
+                },
+                {
+                    "type": "color",
+                    "id": "btn_bg_color",
+                    "label": "لون خلفية الزر",
+                    "label_ar": "لون خلفية الزر",
+                    "default": "#6B9426"
+                },
+                {
+                    "type": "color",
+                    "id": "countdown_bg_color",
+                    "label": "لون خلفية العداد",
+                    "label_ar": "لون خلفية العداد",
+                    "default": "#fff"
+                },
+                {
+                    "type": "color",
+                    "id": "countdown_txt_color",
+                    "label": "لون نص العداد التنازلي",
+                    "label_ar": "لون نص العداد التنازلي",
+                    "default": "#6B9426"
+                },
+                {
+                    "type": "link",
+                    "id": "url",
+                    "label": "رابط القسم"
+                },
+                {
+                    "type": "text",
+                    "id": "offer_date",
+                    "label": "تاريخ العرض",
+                    "label_ar": "تاريخ العرض",
+                    "default": "2026-10-26"
+                },
+                {
+                    "type": "image",
+                    "id": "offer_bg_img",
+                    "label": "صورة الخلفية",
+                    "label_ar": "صورة الخلفية",
+                    "default": "https://cdn.salla.sa/ePjXlO/fb8700e6-f5a5-4d9f-b400-ecf674aa7945-440.59405940594x500-UhhTErECC1r0nlxEMP3aW6bYJQ0H0gOmeIfuHZvC.png"
+                },
+                {
+                    "type": "image",
+                    "id": "offer_product_img",
+                    "label": "صورة المنتج",
+                    "label_ar": "صورة المنتج",
+                    "default": "https://cdn.salla.sa/ePjXlO/fb8700e6-f5a5-4d9f-b400-ecf674aa7945-440.59405940594x500-UhhTErECC1r0nlxEMP3aW6bYJQ0H0gOmeIfuHZvC.png"
+                }
+            ]
+        },
+        {
+            "slug": "pu-instagram",
+            "name": {
+                "en": "Social Media - Pure",
+                "ar": "وسائل التواصل - بيور"
+            },
+            "category": "promotional",
+            "template": "sections/pu-instagram.liquid",
+            "sort_order": 1,
+            "reusable": true,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "disable_space_between_components",
+                    "label": "Remove Bottom Spacing",
+                    "label_ar": "إلغاء المسافة السفلية",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "Transition_is_slider",
+                    "label": "Show as Slider",
+                    "label_ar": "عرض المنتجات كسلايدر",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "is_autoplay",
+                    "label": "Enable Autoplay",
+                    "label_ar": "تفعيل التمرير التلقائي",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "instagram_url",
+                    "label": "Social Media URL",
+                    "label_ar": "رابط وسيلة التواصل",
+                    "default": ""
+                },
+                {
+                    "type": "repeater",
+                    "id": "instagram_collection",
+                    "label": "Posts",
+                    "label_ar": "أضف أبرز المنشورات",
+                    "default": [],
+                    "fields": [
+                        {
+                            "type": "image",
+                            "id": "instagram_cover",
+                            "label": "Post Image",
+                            "label_ar": "أضف الصورة"
+                        }
+                    ]
+                }
+            ],
+            "defaults": {
+                "disable_space_between_components": true,
+                "Transition_is_slider": false,
+                "is_autoplay": true,
+                "instagram_url": "",
+                "instagram_collection": [
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/1MkNnERXvmsWCrJ863e79kiYLApQlpGdlrI7viy3.jpg"
+                    },
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/cMUgxA7IdmCNj9bJQaYxGyo7fSUx7F5oe82gwcuf.jpg"
+                    },
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/FQ4quqIWQ0ZAYYDS0TZpt6ltflsf7hOo8DxGkFUH.jpg"
+                    },
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/RB1dfQFcHZhd1MzfcNzzgijl2oCO7s7SOlLxVnio.jpg"
+                    },
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/FQ4quqIWQ0ZAYYDS0TZpt6ltflsf7hOo8DxGkFUH.jpg"
+                    },
+                    {
+                        "instagram_cover": "https://cdn.salla.sa/form-builder/RB1dfQFcHZhd1MzfcNzzgijl2oCO7s7SOlLxVnio.jpg"
+                    }
+                ]
+            }
+        },
+        {
             "slug": "featured-products",
             "name": {
                 "en": "Featured Products - Glamour",
-                "ar": "منتجات مميزة - جلامور"
+                "ar": "منتجات- بيور"
             },
             "category": "products",
             "template": "sections/featured-products.liquid",
@@ -768,1123 +2461,93 @@
             "reusable": true,
             "settings": [
                 {
-                    "type": "text",
-                    "id": "main_title_en",
-                    "label": "Heading",
-                    "label_ar": "العنوان",
-                    "default": "Latest Products"
-                },
-                {
-                    "type": "text",
-                    "id": "main_title_ar",
-                    "label": "Heading (Arabic)",
-                    "label_ar": "العنوان (عربي)",
-                    "default": "احدث المنتجات"
-                },
-                {
-                    "type": "color",
-                    "id": "main_title_color",
-                    "label": "main title color",
-                    "label_ar": "لون العنوان الرئيسي",
-                    "default": "#000"
-                },
-                {
-                    "type": "image",
-                    "id": "title_bg",
-                    "label": "Background Image Text",
-                    "label_ar": "صوره خلفيه النص",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ"
-                },
-                {
-                    "type": "product",
-                    "id": "featured_ids",
-                    "label": "Featured Products",
-                    "multiple": true
-                },
-                {
-                    "type": "select",
-                    "id": "layout",
-                    "label": "Layout",
-                    "default": "slider",
-                    "options": [
-                        {
-                            "value": "grid",
-                            "label": "Grid"
-                        },
-                        {
-                            "value": "slider",
-                            "label": "Slider"
-                        }
-                    ]
-                },
-                {
                     "type": "checkbox",
-                    "id": "show_arrows",
-                    "label": "Show Navigation Arrows",
+                    "id": "bg_switch",
+                    "label": "add background image instead of color",
+                    "label_ar": "إضافة صورة للخلفية بدلاً من لون ",
                     "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_pagination",
-                    "label": "Show Pagination Dots",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "infinite_loop",
-                    "label": "Infinite Loop",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "auto_play",
-                    "label": "Auto Play",
-                    "default": false
-                },
-                {
-                    "type": "color",
-                    "id": "section_bg_color",
-                    "label": "Section Background Color",
-                    "default": ""
-                }
-            ],
-            "defaults": {
-                "main_title_en": "Featured Products",
-                "main_title_ar": "اميز المنتجات",
-                "main_title_color": "#000000",
-                "title_bg": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
-                "featured_ids": [],
-                "layout": "slider",
-                "show_arrows": true,
-                "show_pagination": true,
-                "infinite_loop": true,
-                "auto_play": false,
-                "section_bg_color": "#ffffff"
-            },
-            "page_types": []
-        },
-        {
-            "slug": "offer-products",
-            "name": {
-                "en": "Offer Products - Glamour",
-                "ar": "عروض المنتجات - جلامور"
-            },
-            "category": "products",
-            "template": "sections/offer-products.liquid",
-            "sort_order": 3,
-            "reusable": true,
-            "settings": [
-                {
-                    "type": "text",
-                    "id": "main_title_en",
-                    "label": "Heading",
-                    "label_ar": "العنوان",
-                    "default": "Offers ending soon"
-                },
-                {
-                    "type": "text",
-                    "id": "main_title_ar",
-                    "label": "Heading (Arabic)",
-                    "label_ar": "العنوان (عربي)",
-                    "default": "عروض تنتهي قريبا"
-                },
-                {
-                    "type": "color",
-                    "id": "main_title_color",
-                    "label": "main title color",
-                    "label_ar": "لون العنوان الرئيسي",
-                    "default": "#000"
-                },
-                {
-                    "type": "image",
-                    "id": "title_bg",
-                    "label": "Background Image Text",
-                    "label_ar": "صوره خلفيه النص",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ"
-                },
-                {
-                    "type": "product",
-                    "id": "featured_ids",
-                    "label": "Featured Products",
-                    "multiple": true
-                },
-                {
-                    "type": "select",
-                    "id": "layout",
-                    "label": "Layout",
-                    "default": "slider",
-                    "options": [
-                        {
-                            "value": "grid",
-                            "label": "Grid"
-                        },
-                        {
-                            "value": "slider",
-                            "label": "Slider"
-                        }
-                    ]
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_arrows",
-                    "label": "Show Navigation Arrows",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_pagination",
-                    "label": "Show Pagination Dots",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "infinite_loop",
-                    "label": "Infinite Loop",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "auto_play",
-                    "label": "Auto Play",
-                    "default": false
-                },
-                {
-                    "type": "color",
-                    "id": "section_bg_color",
-                    "label": "Section Background Color",
-                    "default": ""
-                }
-            ],
-            "defaults": {
-                "heading": "Featured Products",
-                "heading_ar": "منتجات مميزة",
-                "layout": "slider",
-                "show_arrows": true,
-                "show_pagination": true,
-                "infinite_loop": true,
-                "auto_play": false,
-                "section_bg_color": ""
-            }
-        },
-        {
-            "slug": "G-category-cards",
-            "name": {
-                "en": "Category Cards - Glamour",
-                "ar": "بطاقات التصنيفات - جلامور"
-            },
-            "category": "content",
-            "template": "sections/G-category-cards.liquid",
-            "sort_order": 4,
-            "reusable": true,
-            "settings": [
-                {
-                    "type": "image",
-                    "id": "bg_image",
-                    "label": "Side Image",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/136/serve?variant=full&token=s2mXxUBMDhxXKWKa4Bodtps98fUL1ySw"
-                },
-                {
-                    "type": "text",
-                    "id": "heading",
-                    "label": "Heading",
-                    "default": "Featured Categories"
-                },
-                {
-                    "type": "text",
-                    "id": "heading_ar",
-                    "label": "عنوان رئيسي (Arabic)",
-                    "default": "تصنيفات مميزة"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle",
-                    "label": "Subtitle",
-                    "default": "Main categories with special discounts"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle_ar",
-                    "label": "عنوان فرعي (Arabic)",
-                    "default": "التصنيفات الرئيسيه مع خصومات مميزة"
-                },
-                {
-                    "type": "repeater",
-                    "id": "all_cate",
-                    "label": "Category Cards",
-                    "label_ar": "بطاقات التصنيفات",
-                    "item_label": "add category",
-                    "item_label_ar": "إضافة تصنيف",
-                    "max_items": 12,
-                    "default": [
-                        {
-                            "cate_name": "skin care",
-                            "cate_name_ar": "العناية بالبشرة",
-                            "cate_description": "Premium skincare products for all skin types",
-                            "cate_description_ar": "منتجات العناية بالبشرة المتميزة لأنواع البشرة المختلفة",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/137/serve?variant=full&token=h8Bewe7oUj0KKBOyxIxd8KlOvcFwyjoI"
-                        },
-                        {
-                            "cate_name": "makeup",
-                            "cate_name_ar": "المكياج",
-                            "cate_description": "Stylish looks for every occasion",
-                            "cate_description_ar": "إطلالات جذابة لكل المناسبات",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/126/serve?variant=full&token=xRuo47xa9y0LfJbED9WI5lWtF8LiZ2Oa"
-                        },
-                        {
-                            "cate_name": "natural care",
-                            "cate_name_ar": "العناية الطبيعية",
-                            "cate_description": "Natural ingredients for healthy skin",
-                            "cate_description_ar": "مكونات طبيعية لبشرة صحية",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/130/serve?variant=full&token=u4nOcz2pDh87UMOhMQob6t0SJYMAWXnE"
-                        },
-                        {
-                            "cate_name": "serum",
-                            "cate_name_ar": "سيروم",
-                            "cate_description": "Effective treatment for skin problems",
-                            "cate_description_ar": "علاج فعال لمشاكل البشرة",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/138/serve?variant=full&token=bfLkLTafUwbtVDnXOYTIQLlekovJ4Lk3"
-                        },
-                        {
-                            "cate_name": "cleansing",
-                            "cate_name_ar": "تنظيف البشرة",
-                            "cate_description": "Deep cleansing for clear skin",
-                            "cate_description_ar": "تنظيف عميق لبشرة نقية",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/139/serve?variant=full&token=fa0z4F1n0yCkoCDK6jbOUzhXW8A4wRIk"
-                        },
-                        {
-                            "cate_name": "body care",
-                            "cate_name_ar": "العناية بالجسم",
-                            "cate_description": "Softness and hydration for the entire body",
-                            "cate_description_ar": "نعومة وترطيب للجسم بالكامل",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/126/serve?variant=full&token=xRuo47xa9y0LfJbED9WI5lWtF8LiZ2Oa"
-                        },
-                        {
-                            "cate_name": "Moisturizing and daily care",
-                            "cate_name_ar": "الترطيب والعناية اليومية",
-                            "cate_description": "All-day hydration",
-                            "cate_description_ar": "ترطيب يدوم طوال اليوم",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/141/serve?variant=full&token=lv046WlsX3qpe0MnyozaWeNCrZ4YKnqc"
-                        },
-                        {
-                            "cate_name": "beauty tools",
-                            "cate_name_ar": "أدوات التجميل",
-                            "cate_description": "Apply professional makeup easily",
-                            "cate_description_ar": "تطبيق مكياج احترافي بسهولة",
-                            "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/140/serve?variant=full&token=Zlb2UC10LZ1otnsfGH9kWIdSXf7RTPqo"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "text",
-                            "id": "cate_name",
-                            "label": "Category Name",
-                            "label_ar": "اسم التصنيف",
-                            "default": "skin care"
-                        },
-                        {
-                            "type": "text",
-                            "id": "cate_name_ar",
-                            "label": "Category Name (Arabic)",
-                            "label_ar": "اسم التصنيف (عربي)",
-                            "default": "العناية بالبشرة"
-                        },
-                        {
-                            "type": "text",
-                            "id": "cate_description",
-                            "label": "Category Description",
-                            "label_ar": "وصف التصنيف",
-                            "default": "Freshness and hydration for all skin types"
-                        },
-                        {
-                            "type": "text",
-                            "id": "cate_description_ar",
-                            "label": "Category Description (Arabic)",
-                            "label_ar": "وصف التصنيف (عربي)",
-                            "default": "نضارة وترطيب لكل أنواع البشرة"
-                        },
-                        {
-                            "type": "image",
-                            "id": "cate_image",
-                            "label": "Category Image",
-                            "label_ar": "صورة التصنيف",
-                            "default": "https://azzrk.dev.gosharry.com/api/theme/media/76/serve?variant=full&token=XHjAyQQt9LPiL0W6peFbfimKpsUFz3Ju"
-                        }
-                    ]
-                },
-                {
-                    "type": "spacing",
-                    "id": "section_padding",
-                    "label": "Section Padding",
-                    "default": {
-                        "top": 60,
-                        "right": 0,
-                        "bottom": 60,
-                        "left": 0
-                    }
-                }
-            ],
-            "defaults": {
-                "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/136/serve?variant=full&token=s2mXxUBMDhxXKWKa4Bodtps98fUL1ySw",
-                "heading": "Featured Categories",
-                "heading_ar": "تصنيفات مميزة",
-                "subtitle": "Main categories with special discounts",
-                "subtitle_ar": "التصنيفات الرئيسيه مع خصومات مميزة",
-                "all_cate": [
-                    {
-                        "cate_name": "skin care",
-                        "cate_name_ar": "العناية بالبشرة",
-                        "cate_description": "Premium skincare products for all skin types",
-                        "cate_description_ar": "منتجات العناية بالبشرة المتميزة لأنواع البشرة المختلفة",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/137/serve?variant=full&token=h8Bewe7oUj0KKBOyxIxd8KlOvcFwyjoI"
-                    },
-                    {
-                        "cate_name": "makeup",
-                        "cate_name_ar": "المكياج",
-                        "cate_description": "Stylish looks for every occasion",
-                        "cate_description_ar": "إطلالات جذابة لكل المناسبات",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/126/serve?variant=full&token=xRuo47xa9y0LfJbED9WI5lWtF8LiZ2Oa"
-                    },
-                    {
-                        "cate_name": "natural care",
-                        "cate_name_ar": "العناية الطبيعية",
-                        "cate_description": "Natural ingredients for healthy skin",
-                        "cate_description_ar": "مكونات طبيعية لبشرة صحية",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/130/serve?variant=full&token=u4nOcz2pDh87UMOhMQob6t0SJYMAWXnE"
-                    },
-                    {
-                        "cate_name": "serum",
-                        "cate_name_ar": "سيروم",
-                        "cate_description": "Effective treatment for skin problems",
-                        "cate_description_ar": "علاج فعال لمشاكل البشرة",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/138/serve?variant=full&token=bfLkLTafUwbtVDnXOYTIQLlekovJ4Lk3"
-                    },
-                    {
-                        "cate_name": "cleansing",
-                        "cate_name_ar": "تنظيف البشرة",
-                        "cate_description": "Deep cleansing for clear skin",
-                        "cate_description_ar": "تنظيف عميق لبشرة نقية",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/139/serve?variant=full&token=fa0z4F1n0yCkoCDK6jbOUzhXW8A4wRIk"
-                    },
-                    {
-                        "cate_name": "body care",
-                        "cate_name_ar": "العناية بالجسم",
-                        "cate_description": "Softness and hydration for the entire body",
-                        "cate_description_ar": "نعومة وترطيب للجسم بالكامل",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/126/serve?variant=full&token=xRuo47xa9y0LfJbED9WI5lWtF8LiZ2Oa"
-                    },
-                    {
-                        "cate_name": "Moisturizing and daily care",
-                        "cate_name_ar": "الترطيب والعناية اليومية",
-                        "cate_description": "All-day hydration",
-                        "cate_description_ar": "ترطيب يدوم طوال اليوم",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/141/serve?variant=full&token=lv046WlsX3qpe0MnyozaWeNCrZ4YKnqc"
-                    },
-                    {
-                        "cate_name": "beauty tools",
-                        "cate_name_ar": "أدوات التجميل",
-                        "cate_description": "Apply professional makeup easily",
-                        "cate_description_ar": "تطبيق مكياج احترافي بسهولة",
-                        "cate_image": "https://azzrk.dev.gosharry.com/api/theme/media/140/serve?variant=full&token=Zlb2UC10LZ1otnsfGH9kWIdSXf7RTPqo"
-                    }
-                ],
-                "section_padding": {
-                    "top": 60,
-                    "right": 0,
-                    "bottom": 60,
-                    "left": 0
-                }
-            }
-        },
-        {
-            "slug": "promotions-banner",
-            "name": {
-                "en": "Promotions Banner - Glamour",
-                "ar": "بانر العروض - جلامور"
-            },
-            "category": "marketing",
-            "template": "sections/promotions-banner.liquid",
-            "sort_order": 5,
-            "reusable": true,
-            "settings": [
-                {
-                    "type": "text",
-                    "id": "heading",
-                    "label": "Heading",
-                    "default": "Summer Sale"
-                },
-                {
-                    "type": "text",
-                    "id": "heading_ar",
-                    "label": "عنوان رئيسي (عربي)",
-                    "default": "تخفيضات الصيف"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle",
-                    "label": "Subtitle",
-                    "default": "Up to 50% off selected items"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle_ar",
-                    "label": "العنوان الفرعي (عربي)",
-                    "default": "خصم حتى 50% على منتجات مختارة"
-                },
-                {
-                    "type": "datetime-local",
-                    "id": "flash_sale_ends_at",
-                    "label": "Flash Sale Ends At",
-                    "default": "05/23/2026 02:11 PM"
-                },
-                {
-                    "type": "text",
-                    "id": "cta_text",
-                    "label": "Button Text",
-                    "label_ar": "نص الزر",
-                    "default": "Shop Sale"
-                },
-                {
-                    "type": "text",
-                    "id": "cta_text_ar",
-                    "label": "Button Text (Arabic)",
-                    "label_ar": "نص الزر (عربي)",
-                    "default": "تسوقي العروض"
-                },
-                {
-                    "type": "url",
-                    "id": "cta_url",
-                    "label": "Button URL",
-                    "default": "/collections/sale"
-                },
-                {
-                    "type": "repeater",
-                    "id": "mini_banners",
-                    "label": "Banners",
-                    "label_ar": "البانرات ",
-                    "item_label": "add Banner",
-                    "item_label_ar": "اضافة بانر",
-                    "max_items": 8,
-                    "default": [
-                        {
-                            "image": "https://azzrk.dev.gosharry.com/api/theme/media/151/serve?variant=full&token=e3ORUVAh0V9D52y9J4q3EyyNPBNTpw9T",
-                            "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/151/serve?variant=full&token=e3ORUVAh0V9D52y9J4q3EyyNPBNTpw9T"
-                        },
-                        {
-                            "image": "https://azzrk.dev.gosharry.com/api/theme/media/152/serve?variant=full&token=RcnxOaiAl293y7rAKVRbFHENyUrzJVb3",
-                            "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/152/serve?variant=full&token=RcnxOaiAl293y7rAKVRbFHENyUrzJVb3"
-                        },
-                        {
-                            "image": "https://azzrk.dev.gosharry.com/api/theme/media/153/serve?variant=full&token=digIPzP1gOHpMmkSJsVCHO69qohUHhZG",
-                            "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/153/serve?variant=full&token=digIPzP1gOHpMmkSJsVCHO69qohUHhZG"
-                        },
-                        {
-                            "image": "https://azzrk.dev.gosharry.com/api/theme/media/169/serve?variant=full&token=Gv4k8IcMJh9NNY64NDhr3Q2SvVLWd8NR",
-                            "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/169/serve?variant=full&token=Gv4k8IcMJh9NNY64NDhr3Q2SvVLWd8NR"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "image",
-                            "id": "image",
-                            "label": "Banner Image"
-                        },
-                        {
-                            "type": "image",
-                            "id": "image_ar",
-                            "label": "صورة البانر (عربي)"
-                        }
-                    ]
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_pagination",
-                    "label": "Show Pagination Bullets",
-                    "label_ar": "عرض نقاط الترقيم",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_image",
-                    "label": "اضافة صوره بدلا من اللون",
-                    "default": true
-                },
-                {
-                    "type": "image",
-                    "id": "bg_image",
-                    "label": "Image ",
-                    "label_ar": "صوره خلفيه النص",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/100/serve?variant=full&token=7nLHA3RYM9tcbMxYIVQsNnKf7u5soPmk"
                 },
                 {
                     "type": "color",
                     "id": "bg_color",
-                    "label": "Background Color",
-                    "default": "#FCE4EC"
-                }
-            ],
-            "defaults": {
-                "heading": "Summer Sale",
-                "heading_ar": "تخفيضات الصيف",
-                "subtitle": "Up to 50% off selected items",
-                "subtitle_ar": "خصم حتى 50% على منتجات مختارة",
-                "discount_badge": "50% OFF",
-                "cta_text": "Shop Sale",
-                "cta_text_ar": "تسوقي العروض",
-                "cta_url": "/collections/sale",
-                "bg_color": "#FCE4EC",
-                "flash_sale_ends_at": "05/23/2026 02:11 PM",
-                "mini_banners": [
-                    {
-                        "image": "https://azzrk.dev.gosharry.com/api/theme/media/151/serve?variant=full&token=e3ORUVAh0V9D52y9J4q3EyyNPBNTpw9T",
-                        "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/151/serve?variant=full&token=e3ORUVAh0V9D52y9J4q3EyyNPBNTpw9T"
-                    },
-                    {
-                        "image": "https://azzrk.dev.gosharry.com/api/theme/media/152/serve?variant=full&token=RcnxOaiAl293y7rAKVRbFHENyUrzJVb3",
-                        "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/152/serve?variant=full&token=RcnxOaiAl293y7rAKVRbFHENyUrzJVb3"
-                    },
-                    {
-                        "image": "https://azzrk.dev.gosharry.com/api/theme/media/153/serve?variant=full&token=digIPzP1gOHpMmkSJsVCHO69qohUHhZG",
-                        "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/153/serve?variant=full&token=digIPzP1gOHpMmkSJsVCHO69qohUHhZG"
-                    },
-                    {
-                        "image": "https://azzrk.dev.gosharry.com/api/theme/media/169/serve?variant=full&token=Gv4k8IcMJh9NNY64NDhr3Q2SvVLWd8NR",
-                        "image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/169/serve?variant=full&token=Gv4k8IcMJh9NNY64NDhr3Q2SvVLWd8NR"
-                    }
-                ],
-                "show_pagination": true,
-                "show_image": true,
-                "bg_image": "https://azzrk.dev.gosharry.com/api/theme/media/100/serve?variant=full&token=7nLHA3RYM9tcbMxYIVQsNnKf7u5soPmk"
-            }
-        },
-        {
-            "slug": "testimonials",
-            "name": {
-                "en": "Testimonials - Glamour",
-                "ar": "آراء العملاء - جلامور"
-            },
-            "category": "social-proof",
-            "template": "sections/testimonials.liquid",
-            "sort_order": 6,
-            "reusable": true,
-            "settings": [
+                    "label": "background color",
+                    "label_ar": "لون خلفية القسم ",
+                    "default": "#ffffff"
+                },
                 {
                     "type": "image",
-                    "id": "title_bg",
-                    "label": "Image ",
-                    "label_ar": "صوره خلفيه النص",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ"
+                    "id": "bg_img",
+                    "label": "background image",
+                    "label_ar": " صورة الخلفية"
+                },
+                {
+                    "type": "text",
+                    "id": "section_title_en",
+                    "label": " en main title",
+                    "label_ar": "العنوان الرئيسي ",
+                    "default": "Featured Products"
+                },
+                {
+                    "type": "text",
+                    "id": "section_title_ar",
+                    "label": " ar main title  (Arabic)",
+                    "label_ar": "العنوان الرئيسي  (عربي)",
+                    "default": "المنتجات المميزة"
                 },
                 {
                     "type": "color",
-                    "id": "main_title_color",
+                    "id": "title_color",
                     "label": "main title color",
-                    "label_ar": "لون العنوان الرئيسي",
-                    "default": "#000"
+                    "label_ar": "لون العنوان الرئيسي ",
+                    "default": "#010101"
                 },
                 {
-                    "type": "text",
-                    "id": "main_title_en",
-                    "label": "Heading",
-                    "label_ar": "العنوان",
-                    "default": "Testimonials"
+                    "type": "checkbox",
+                    "id": "is_moving",
+                    "label": "activate slider ",
+                    "label_ar": "تفعيل السلايدر ",
+                    "default": true
                 },
                 {
-                    "type": "text",
-                    "id": "main_title_ar",
-                    "label": "Heading (Arabic)",
-                    "label_ar": "العنوان (عربي)",
-                    "default": " آراء العملاء"
+                    "type": "checkbox",
+                    "id": "isp_autoPlay",
+                    "label": "  activate autoplay",
+                    "label_ar": "تفعيل التمرير التلقائي ",
+                    "default": true
                 },
                 {
                     "type": "number",
-                    "id": "visible_count",
-                    "label": "Visible Testimonials",
-                    "default": 3,
-                    "min": 1,
-                    "max": 10
+                    "id": "grid_cols_number",
+                    "label": "number of products",
+                    "label_ar": "عدد المنتجات",
+                    "default": 6
                 },
                 {
-                    "type": "repeater",
-                    "id": "testimonials",
-                    "label": "Testimonials",
-                    "label_ar": "آراء العملاء",
-                    "item_label": "Testimonial",
-                    "item_label_ar": "رأي",
-                    "max_items": 12,
-                    "default": [
-                        {
-                            "name": "Sarah M.",
-                            "name_ar": "سارة م.",
-                            "client_job": "Beauty Blogger",
-                            "client_job_ar": "مدونة تجميل",
-                            "text": "Absolutely love the foundation! It stays on all day and feels so light.",
-                            "text_ar": "أحببت كريم الأساس جداً! يدوم طوال اليوم وخفيف جداً على البشرة.",
-                            "rating": 3,
-                            "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                            "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey   "
-                        },
-                        {
-                            "name": "Emily R.",
-                            "name_ar": "إميلي ر.",
-                            "client_job": "Makeup Artist",
-                            "client_job_ar": "فنانة مكياج",
-                            "text": "The skincare set has transformed my skin! Highly recommend.",
-                            "text_ar": "مجموعة العناية بالبشرة غيرت بشرتي تماماً! أنصح بها بشدة.",
-                            "rating": 5,
-                            "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                            "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                        },
-                        {
-                            "name": "Lina A.",
-                            "name_ar": "لينا أ.",
-                            "client_job": "Satisfied Customer",
-                            "client_job_ar": "عميلة راضية",
-                            "text": "I was skeptical at first, but the eye cream really works wonders!",
-                            "text_ar": "كنت متشككة في البداية، لكن كريم العين حقاً يعمل بشكل رائع!",
-                            "rating": 4,
-                            "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                            "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                        },
-                        {
-                            "name": "Maya S.",
-                            "name_ar": "مايا س.",
-                            "client_job": "Skincare Enthusiast",
-                            "client_job_ar": "مهتمة بالعناية بالبشرة",
-                            "text": "The serum has become a staple in my routine. My skin has never looked better!",
-                            "text_ar": "السيروم أصبح أساسياً في روتيني. بشرتي لم تبدو أفضل من قبل!",
-                            "rating": 5,
-                            "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                            "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "text",
-                            "id": "name",
-                            "label": "Name",
-                            "label_ar": "الاسم",
-                            "default": ""
-                        },
-                        {
-                            "type": "text",
-                            "id": "name_ar",
-                            "label": "Name (Arabic)",
-                            "label_ar": "الاسم (عربي)",
-                            "default": ""
-                        },
-                        {
-                            "type": "text",
-                            "id": "client_job",
-                            "label": "Job Title",
-                            "label_ar": "المسمى الوظيفي",
-                            "default": "Ui & Ux Designer"
-                        },
-                        {
-                            "type": "text",
-                            "id": "client_job_ar",
-                            "label": "Job Title (Arabic)",
-                            "label_ar": "المسمى الوظيفي (عربي)",
-                            "default": "مصممة واجهات المواقع و التطبيقات"
-                        },
-                        {
-                            "type": "textarea",
-                            "id": "text",
-                            "label": "Review Text",
-                            "label_ar": "نص التقييم",
-                            "default": ""
-                        },
-                        {
-                            "type": "textarea",
-                            "id": "text_ar",
-                            "label": "Review Text (Arabic)",
-                            "label_ar": "نص التقييم (عربي)",
-                            "default": ""
-                        },
-                        {
-                            "type": "number",
-                            "id": "rating",
-                            "label": "Rating (1-5)",
-                            "label_ar": "التقييم (1-5)",
-                            "default": 5,
-                            "min": 1,
-                            "max": 5
-                        },
-                        {
-                            "type": "image",
-                            "id": "avatar",
-                            "label": "Avatar",
-                            "label_ar": "الصورة"
-                        },
-                        {
-                            "type": "image",
-                            "id": "avatar_ar",
-                            "label": "Avatar (Arabic)",
-                            "label_ar": "الصورة (عربي)"
-                        }
-                    ]
-                },
-                {
-                    "type": "checkbox",
-                    "id": "auto_play",
-                    "label": "Auto-play Carousel",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_arrows",
-                    "label": "Show Navigation Arrows",
-                    "label_ar": "عرض أسهم التنقل",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_pagination",
-                    "label": "Show Pagination Bullets",
-                    "label_ar": "عرض نقاط الترقيم",
-                    "default": true
-                },
-                {
-                    "type": "checkbox",
-                    "id": "infinite_loop",
-                    "label": "Infinite Loop",
-                    "label_ar": "تكرار عرض الاراء",
-                    "default": true
-                },
-                {
-                    "type": "color",
-                    "id": "section_bg_color",
-                    "label": "Section Background Color",
-                    "default": ""
+                    "type": "product",
+                    "id": "products",
+                    "label": "Choose products to feature",
+                    "label_ar": "اختيار المنتجات يدويًا",
+                    "multiple": true,
+                    "default": []
                 }
             ],
             "defaults": {
-                "heading": "What Our Customers Say",
-                "heading_ar": "ماذا يقول عملاؤنا",
-                "visible_count": 3,
-                "auto_play": true,
-                "testimonials": [
-                    {
-                        "name": "Sarah M.",
-                        "name_ar": "سارة م.",
-                        "client_job": "Beauty Blogger",
-                        "client_job_ar": "مدونة تجميل",
-                        "text": "Absolutely love the foundation! It stays on all day and feels so light.",
-                        "text_ar": "أحببت كريم الأساس جداً! يدوم طوال اليوم وخفيف جداً على البشرة.",
-                        "rating": 3,
-                        "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                        "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey   "
-                    },
-                    {
-                        "name": "Emily R.",
-                        "name_ar": "إميلي ر.",
-                        "client_job": "Makeup Artist",
-                        "client_job_ar": "فنانة مكياج",
-                        "text": "The skincare set has transformed my skin! Highly recommend.",
-                        "text_ar": "مجموعة العناية بالبشرة غيرت بشرتي تماماً! أنصح بها بشدة.",
-                        "rating": 5,
-                        "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                        "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                    },
-                    {
-                        "name": "Lina A.",
-                        "name_ar": "لينا أ.",
-                        "client_job": "Satisfied Customer",
-                        "client_job_ar": "عميلة راضية",
-                        "text": "I was skeptical at first, but the eye cream really works wonders!",
-                        "text_ar": "كنت متشككة في البداية، لكن كريم العين حقاً يعمل بشكل رائع!",
-                        "rating": 4,
-                        "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                        "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                    },
-                    {
-                        "name": "Maya S.",
-                        "name_ar": "مايا س.",
-                        "client_job": "Skincare Enthusiast",
-                        "client_job_ar": "مهتمة بالعناية بالبشرة",
-                        "text": "The serum has become a staple in my routine. My skin has never looked better!",
-                        "text_ar": "السيروم أصبح أساسياً في روتيني. بشرتي لم تبدو أفضل من قبل!",
-                        "rating": 5,
-                        "avatar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey",
-                        "avatar_ar": "https://azzrk.dev.gosharry.com/api/theme/media/154/serve?variant=full&token=aS9Ezw0VzmIKpvLmaJbun6iuZZUnn5ey"
-                    }
-                ],
-                "section_padding": {
-                    "top": 60,
-                    "right": 0,
-                    "bottom": 60,
-                    "left": 0
-                },
-                "section_bg_color": "",
-                "title_bg": "https://azzrk.dev.gosharry.com/api/theme/media/127/serve?variant=full&token=B5d8ChHzf0xVCf08GYZov1bT1k1m3YTJ",
-                "main_title_color": "#000",
-                "main_title_en": "Testimonials",
-                "main_title_ar": " آراء العملاء",
-                "show_arrows": true,
-                "show_pagination": true,
-                "infinite_loop": true
-            }
-        },
-        {
-            "slug": "newsletter",
-            "name": {
-                "en": "Newsletter - Glamour",
-                "ar": "النشرة البريدية - جلامور"
+                "bg_switch": false,
+                "bg_color": "#ffffff",
+                "bg_img": "",
+                "section_title_en": "Featured Products",
+                "section_title_ar": "المنتجات المميزة",
+                "title_color": "#000000",
+                "is_moving": true,
+                "isp_autoPlay": true,
+                "grid_cols_number": 3,
+                "products": [
+                    221,
+                    222,
+                    215
+                ]
             },
-            "category": "marketing",
-            "template": "sections/newsletter.liquid",
-            "sort_order": 7,
-            "reusable": true,
-            "settings": [
-                {
-                    "type": "image",
-                    "id": "image_icon",
-                    "label": "Image Icon",
-                    "label_ar": "صورة أيقونة",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/156/serve?variant=full&token=wRtOoUy4fMnLNN9evTnPCTQtfOZBmPdU"
-                },
-                {
-                    "type": "text",
-                    "id": "heading",
-                    "label": "Heading",
-                    "label_ar": "العنوان الرئيسي",
-                    "default": "Subscribe to the newsletter"
-                },
-                {
-                    "type": "text",
-                    "id": "heading_ar",
-                    "label": "Heading (Arabic)",
-                    "label_ar": "العنوان (عربي)",
-                    "default": "الاشتراك فى النشرة البريدية"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle",
-                    "label": "Subtitle",
-                    "label_ar": "العنوان الفرعي",
-                    "default": "Join now and get a 10% discount on your next purchase!"
-                },
-                {
-                    "type": "text",
-                    "id": "subtitle_ar",
-                    "label": "Subtitle (Arabic)",
-                    "label_ar": "العنوان الفرعي (عربي)",
-                    "default": "انضم الآن واحصل على خصم 10٪ على مشترياتك التالية!"
-                },
-                {
-                    "type": "repeater",
-                    "id": "apps",
-                    "label": "APPS",
-                    "label_ar": "التطبيقات",
-                    "item_label": "app",
-                    "item_label_ar": "تطبيق",
-                    "max_items": 4,
-                    "default": [
-                        {
-                            "app_url": "/",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/162/serve?variant=full&token=qGkMAUcTBdjFlXQY1kmo9LhwOHfPAY50"
-                        },
-                        {
-                            "app_url": "/",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/162/serve?variant=full&token=qGkMAUcTBdjFlXQY1kmo9LhwOHfPAY50"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "url",
-                            "id": "app_url",
-                            "label": "الرابط",
-                            "default": "/"
-                        },
-                        {
-                            "type": "image",
-                            "id": "logo",
-                            "label": "APP IMAGE",
-                            "label_ar": "صورة التطبيق"
-                        }
-                    ]
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_image",
-                    "label": "اضافة صوره بدلا من اللون",
-                    "default": false
-                },
-                {
-                    "type": "image",
-                    "id": "bg_image",
-                    "label": "Background Image",
-                    "label_ar": "صورة الخلفية"
-                },
-                {
-                    "type": "color",
-                    "id": "section_bg_color",
-                    "label": "Background Color",
-                    "label_ar": "لون الخلفية",
-                    "default": "#CE5A67"
-                }
-            ],
-            "defaults": {
-                "heading": "Subscribe to the newsletter",
-                "heading_ar": "الاشتراك فى النشرة البريدية",
-                "subtitle": "Join now and get a 10% discount on your next purchase!",
-                "subtitle_ar": "انضم الآن واحصل على خصم 10٪ على مشترياتك التالية!",
-                "button_text": "subscription",
-                "button_text_ar": "إشتراك",
-                "bg_image": "",
-                "section_bg_color": "#CE5A67",
-                "apps": [
-                    {
-                        "app_url": "/",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/162/serve?variant=full&token=qGkMAUcTBdjFlXQY1kmo9LhwOHfPAY50"
-                    },
-                    {
-                        "app_url": "/",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/162/serve?variant=full&token=qGkMAUcTBdjFlXQY1kmo9LhwOHfPAY50"
-                    }
-                ],
-                "image_icon": "https://azzrk.dev.gosharry.com/api/theme/media/156/serve?variant=full&token=wRtOoUy4fMnLNN9evTnPCTQtfOZBmPdU",
-                "show_image": false
-            }
-        },
-        {
-            "slug": "brands-carousel",
-            "name": {
-                "en": "Brands Carousel - Glamour",
-                "ar": "العلامات التجارية - جلامور"
-            },
-            "category": "social-proof",
-            "template": "sections/brands-carousel.liquid",
-            "sort_order": 8,
-            "reusable": true,
-            "settings": [
-                {
-                    "type": "image",
-                    "id": "bg_image_ar",
-                    "label": "Background Image ",
-                    "label_ar": "صورة الخلفية ",
-                    "default": "https://azzrk.dev.gosharry.com/api/theme/media/174/serve?variant=full&token=0ZBxdjwGboN0RoxrlMZB8zB15wL11Lht"
-                },
-                {
-                    "type": "repeater",
-                    "id": "brands",
-                    "label": "Brands",
-                    "label_ar": "العلامات التجارية",
-                    "item_label": "Brand",
-                    "item_label_ar": "علامة",
-                    "max_items": 20,
-                    "default": [
-                        {
-                            "name": "Nike",
-                            "name_ar": "نايكي",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/160/serve?variant=full&token=bJnQaPwrzoSxxnklaENifYq8821ESjZN",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/160/serve?variant=full&token=bJnQaPwrzoSxxnklaENifYq8821ESjZN"
-                        },
-                        {
-                            "name": "Adidas",
-                            "name_ar": "أديداس",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/155/serve?variant=full&token=EkdV27IU1P85Y7STbptAhPXCtiAHiAwD",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/155/serve?variant=full&token=EkdV27IU1P85Y7STbptAhPXCtiAHiAwD"
-                        },
-                        {
-                            "name": "Puma",
-                            "name_ar": "بوما",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/157/serve?variant=full&token=tb83Tk54aCPgGfsXIDZHqFL5mxk945o6",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/157/serve?variant=full&token=tb83Tk54aCPgGfsXIDZHqFL5mxk945o6"
-                        },
-                        {
-                            "name": "Reebok",
-                            "name_ar": "ريبوك",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/159/serve?variant=full&token=TF7uzUWpgMKUk2qDfA7Vb3ziz953ULAW",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/159/serve?variant=full&token=TF7uzUWpgMKUk2qDfA7Vb3ziz953ULAW"
-                        },
-                        {
-                            "name": "New Balance",
-                            "name_ar": "نيو بالانس",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/163/serve?variant=full&token=6MgcmWPeJdAKWdIWpmXPzrGgvwtLldxx",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/163/serve?variant=full&token=6MgcmWPeJdAKWdIWpmXPzrGgvwtLldxx"
-                        },
-                        {
-                            "name": "Under Armour",
-                            "name_ar": "أندر أرمر",
-                            "logo": "https://azzrk.dev.gosharry.com/api/theme/media/161/serve?variant=full&token=2hQhXaLsMg1J8uTo3UMqHlVyU2o2vweh",
-                            "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/161/serve?variant=full&token=2hQhXaLsMg1J8uTo3UMqHlVyU2o2vweh"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "text",
-                            "id": "name",
-                            "label": "Brand Name",
-                            "label_ar": "اسم العلامة",
-                            "default": ""
-                        },
-                        {
-                            "type": "text",
-                            "id": "name_ar",
-                            "label": "Brand Name (Arabic)",
-                            "label_ar": "اسم العلامة (عربي)",
-                            "default": ""
-                        },
-                        {
-                            "type": "image",
-                            "id": "logo",
-                            "label": "Brand Logo",
-                            "label_ar": "شعار العلامة"
-                        },
-                        {
-                            "type": "image",
-                            "id": "logo_ar",
-                            "label": "Brand Logo (Arabic)",
-                            "label_ar": "شعار العلامة (عربي)"
-                        }
-                    ]
-                }
-            ],
-            "defaults": {
-                "heading": "Our Brands",
-                "heading_ar": "علاماتنا التجارية",
-                "scroll_speed": 30,
-                "brands": [
-                    {
-                        "name": "Nike",
-                        "name_ar": "نايكي",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/160/serve?variant=full&token=bJnQaPwrzoSxxnklaENifYq8821ESjZN",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/160/serve?variant=full&token=bJnQaPwrzoSxxnklaENifYq8821ESjZN"
-                    },
-                    {
-                        "name": "Adidas",
-                        "name_ar": "أديداس",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/155/serve?variant=full&token=EkdV27IU1P85Y7STbptAhPXCtiAHiAwD",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/155/serve?variant=full&token=EkdV27IU1P85Y7STbptAhPXCtiAHiAwD"
-                    },
-                    {
-                        "name": "Puma",
-                        "name_ar": "بوما",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/157/serve?variant=full&token=tb83Tk54aCPgGfsXIDZHqFL5mxk945o6",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/157/serve?variant=full&token=tb83Tk54aCPgGfsXIDZHqFL5mxk945o6"
-                    },
-                    {
-                        "name": "Reebok",
-                        "name_ar": "ريبوك",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/159/serve?variant=full&token=TF7uzUWpgMKUk2qDfA7Vb3ziz953ULAW",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/159/serve?variant=full&token=TF7uzUWpgMKUk2qDfA7Vb3ziz953ULAW"
-                    },
-                    {
-                        "name": "New Balance",
-                        "name_ar": "نيو بالانس",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/163/serve?variant=full&token=6MgcmWPeJdAKWdIWpmXPzrGgvwtLldxx",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/163/serve?variant=full&token=6MgcmWPeJdAKWdIWpmXPzrGgvwtLldxx"
-                    },
-                    {
-                        "name": "Under Armour",
-                        "name_ar": "أندر أرمر",
-                        "logo": "https://azzrk.dev.gosharry.com/api/theme/media/161/serve?variant=full&token=2hQhXaLsMg1J8uTo3UMqHlVyU2o2vweh",
-                        "logo_ar": "https://azzrk.dev.gosharry.com/api/theme/media/161/serve?variant=full&token=2hQhXaLsMg1J8uTo3UMqHlVyU2o2vweh"
-                    }
-                ],
-                "section_bg_color": "",
-                "bg_image_ar": "https://azzrk.dev.gosharry.com/api/theme/media/174/serve?variant=full&token=0ZBxdjwGboN0RoxrlMZB8zB15wL11Lht"
-            }
+            "page_types": []
         },
         {
             "slug": "instagram-feed",
@@ -2762,6 +3425,48 @@
                 },
                 {
                     "type": "repeater",
+                    "id": "features_collection",
+                    "label": "Features",
+                    "label_ar": "المميزات",
+                    "fields": [
+                        {
+                            "type": "image",
+                            "id": "feature_image",
+                            "label": "Feature Image",
+                            "label_ar": "صورة الميزة"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_en",
+                            "label": "Feature Title",
+                            "label_ar": "عنوان الميزة",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_ar",
+                            "label": "Feature Title (Arabic)",
+                            "label_ar": "عنوان الميزة (عربي)",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "description_en",
+                            "label": "Feature Description",
+                            "label_ar": "وصف الميزة",
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "id": "description_ar",
+                            "label": "Feature Description (Arabic)",
+                            "label_ar": "وصف الميزة (عربي)",
+                            "default": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "repeater",
                     "id": "payment_items",
                     "label": "Items",
                     "label_ar": "العناصر",
@@ -3006,6 +3711,29 @@
                         "title": "ادفع 586 ر.س فقط علي 3 دفعات بدون رسوم",
                         "title_en": "Pay only 586 SAR in 3 installments without fees",
                         "image_en": "https://azzrk.dev.gosharry.com/api/theme/media/178/serve?variant=full&token=aN9JkP35rHLmag65vMbUWBTzMmDPuRFm"
+                    }
+                ],
+                "features_collection": [
+                    {
+                        "feature_image": "https://cdn.files.salla.network/homepage/1738600994/6b0bed5a-48fb-4884-a3ac-0bd6e9a72e4e_24x24.webp",
+                        "title_en": "Free Delivery",
+                        "title_ar": "توصيل مجاني",
+                        "description_en": "On purchases over 100 SAR",
+                        "description_ar": "لمشترياتك بقيمة 100 ريال"
+                    },
+                    {
+                        "feature_image": "https://cdn.files.salla.network/homepage/1738600994/ab70e274-4ff2-48e3-a375-4eed1f62d951_24x24.webp",
+                        "title_en": "Multiple Payment Methods",
+                        "title_ar": "وسائل دفع متنوعه",
+                        "description_en": "More than 4 secure payment methods",
+                        "description_ar": "اكثر من 4 وسائل دفع آمنه"
+                    },
+                    {
+                        "feature_image": "https://cdn.files.salla.network/homepage/1738600994/ab70e274-4ff2-48e3-a375-4eed1f62d951_24x24.webp",
+                        "title_en": "Technical Support",
+                        "title_ar": "دعم فني",
+                        "description_en": "All week long",
+                        "description_ar": "طوال الأسبوع"
                     }
                 ],
                 "heading_font_override": "",
@@ -4992,18 +5720,6 @@
                     "label": "Featured Product",
                     "multiple": false,
                     "resolved": true
-                },
-                {
-                    "type": "text",
-                    "id": "heading",
-                    "label": "Section Heading",
-                    "default": "Spotlight"
-                },
-                {
-                    "type": "text",
-                    "id": "heading_ar",
-                    "label": "Section Heading (Arabic)",
-                    "default": "المنتج المميز"
                 },
                 {
                     "type": "select",

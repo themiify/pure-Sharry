@@ -182,6 +182,7 @@
           </div>
 
           <div style="display: flex; gap: 10px;">
+      {% if product_card.avg_rating > 0 %}
             
        <div class="gl-product-card-rating">
             {% assign rating = product.avg_rating %}
@@ -207,86 +208,11 @@
 
             <span class="count">({{ product.reviews_count }})</span>
         </div>
+        {% endif   %}
          
 
             <div style="display: flex; gap: 10px;">
-              {% if show_share and product.url != blank %}
-                <div class="product-share">
-                  <span
-                    class="share-label share-trigger"
-                    style="cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"
-                  >
-                    {{ share_label }}
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      style="transition: transform 0.3s ease;"
-                    >
-                      <path d="M6 9l6 6 6-6"></path>
-                    </svg>
-                  </span>
-                  <div class="share-dropdown">
-                    <a
-                      href="https://www.facebook.com/sharer/sharer.php?u={{ product.url }}"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Facebook"
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                      </svg>
-                      <span>Facebook</span>
-                    </a>
-                    <a
-                      href="https://twitter.com/intent/tweet?url={{ product.url }}&text={{ product.name }}"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Twitter"
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M4 4l11.73 15h5L9 4H4zm13.15 13L6.35 6H5.25l10.8 11h1.1z"></path>
-                      </svg>
-                      <span>Twitter</span>
-                    </a>
-                    <a
-                      href="https://wa.me/?text={{ product.name }}%20{{ product.url }}"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="WhatsApp"
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                      </svg>
-                      <span>WhatsApp</span>
-                    </a>
-                  </div>
-                </div>
-              {% endif %}
+           
               {% if product.wishlist_enabled %}
                 <button
                   type="button"
@@ -897,9 +823,9 @@
           {% endif %}
 
           <div class="qty-price">
-            <div>
+            <div style="width: 100%;display:flex;justify-content:center;border-radius: 26px;
+    background: var(--gl-accent);">
               {% if product.show_quantity_box %}
-                <span class="label-qty">{{ quantity_label | default: 'Qty' }}</span>
                 <div class="gl-product-quantity">
                   <button type="button" aria-label="{{ decrease_quantity_label }}" data-qty-minus>−</button>
                   <input type="number" name="quantity" value="1" min="1" max="99" aria-label="{{ quantity_label }}">
@@ -991,32 +917,89 @@
             {% endcomment %}
           </div>
         </form>
+        {% if show_share and product.url != blank %}
+  <div class="product-share" style="display:flex;align-items:center;gap:10px;">
+      <span class="share-label" style="display:inline-flex;align-items:center;gap:6px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gl-primary)" stroke-width="2">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      {{ share_label }}
+
+    </span>
+    <a
+      class="share-icon-circle"
+      href="https://wa.me/?text={{ product.name }}%20{{ product.url }}"
+      target="_blank"
+      rel="noopener"
+      aria-label="WhatsApp"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+    </a>
+
+    <a
+      class="share-icon-circle"
+      href="https://www.instagram.com/"
+      target="_blank"
+      rel="noopener"
+      aria-label="Instagram"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+
+    <a
+      class="share-icon-circle"
+      href="https://www.facebook.com/sharer/sharer.php?u={{ product.url }}"
+      target="_blank"
+      rel="noopener"
+      aria-label="Facebook"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+      </svg>
+    </a>
+
+  
+  </div>
+{% endif %}
+{% assign c = section.settings %}
+
+<div class="sf-{{ section.id }}">
+  <div class="sf__container ">
+    <div class="sf__grid">
+      {% for item in c.features_collection %}
+        <div class="sf__item">
+          {% if item.feature_image %}
+            <img class="sf__icon" src="{{ item.feature_image | image_url }}" alt="{{ item.title_en | default: item.title_ar }}" loading="lazy">
+          {% endif %}
+          <div class="sf__content">
+            {% if request.is_rtl %}
+              <h2 class="sf__feature-name">{{ item.title_ar | default: item.title_en }}</h2>
+              <p class="sf__feature-description">{{ item.description_ar | default: item.description_en }}</p>
+            {% else %}
+              <h2 class="sf__feature-name">{{ item.title_en | default: item.title_ar }}</h2>
+              <p class="sf__feature-description">{{ item.description_en | default: item.description_ar }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
 
-    {% if items.size > 0 %}
-      <div class="gl-payment-section">
-        <div class="gl-container">
-          <div class="gl-payment-grid">
-            {% for item in items %}
-              <div class="gl-payment-item">
-                {% if item.image_en != blank %}
-                  <img src="{{ item.image_en }}" alt="{{ item.title }}" class="gl-payment-logo" loading="lazy">
-                {% endif %}
-                <p class="gl-payment-title">
-                  {% if is_rtl %}{{ item.title }}{% else %}{{ item.title_en }}{% endif %}
-                </p>
-                {% if item.url != blank %}
-                  <a href="{{ item.url }}" class="gl-payment-link">
-                    {{- translations.general.learn_more | default: 'اعرف اكثر' -}}
-                  </a>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    {% endif %}
+  
 
     {% if show_tabs %}
       <div class="gl-product-tabs">
@@ -1201,6 +1184,88 @@
     </svg>
   </button>
 </div>
+<style>
+  .sf-{{ section.id }} {
+  padding: 24px 0;
+}
+
+.sf__container {
+  width: 100%;
+}
+
+.sf__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 23px;
+  row-gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .sf__grid {
+    column-gap: 40px;
+    row-gap: 16px;
+  }
+}
+
+.sf__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .sf__item {
+    gap: 12px;
+  }
+}
+
+.sf__icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .sf__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.sf__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sf__feature-name {
+  font-weight: 600;
+  line-height: normal;
+  font-size: 12px;
+
+}
+
+@media (min-width: 768px) {
+  .sf__feature-name {
+    font-size: 16px;
+    text-wrap: nowrap;
+  }
+}
+
+.sf__feature-description {
+  font-weight: 500;
+  line-height: normal;
+  font-size: 10px;
+  color: #1F1F1FB2;
+}
+
+@media (min-width: 768px) {
+  .sf__feature-description {
+    font-size: 14px;
+  }
+}
+</style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const shareTriggers = document.querySelectorAll('.share-trigger');

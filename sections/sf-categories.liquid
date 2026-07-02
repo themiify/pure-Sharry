@@ -1,0 +1,198 @@
+
+{% assign c = section.settings %}
+
+{% if request.is_rtl  %}
+  {% assign section_title = c.title_ar | default: c.title_en %} 
+{% else %}
+  {% assign section_title = c.title_en | default: c.title_ar %}
+{% endif %}
+
+<section class="pu-cat pu-cat-{{ section.id }}{% unless c.disable_space_between_components %} pu-cat--spaced{% endunless %}">
+  <div class="pu-cat__container gl-container">
+
+    {% if section_title %}
+      <p class="pu-cat__title" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.title_color }}{% else %}var(--color-primary){% endif %};">
+        {{ section_title }}
+      </p>
+    {% endif %}
+
+    <div class="swiper pu-cat__swiper pu-cat__swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for item in c.collection %}
+            
+      {% if request.is_rtl %}
+  {% assign item_title = item.title_catogry_ar | default: item.title_catogry_en %}
+{% else %}
+  {% assign item_title = item.title_catogry_en | default: item.title_catogry_ar %}
+{% endif %}
+
+          <div class="swiper-slide">
+            <a class="pu-cat__item" href="{{ item.url }}">
+              <div class="pu-cat__img-wrap" style="background-color: {% if c.toggle_theme_color_main_banner %}{{ item.bg_color_catogry }}{% else %}var(--color-primary){% endif %};">
+                <img
+                  class="pu-cat__img{% if c.is_border_reduis %} pu-cat__img--circle{% else %} pu-cat__img--rounded{% endif %}"
+                  src="{{ item.img_catogry }}"
+                  alt="{{ item_title }}"
+                />
+              </div>
+              <p class="pu-cat__label" style="color: {% if c.toggle_theme_color_main_banner %}{{ c.color_catogry }}{% else %}var(--color-primary){% endif %};">
+                {{ item_title }}
+              </p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+     
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    var swiperConfig = {
+      slidesPerView: 2.5,
+      spaceBetween: 20,
+      speed: 1000,
+      effect: "slide",
+      centerInsufficientSlides: true,
+      {% if c.is_loop_slider %}
+      loop: true,
+      {% endif %}
+      {% if c.is_autoplay_slider %}
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      {% endif %}
+
+
+      breakpoints: {
+        1024: { slidesPerView: 5, spaceBetween: 40 },
+        600:  { slidesPerView: 4, spaceBetween: 40 },
+        450:  { slidesPerView: 2.5, spaceBetween: 25 },
+        0:    { slidesPerView: 2.5, spaceBetween: 20 }
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      new Swiper(".pu-cat__swiper-{{ section.id }}", swiperConfig);
+    });
+  })();
+</script>
+<style>
+    /* =============================================
+   sf-d3a26aef-ef63-415f-8788-4cbb6712e370.css
+   Prefix: pu-cat
+   ============================================= */
+
+/* Section wrapper */
+.pu-cat {
+  padding: 24px 0;
+  width: 100%;
+}
+
+.pu-cat--spaced {
+  margin-bottom: 40px;
+}
+
+/* Container */
+.pu-cat__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Section title */
+.pu-cat__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .pu-cat__title {
+    font-size: 28px;
+  }
+}
+
+/* Swiper wrapper */
+.pu-cat__swiper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Each category item link */
+.pu-cat__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+}
+
+/* Image container */
+.pu-cat__img-wrap {
+  border-radius: 50%;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .pu-cat__img-wrap {
+    height: 180px;
+  }
+}
+
+/* Image */
+.pu-cat__img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  margin: auto;
+  transition: transform 500ms ease-in-out;
+}
+
+.pu-cat__img:hover {
+  transform: scale(1.05);
+}
+
+.pu-cat__img--circle {
+  border-radius: 50%;
+}
+
+.pu-cat__img--rounded {
+  border-radius: 18px;
+}
+
+/* Category label */
+.pu-cat__label {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .pu-cat__label {
+    font-size: 24px;
+  }
+}
+
+/* Swiper navigation arrows */
+.pu-cat__prev,
+.pu-cat__next {
+  color: var(--color-primary);
+}
+
+/* Swiper pagination */
+.pu-cat__pagination {
+  text-align: center;
+  margin-top: 12px;
+}
+</style>

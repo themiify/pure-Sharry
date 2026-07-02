@@ -348,7 +348,7 @@ button {
 
 .gl-logo img {
   height: 40px;
-  width: auto;
+  width: 70px !important;
 }
 
 .gl-logo-text {
@@ -1314,6 +1314,7 @@ button {
 
 .gl-product-tabs {
   margin-top: 3rem;
+  background-color: var(--gl-accent);
 }
 
 .gl-product-tabs-nav {
@@ -1400,7 +1401,12 @@ button {
   background: var(--gl-background_footer_color) !important;
   padding-top: 4rem;
 }
-
+.gl-footer .gl-container.p {
+  padding: 3rem;
+  border-radius: 36px;
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 3rem;
+}
 .gl-footer-grid {
   display: grid;
   grid-template-columns: 1.5fr repeat(4, 1fr);
@@ -1438,7 +1444,7 @@ button {
 }
 
 .gl-footer h4 {
-  color: #fff;
+  color: var(--gl-subheading);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
@@ -4123,7 +4129,7 @@ background: linear-gradient(
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 0.5rem;
-  color: var(--gl-subheading, inherit);
+  color: var(--gl-text, inherit);
 }
 
 .gl-spotlight-product-sku {
